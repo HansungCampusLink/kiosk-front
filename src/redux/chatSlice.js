@@ -1,52 +1,60 @@
-// chatSlice.js
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { BASE_API_URL } from '../config/api'; // BASE_API_URL을 임포트
 
 // 초기 상태 설정
 const initialState = {
     messages: [],
 };
 
-// 비동기 thunk 액션 생성
-export const sendMessage = createAsyncThunk(
-    'chat/sendMessage',
-    async (content, { dispatch }) => {
-        dispatch({ type: 'chat/sendMessage', payload: { role: 'user', content } });
+// 비동기 액션 정의
+export const sendUserMessage = (content) => {
+    return async (dispatch) => {
+        // 사용자 메시지를 전송하는 액션을 디스패치
+        dispatch(sendMessage({ role: 'user', content })); // 사용자 메시지를 디스패치
 
-        // API 요청
-        const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                messages: [{ role: 'user', content }],
-                stream: true,
-            }),
-        });
-        const data = await response.json();
+        try {
+            // API 요청
+            const response = await fetch(`${BASE_API_URL}/api/chat`, {
+                method: 'POST', // HTTP 메소드 POST 사용
+                headers: { 'Content-Type': 'application/json' }, // 요청 헤더 설정
+                body: JSON.stringify({
+                    messages: [{ role: 'user', content }], // 메시지 배열에 사용자 메시지 추가
+                    stream: true, // 스트리밍 요청 여부
+                }),
+            });
 
-        // 수신된 메시지 디스패치
-        return { role: 'assistant', content: data.message.content, ref: data.ref };
-    }
-);
+            // 서버의 응답이 성공적인지 확인
+            if (!response.ok) { // 응답이 성공적이지 않은 경우 오류 처리
+                throw new Error('네트워크 응답이 올바르지 않습니다.'); // 오류 메시지
+            }
+
+            const data = await response.json(); // JSON 형태로 응답 데이터 파싱
+            console.log('Received response:', data); // API 응답 로그 출력
+
+            // AI의 응답 메시지를 Redux 스토어에 저장
+            dispatch(receiveMessage({ role: 'assistant', content: data.message.content, ref: data.ref })); // AI 응답을 디스패치
+        } catch (error) {
+            console.error('Error sending message:', error); // 오류 로그 출력
+        }
+    };
+};
 
 // 슬라이스 생성
 const chatSlice = createSlice({
     name: 'chat',
     initialState,
     reducers: {
+        // 사용자 메시지를 Redux 스토어에 추가하는 리듀서
         sendMessage: (state, action) => {
             state.messages.push(action.payload); // 사용자 메시지 추가
         },
+        // AI 응답을 Redux 스토어에 추가하는 리듀서
         receiveMessage: (state, action) => {
-            state.messages.push(action.payload); // 수신된 메시지 추가
+            state.messages.push(action.payload); // 수신된 AI 응답 메시지 추가
         },
-    },
-    extraReducers: (builder) => {
-        builder.addCase(sendMessage.fulfilled, (state, action) => {
-            state.messages.push(action.payload); // 비동기 요청 성공 시 수신된 메시지 추가
-        });
     },
 });
 
-// 리듀서와 액션 내보내기
-export const { receiveMessage } = chatSlice.actions;
-export default chatSlice.reducer;
+// 액션과 리듀서 내보내기
+export const { sendMessage, receiveMessage } = chatSlice.actions; // 사용자 메시지 및 AI 응답 디스패치 액션 내보내기
+export default chatSlice.reducer; // 슬라이스 리듀서 내보내기
