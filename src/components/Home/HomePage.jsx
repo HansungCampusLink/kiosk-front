@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'; // React 임포트
-import SearchBar from '../SearchBar'; // 질문 입력 컴포넌트 임포트
-import SuggestedQuestions from '../SuggestedQuestions'; // 추천 질문 컴포넌트 임포트
-import ChatWindow from '../ChatWindow'; // 채팅 창 컴포넌트 임포트
+import SearchBar from '../Search/SearchBar'; // 질문 입력 컴포넌트 임포트
+import SuggestedQuestions from '../Search/SuggestedQuestions'; // 추천 질문 컴포넌트 임포트
+import ChatWindow from '../Chat/ChatWindow'; // 채팅 창 컴포넌트 임포트
 import TypingText from "./Title";
 import { NavBar } from "./Navbar"; // 네비게이션 바 컴포넌트 임포트
 import './HomePage.css'; // CSS 스타일 시트 임포트
@@ -10,13 +10,14 @@ function HomePage() {
     const [who, setWho] = useState('student'); // 기본값 'student'
     const [major, setMajor] = useState('null'); // 기본값 'null'
     const [selectedSuggestion, setSelectedSuggestion] = useState(''); // 추천 질문 상태 추가
-
-
+    const [isExpanded, setIsExpanded] = useState(false); // 첫 채팅 후 확장 상태 애니메이션
 
     const handleWhoChange = (value) => setWho(value); // 'who' 값 설정
     const handleMajorChange = (value) => setMajor(value); // 'major' 값 설정
 
-
+    const handleFirstMessage = () => {
+        setIsExpanded(true); // 첫 채팅이 작성되면 확장 상태로 설정
+    };
 
     return (
         <div className="App">

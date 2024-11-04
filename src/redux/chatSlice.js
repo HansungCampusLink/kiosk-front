@@ -16,7 +16,7 @@ export const sendUserMessage = (who, major, content) => {
 
         try {
             // API 요청
-            const response = await fetch(`${BASE_API_URL}/chat`, {
+            const response = await fetch(`/api/v1/chat`, {
                 method: 'POST', // HTTP 메소드 POST 사용
                 headers: { 'Content-Type': 'application/json' }, // 요청 헤더 설정
                 body: JSON.stringify({

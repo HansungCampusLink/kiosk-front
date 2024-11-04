@@ -109,6 +109,11 @@
     overflow: hidden;
     padding: 20px;
     height: 100%;
+    transition: height 0.5s ease; /* 첫 메시지에 따른 확장 애니메이션 */
+}
+
+.chat-container.expanded {
+    height: calc(100% - 50px); /* 확장 후 높이 */
 }
 
 .chat-window {
