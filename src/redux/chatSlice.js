@@ -3,23 +3,27 @@ import { BASE_API_URL } from '../config/api'; // BASE_API_URL을 임포트
 
 // 초기 상태 설정
 const initialState = {
+    who: "student",
+    major: null,
     messages: [],
 };
 
 // 비동기 액션 정의
-export const sendUserMessage = (content) => {
+export const sendUserMessage = (who, major, content) => {
     return async (dispatch) => {
         // 사용자 메시지를 전송하는 액션을 디스패치
         dispatch(sendMessage({ role: 'user', content })); // 사용자 메시지를 디스패치
 
         try {
             // API 요청
-            const response = await fetch(`${BASE_API_URL}/api/chat`, {
+            const response = await fetch(`${BASE_API_URL}/chat`, {
                 method: 'POST', // HTTP 메소드 POST 사용
                 headers: { 'Content-Type': 'application/json' }, // 요청 헤더 설정
                 body: JSON.stringify({
-                    messages: [{ role: 'user', content }], // 메시지 배열에 사용자 메시지 추가
-                    stream: true, // 스트리밍 요청 여부
+                    who: who || "student",  // who가 없으면 기본값 'student'
+                    major: major || null, // major가 없으면 기본값 null
+                    messages : [{ role: 'user', content }], // 메시지 배열에 사용자 메시지 추가
+                    // stream: true, // 스트리밍 요청 여부
                 }),
             });
 
@@ -32,7 +36,11 @@ export const sendUserMessage = (content) => {
             console.log('Received response:', data); // API 응답 로그 출력
 
             // AI의 응답 메시지를 Redux 스토어에 저장
-            dispatch(receiveMessage({ role: 'assistant', content: data.message.content, ref: data.ref })); // AI 응답을 디스패치
+            dispatch(receiveMessage({
+                role: data.messages.role,
+                content: data.messages.content,
+                ref: data.ref,
+            }));
         } catch (error) {
             console.error('Error sending message:', error); // 오류 로그 출력
         }
@@ -50,7 +58,8 @@ const chatSlice = createSlice({
         },
         // AI 응답을 Redux 스토어에 추가하는 리듀서
         receiveMessage: (state, action) => {
-            state.messages.push(action.payload); // 수신된 AI 응답 메시지 추가
+            const { role, content, ref } = action.payload;
+            state.messages.push({ role, content, ref }); // 수신된 AI 응답 메시지 추가
         },
     },
 });

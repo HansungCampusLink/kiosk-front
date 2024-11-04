@@ -1,6 +1,8 @@
-// ChatWindow.js
+// ChatWindow.jsx
 import React from 'react'; // React 라이브러리 임포트
 import { useSelector } from 'react-redux'; // Redux의 useSelector 훅 임포트
+import './ChatWindow.css';
+
 
 function ChatWindow() {
     // Redux 스토어에서 메시지 목록을 가져옴
@@ -16,8 +18,9 @@ function ChatWindow() {
                     {msg.ref && (
                         <ul>
                             {msg.ref.map((ref, refIndex) => (
-                                <li key={refIndex}><a href={ref}>{ref}</a></li> /* 각 링크를 리스트 항목으로 표시 */
-                                ))}
+                                <li key={refIndex}><a href={ref} target="_blank" rel="noopener noreferrer">{ref}</a>
+                                </li> /* 링크 새 탭에서 열림 */
+                            ))}
                         </ul>
                     )}
                 </div>

@@ -1,0 +1,17 @@
+/* ChatWindow.css */
+.message {
+    padding: 10px;
+    border-radius: 10px; /* 둥근 모서리 */
+    margin: 10px 0;
+    max-width: 80%;
+}
+
+.user-message {
+    background-color: #e0f7fa; /* 사용자 메시지 배경색 */
+    align-self: flex-end; /* 오른쪽 정렬 */
+}
+
+.assistant-message {
+    background-color: #f0f0f0; /* AI 응답 배경색 */
+    align-self: flex-start; /* 왼쪽 정렬 */
+}
