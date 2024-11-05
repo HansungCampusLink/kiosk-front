@@ -1,9 +1,11 @@
 // src/components/QR/QRCodeGenerator.jsx
 
-import React from 'react';
+import React, { useState } from 'react';
 import QRCode from 'qrcode.react'; // QR 코드 생성 라이브러리
 
 const QRCodeGenerator = ({ refLink }) => {
+    const [inputText, setInputText] = useState('');
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h3>QR Code for the Link</h3>

@@ -23,7 +23,9 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion  }) {
             const requestData = {
                 who: who,
                 major: major,
-                messages: [{ role: 'user', content: question }]
+                messages: [
+                    { role: 'user', content: question },
+                ]
             }; // 질문이 비어있지 않은 경우에만 전송
 
             dispatch(sendUserMessage(requestData)); // 입력한 질문을 Redux 스토어로 전송

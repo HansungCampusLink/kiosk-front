@@ -9,10 +9,10 @@ const initialState = {
 };
 
 // 비동기 액션 정의
-export const sendUserMessage = (who, major, content) => {
+export const sendUserMessage = (requestData) => {
     return async (dispatch) => {
         // 사용자 메시지를 전송하는 액션을 디스패치
-        dispatch(sendMessage({ role: 'user', content })); // 사용자 메시지를 디스패치
+        dispatch(sendMessage({ role: 'user', content: requestData.messages[0].content })); // 사용자 메시지를 디스패치
 
         try {
             // API 요청
@@ -20,12 +20,14 @@ export const sendUserMessage = (who, major, content) => {
                 method: 'POST', // HTTP 메소드 POST 사용
                 headers: { 'Content-Type': 'application/json' }, // 요청 헤더 설정
                 body: JSON.stringify({
-                    who: who || "student",  // who가 없으면 기본값 'student'
-                    major: major || null, // major가 없으면 기본값 null
-                    messages : [{ role: 'user', content }], // 메시지 배열에 사용자 메시지 추가
+                    who: requestData.who || "student",  // who가 없으면 기본값 'student'
+                    major: requestData.major || null, // major가 없으면 기본값 null
+                    messages : [{ role: 'user', content: requestData.messages[0].content }], // 메시지 배열에 사용자 메시지 추가
                     // stream: true, // 스트리밍 요청 여부
                 }),
             });
+
+            console.log('Made request:', requestData.messages);
 
             // 서버의 응답이 성공적인지 확인
             if (!response.ok) { // 응답이 성공적이지 않은 경우 오류 처리
