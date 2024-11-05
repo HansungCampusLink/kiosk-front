@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'; // React와 useState 훅 임
 import { useDispatch } from 'react-redux'; // Redux의 useDispatch 훅 임포트
 import { sendUserMessage } from '../../redux/chatSlice'; // 메시지 전송 액션 임포트
 
-function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion  }) {
+function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFirstMessage  }) {
     const [question, setQuestion] = useState(''); // 사용자가 입력한 질문을 저장하는 상태 변수
     const dispatch = useDispatch(); // Redux의 dispatch 함수를 사용하여 액션을 보낼 준비
 
@@ -30,6 +30,8 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion  }) {
 
             dispatch(sendUserMessage(requestData)); // 입력한 질문을 Redux 스토어로 전송
             setQuestion(''); // 질문 입력 필드 초기화
+
+            if (onFirstMessage) onFirstMessage(); // 첫 메시지 전송 시 콜백 호출
         }
     };
 

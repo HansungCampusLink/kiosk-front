@@ -1,17 +1,55 @@
-/* ChatWindow.css */
+.chat-window {
+    padding: 15px;
+    height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 공통 메시지 스타일 */
 .message {
     padding: 10px;
     border-radius: 10px; /* 둥근 모서리 */
     margin: 10px 0;
     max-width: 80%;
+    display: inline-block;
+    word-wrap: break-word; /* 긴 텍스트 줄바꿈 */
 }
 
+/* 사용자 메시지 스타일 */
 .user-message {
     background-color: #e0f7fa; /* 사용자 메시지 배경색 */
+    color: #00796b; /* 텍스트 색상 */
     align-self: flex-end; /* 오른쪽 정렬 */
+    text-align: right;
 }
 
+/* AI 응답 메시지 스타일 */
 .assistant-message {
     background-color: #f0f0f0; /* AI 응답 배경색 */
+    color: #333; /* 텍스트 색상 */
     align-self: flex-start; /* 왼쪽 정렬 */
+    text-align: left;
+}
+
+/* 추천 링크 스타일 */
+.ref-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 5px;
+}
+
+.ref-item {
+    margin-top: 10px;
+}
+
+.ref-item a {
+    text-decoration: none;
+    color: #0073e6;
+    font-size: 14px;
+    word-break: break-word; /* 긴 URL 줄바꿈 */
+}
+
+.ref-item a:hover {
+    color: #005bb5;
 }

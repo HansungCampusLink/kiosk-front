@@ -10,14 +10,17 @@ function HomePage() {
     const [who, setWho] = useState('student'); // 기본값 'student'
     const [major, setMajor] = useState('null'); // 기본값 'null'
     const [selectedSuggestion, setSelectedSuggestion] = useState(''); // 추천 질문 상태 추가
+    const [showSuggestions, setShowSuggestions] = useState(true); // 추천 질문 표시 여부
     const [isExpanded, setIsExpanded] = useState(false); // 첫 채팅 후 확장 상태 애니메이션
 
     const handleWhoChange = (value) => setWho(value); // 'who' 값 설정
     const handleMajorChange = (value) => setMajor(value); // 'major' 값 설정
 
     const handleFirstMessage = () => {
+        setShowSuggestions(false); // 첫 메시지 전송 후 추천 질문을 숨김
         setIsExpanded(true); // 첫 채팅이 작성되면 확장 상태로 설정
     };
+
 
     return (
         <div className="App">
@@ -57,8 +60,11 @@ function HomePage() {
                             major={major}
                             selectedSuggestion={selectedSuggestion}
                             setSelectedSuggestion={setSelectedSuggestion}
+                            onFirstMessage={handleFirstMessage}
                         />  {/* 질문 입력 컴포넌트 */}
-                        <SuggestedQuestions setSelectedSuggestion={setSelectedSuggestion} />
+                        {showSuggestions && (
+                            <SuggestedQuestions setSelectedSuggestion={setSelectedSuggestion} />
+                        )}
                         <ChatWindow /> {/* 채팅 창 컴포넌트 */}
                     </div>
                 </div>
