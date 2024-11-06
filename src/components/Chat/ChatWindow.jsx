@@ -24,7 +24,11 @@ function ChatWindow() {
                     key={index}
                     className={`message ${msg.role === 'user' ? 'user-message' : 'assistant-message'}`}
                 >
-                    <p><strong>{msg.role === 'user' ? 'User' : 'Assistant'}:</strong> {msg.content || '메시지가 없습니다'}</p>
+                    {/* AI 응답일 경우 facelogo 출력 */}
+                    {msg.role === 'assistant' && (
+                        <img src="/images/facelogo.png" alt="Assistant Logo" className="assistant-logo" />
+                    )}
+                    <p><strong>{msg.role === 'user' ? '나 ' : '상상부기 '}:</strong> {msg.content || '메시지가 없습니다'}</p>
 
                     {/* 추천 링크가 있는 경우 리스트로 표시 */}
                     {msg.ref && (

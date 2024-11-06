@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { BASE_API_URL } from '../config/api'; // BASE_API_URL을 임포트
 
 // 초기 상태 설정
 const initialState = {

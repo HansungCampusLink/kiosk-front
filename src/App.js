@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import HomePage from './components/Home/HomePage.jsx';
-import MobilePage from './components/Mobile/MobilePage'; // MobilePage 컴포넌트 임포트
+import MobilePage from './components/Mobile/MobilePage.jsx'; // MobilePage 컴포넌트 임포트
 
 function App() {
     return (

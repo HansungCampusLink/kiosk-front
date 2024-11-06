@@ -1,4 +1,4 @@
-// src/components/Mobile/MobilePage.js
+// src/components/Mobile/MobilePage.jsx
 import React from 'react';
 
 const MobilePage = () => {
