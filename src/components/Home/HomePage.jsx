@@ -32,10 +32,27 @@ function HomePage() {
                     <div className="selection-group">
                         <p className="selection-group-title">너는 누구야?</p> {/* 타이틀 텍스트 */}
                         <div className="selection-buttons">
-                            <button onClick={() => handleWhoChange('student')}>Student</button>
-                            <button onClick={() => handleWhoChange('professor')}>Professor</button>
-                            <button onClick={() => handleWhoChange('deliver')}>deliver</button>
-                            <button onClick={() => handleWhoChange('visitor')}>visitor</button>
+                            {/* 선택된 who 값에 따라 스타일링 */}
+                            <button
+                                onClick={() => handleWhoChange('student')}
+                                className={who === 'student' ? 'selected-button' : ''}
+                            >Student
+                            </button>
+                            <button
+                                onClick={() => handleWhoChange('professor')}
+                                className={who === 'professor' ? 'selected-button' : ''}
+                            >Professor
+                            </button>
+                            <button
+                                onClick={() => handleWhoChange('deliver')}
+                                className={who === 'deliver' ? 'selected-button' : ''}
+                            >Deliver
+                            </button>
+                            <button
+                                onClick={() => handleWhoChange('visitor')}
+                                className={who === 'visitor' ? 'selected-button' : ''}
+                            >Visitor
+                            </button>
                         </div>
                     </div>
 
@@ -43,10 +60,27 @@ function HomePage() {
                     <div className="selection-group">
                         <p className="selection-group-title">혹시 전공은?</p> {/* 타이틀 텍스트 */}
                         <div className="selection-buttons">
-                            <button onClick={() => handleMajorChange('computer_science')}>Computer Science</button>
-                            <button onClick={() => handleMajorChange('mechanical')}>Mechanical</button>
-                            <button onClick={() => handleMajorChange('electrical')}>Electrical</button>
-                            <button onClick={() => handleMajorChange('marketing')}>marketing</button>
+                            {/* 선택된 major 값에 따라 스타일링 */}
+                            <button
+                                onClick={() => handleMajorChange('computer_science')}
+                                className={major === 'computer_science' ? 'selected-button' : ''}
+                            >Computer Science
+                            </button>
+                            <button
+                                onClick={() => handleMajorChange('mechanical')}
+                                className={major === 'mechanical' ? 'selected-button' : ''}
+                            >Mechanical
+                            </button>
+                            <button
+                                onClick={() => handleMajorChange('electrical')}
+                                className={major === 'electrical' ? 'selected-button' : ''}
+                            >Electrical
+                            </button>
+                            <button
+                                onClick={() => handleMajorChange('marketing')}
+                                className={major === 'marketing' ? 'selected-button' : ''}
+                            >Marketing
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -54,18 +88,18 @@ function HomePage() {
                 {/* 우측 패널: 채팅 및 질문 입력 */}
                 <div className="right-panel">
                     <div className="chat-container">
-                        <TypingText /> {/* 타이핑 애니메이션을 위한 클래스 */}
+                        <TypingText/> {/* 타이핑 애니메이션을 위한 클래스 */}
                         <SearchBar
                             who={who}
                             major={major}
                             selectedSuggestion={selectedSuggestion}
                             setSelectedSuggestion={setSelectedSuggestion}
                             onFirstMessage={handleFirstMessage}
-                        />  {/* 질문 입력 컴포넌트 */}
+                        /> {/* 질문 입력 컴포넌트 */}
                         {showSuggestions && (
-                            <SuggestedQuestions setSelectedSuggestion={setSelectedSuggestion} />
+                            <SuggestedQuestions setSelectedSuggestion={setSelectedSuggestion}/>
                         )}
-                        <ChatWindow /> {/* 채팅 창 컴포넌트 */}
+                        <ChatWindow/> {/* 채팅 창 컴포넌트 */}
                     </div>
                 </div>
             </div>
