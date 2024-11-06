@@ -41,6 +41,7 @@
     height: 35px;
     margin-right: 10px; /* 텍스트와의 간격 */
     border-radius: 50%; /* 원형 이미지 */
+    border: 2px solid white;
 }
 
 /* 추천 링크 스타일 */

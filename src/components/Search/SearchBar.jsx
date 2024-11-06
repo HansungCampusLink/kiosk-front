@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react'; // React와 useState 훅 임포트
 import { useDispatch } from 'react-redux'; // Redux의 useDispatch 훅 임포트
 import { sendUserMessage } from '../../redux/chatSlice'; // 메시지 전송 액션 임포트
+import './SearchBar.css';
+
 
 function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFirstMessage  }) {
     const [question, setQuestion] = useState(''); // 사용자가 입력한 질문을 저장하는 상태 변수
@@ -15,7 +17,19 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
         }
     }, [selectedSuggestion, setSelectedSuggestion]);
 
+    // 음성인식 시작 함수
+    const startListening = () => {
+        const recognition = new window.webkitSpeechRecognition(); // 음성 인식 객체 생성
+        recognition.lang = 'ko-KR'; // 한국어 설정
+        recognition.interimResults = false;
 
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            setQuestion(transcript); // 인식된 텍스트를 SearchBar에 설정
+        };
+
+        recognition.start();
+    };
 
     // 질문을 전송하는 함수
     const handleSubmit = () => {
@@ -45,8 +59,10 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
                 onChange={(e) => setQuestion(e.target.value)} // 입력값이 변경될 때 상태 업데이트
                 className="input" // CSS 클래스 적용
             />
+            {/* 음성인식 버튼 */}
+            <button onClick={startListening} className="voice-button"/> {/* 음성인식 시작 버튼 */}
             {/* 질문 전송 버튼 */}
-            <button onClick={handleSubmit} className="send-button">전송</button> {/* 클릭 시 handleSubmit 함수 호출 */}
+            <button onClick={handleSubmit} className="send-button"/> {/* 클릭 시 handleSubmit 함수 호출 */}
         </div>
     );
 }
