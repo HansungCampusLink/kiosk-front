@@ -37,13 +37,15 @@
     background-repeat: no-repeat;
     background-size: 20px 20px; /* 아이콘 크기 */
     background-position: center; /* 아이콘 중앙 정렬 */
+    margin: 5px;
 }
 
 .send-button {
-    background-image: url('/images/search-icon.png');
+    background-image: url('/images/white_search_icon.png');
     background-repeat: no-repeat;
     background-size: 20px 20px; /* 아이콘 크기 */
     background-position: center; /* 아이콘 중앙 정렬 */
+    margin: 5px;
 
 }
 
