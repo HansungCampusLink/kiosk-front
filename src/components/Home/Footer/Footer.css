@@ -1,0 +1,7 @@
+/* Footer.css */
+.footer {
+    padding: 20px 0; /* 위아래 20px 간격 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    font-size: 14px; /* 폰트 크기 설정 */
+    color: #555; /* 텍스트 색상 */
+}

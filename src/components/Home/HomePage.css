@@ -1,23 +1,41 @@
 /* HomePage.css: HomePage 컴포넌트 스타일 */
 
-.App {
-    text-align: center;
-    background-color: #f5f5f5; /* 배경색 */
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+html, body {
+    background-color: #f5f5f5; /* 원하는 전체 배경색 */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
 
-.App-header {
+.App {
+    background-color: #f5f5f5; /* 배경색 */
+    text-align: center;
+    height: 100vh;
     display: flex;
-    width: 80%;
-    height: 90vh;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
+    flex-direction: column; /* 전체를 세로로 정렬 */
+    align-items: center;
+    justify-content: space-between; /* 헤더, 바디, 풋터를 수직 배치 */
 }
+
+
+
+.header, .body, .footer {
+    width: 100%;
+}
+
+/* Body 영역 스타일 */
+.body {
+    display: flex; /* 플렉스 박스로 설정하여 내부 요소를 가로 또는 세로로 정렬할 수 있게 함 */
+    width: 80%; /* 전체 화면 너비의 80%를 차지하도록 설정 */
+    height: 90vh; /* 화면 높이의 90%를 차지하도록 설정하여 거의 꽉 차는 효과 */
+    background-color: #ffffff; /* 배경색을 흰색으로 지정 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 바디 섹션에 그림자 효과 추가 (x축, y축, 블러, 그림자 색) */
+    flex-direction: row; /* 플렉스 요소들이 가로로 배치되도록 설정 */
+    flex: 1; /* 남아 있는 공간을 모두 차지하여 윗부분에 고정된 헤더와 아래의 풋터 사이에서 최대 공간을 차지하게 만듦 */
+
+}
+
 
 /* 좌측 패널 스타일 */
 .left-panel {
@@ -81,7 +99,7 @@
     flex-direction: column;
     justify-content: space-between;
     overflow-y: auto; /* 스크롤 활성화 */
-    height: 100%; /* 패널이 전체 높이에 맞추어 고정되도록 설정 */
+    height: 95%; /* 패널이 전체 높이에 맞추어 고정되도록 설정 */
 }
 
 .typing-text-container {

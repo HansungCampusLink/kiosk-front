@@ -3,7 +3,8 @@ import SearchBar from '../Search/SearchBar'; // 질문 입력 컴포넌트 임�
 import SuggestedQuestions from '../Search/SuggestedQuestions'; // 추천 질문 컴포넌트 임포트
 import ChatWindow from '../Chat/ChatWindow'; // 채팅 창 컴포넌트 임포트
 import TypingText from "./Title";
-import { NavBar } from "./Navbar"; // 네비게이션 바 컴포넌트 임포트
+import { NavBar } from "./Header/Navbar.jsx"; // 네비게이션 바 컴포넌트 임포트
+import Footer from "./Footer/Footer.jsx"; // 풋터 컴포넌트 임포트
 import './HomePage.css'; // CSS 스타일 시트 임포트
 
 function HomePage() {
@@ -24,8 +25,10 @@ function HomePage() {
 
     return (
         <div className="App">
-            {/*<NavBar /> /!* 네비게이션 바 추가 *!/*/}
-            <div className="App-header">
+            <header>
+                <NavBar/> {/* 네비게이션 바 헤더에 추가 */}
+            </header>
+            <main className="body">
                 {/* 좌측 패널: who와 major 선택 버튼 */}
                 <div className="left-panel">
                     {/* Who 버튼 그룹 */}
@@ -107,7 +110,8 @@ function HomePage() {
                         <ChatWindow/> {/* 채팅 창 컴포넌트 */}
                     </div>
                 </div>
-            </div>
+            </main>
+            <Footer /> {/*  Footer 추가 */}
         </div>
     );
 }
