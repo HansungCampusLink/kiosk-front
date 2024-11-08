@@ -49,6 +49,10 @@
 
 }
 
-.voice-button:hover, .send-button:hover {
-    background-color: #f0f0f0; /* 호버 시 배경색 변경 */
+.voice-button:hover{
+    background-color: rgba(240, 240, 240, 0.78); /* 호버 시 배경색 변경 */
+}
+
+.send-button:hover {
+    background-color: #005bb5;
 }

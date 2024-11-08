@@ -53,33 +53,38 @@ function HomePage() {
                                 className={who === 'visitor' ? 'selected-button' : ''}
                             >Visitor
                             </button>
+                            <button
+                                onClick={() => handleWhoChange('others')}
+                                className={who === 'others' ? 'selected-button' : ''}
+                            >Others
+                            </button>
                         </div>
                     </div>
 
                     {/* Major 버튼 그룹 */}
                     <div className="selection-group">
-                        <p className="selection-group-title">혹시 전공은?</p> {/* 타이틀 텍스트 */}
+                        <p className="selection-group-title">혹시 소속 단과대는?</p> {/* 타이틀 텍스트 */}
                         <div className="selection-buttons">
                             {/* 선택된 major 값에 따라 스타일링 */}
                             <button
-                                onClick={() => handleMajorChange('computer_science')}
-                                className={major === 'computer_science' ? 'selected-button' : ''}
-                            >Computer Science
+                                onClick={() => handleMajorChange('humanities')}
+                                className={major === 'humanities' ? 'selected-button' : ''}
+                            >Humanities
                             </button>
                             <button
-                                onClick={() => handleMajorChange('mechanical')}
-                                className={major === 'mechanical' ? 'selected-button' : ''}
-                            >Mechanical
+                                onClick={() => handleMajorChange('social sciences')}
+                                className={major === 'social sciences' ? 'selected-button' : ''}
+                            >Social Sciences
                             </button>
                             <button
-                                onClick={() => handleMajorChange('electrical')}
-                                className={major === 'electrical' ? 'selected-button' : ''}
-                            >Electrical
+                                onClick={() => handleMajorChange('arts')}
+                                className={major === 'arts' ? 'selected-button' : ''}
+                            >Arts
                             </button>
                             <button
-                                onClick={() => handleMajorChange('marketing')}
-                                className={major === 'marketing' ? 'selected-button' : ''}
-                            >Marketing
+                                onClick={() => handleMajorChange('engineering')}
+                                className={major === 'engineering' ? 'selected-button' : ''}
+                            >Engineering
                             </button>
                         </div>
                     </div>
