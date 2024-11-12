@@ -1,6 +1,5 @@
 // ChatWindow.jsx
-
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { useSelector } from 'react-redux';
 import QRCodeGenerator from '../QR/QRCodeGenerator';
 import LoadingCard from './LoadingCard'; // 로딩 카드 컴포넌트 추가
@@ -11,13 +10,23 @@ function ChatWindow({ isExpanded }) {
     const messages = useSelector((state) => state.chat.messages); // 메시지 목록을 state에서 추출
     const loading = useSelector((state) => state.chat.loading); // Redux의 loading 상태를 바로 가져옴
 
+    const chatWindowRef = useRef(null); // 스크롤을 위한 ref 추가 $$$$$
+
+    // 메시지가 업데이트될 때마다 스크롤을 맨 아래로 이동
+    useEffect(() => {
+        if (chatWindowRef.current) {
+            chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+        }
+    }, [messages, loading]); // messages와 loading 상태가 변경될 때마다 실행
+
+
     if (!messages) {
         console.error("Messages is undefined or null");
         return <p className="error">메시지를 불러올 수 없습니다.</p>;
     }
 
     return (
-        <div className={`chat-window ${isExpanded ? 'expanded' : ''}`}> {/* 채팅 창 컨테이너 */}
+        <div className={`chat-window ${isExpanded ? 'expanded' : ''}`} ref={chatWindowRef}> {/* 채팅 창 컨테이너 */}
             {/* messages 배열을 순회하여 각 메시지를 표시 */}
             {messages.map((msg, index) => (
                 <div
@@ -44,7 +53,7 @@ function ChatWindow({ isExpanded }) {
                     )}
                 </div>
             ))}
-            {loading && <LoadingCard />} {/* 로딩 중일 때 로딩 카드 표시 */}
+            {loading && <LoadingCard/>} {/* 로딩 중일 때 로딩 카드 표시 */}
         </div>
     );
 }
