@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'; // React 임포트
-import SearchBar from '../Search/SearchBar'; // 질문 입력 컴포넌트 임포트
-import SuggestedQuestions from '../Search/SuggestedQuestions'; // 추천 질문 컴포넌트 임포트
+import SearchBar from './Search/SearchBar'; // 질문 입력 컴포넌트 임포트
+import SuggestedQuestions from './Search/SuggestedQuestions'; // 추천 질문 컴포넌트 임포트
 import ChatWindow from '../Chat/ChatWindow'; // 채팅 창 컴포넌트 임포트
 import TypingText from "./Title";
 import { NavBar } from "./Header/Navbar.jsx"; // 네비게이션 바 컴포넌트 임포트
