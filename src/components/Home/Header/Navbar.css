@@ -1,0 +1,21 @@
+/* NavBar.css: NavBar 컴포넌트 스타일링 */
+
+/* 네비게이션 바 전체를 중앙 정렬 */
+.navbar-container {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* 브랜드(로고)에 마우스를 올렸을 때 커서 모양 변경 및 여백 추가 */
+.navbar-brand {
+    cursor: pointer; /* 클릭 가능한 커서 모양 */
+    margin: 20px; /* 위아래 여백을 20px로 설정 */
+}
+
+/* 로고 이미지의 크기를 조정 */
+.navbar-logo {
+    width: 30px; /* 로고 너비를 30px로 설정 */
+    height: auto; /* 이미지 비율을 유지하며 높이를 자동 조정 */
+}
