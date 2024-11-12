@@ -1,11 +1,12 @@
 /* HomePage.css: HomePage 컴포넌트 스타일 */
 
+/* 기본 HTML, body 설정 */
 html, body {
-    background-color: #f5f5f5; /* 원하는 전체 배경색 */
+    background-color: #f5f5f5; /* 전체 배경색 설정 */
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
+    width: 100%; /* 전체 페이지 너비 */
+    height: 100%; /* 전체 페이지 높이 */
 }
 
 .App {
@@ -22,10 +23,10 @@ html, body {
 
 
 /* 첫 채팅 후 확대될 경우 적용되는 App 스타일 */
-/*.App.expanded-app {*/
-/*    height: 100vh; !* 확대 후 높이 조정 *!*/
-/*    width: 100%; !* 확대 후 폭 조정 *!*/
-/*}*/
+.App.expanded-app {
+    height: 150vh; /* 확대 후 높이 조정 */
+    width: 100%; /* 확대 후 폭 조정 */
+}
 
 
 .header, .body, .footer {
@@ -36,7 +37,7 @@ html, body {
 .body {
     display: flex; /* 플렉스 박스 설정 */
     width: 80%; /* 초기 너비 80% */
-    height: 80vh; /* 초기 높이 90% */
+    height: 80vh; /* 초기 높이 80% */
     background-color: #ffffff; /* 배경색 흰색 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     flex-direction: row; /* 플렉스 요소 가로 배치 */
@@ -45,8 +46,8 @@ html, body {
 
 /* 첫 채팅 후 Body가 확장될 경우 적용되는 스타일 */
 .body.expanded {
-    width: 100%; /* 확대 후 너비 95%로 설정 */
-    height: 100vh; /* 높이 유지 */
+    width: 95%; /* 확대 후 너비 95%로 설정 */
+    height: 150vh;
 }
 
 
@@ -59,11 +60,32 @@ html, body {
     flex-direction: column;
     align-items: center;
     border-right: 1px solid #ddd;
+    transition: transform 0.5s ease, opacity 0.5s ease; /* 좌측 패널 전환 효과 추가 */
 }
 
+.left-panel.animate-left-panel { /* 애니메이션 시 원점 설정 */
+    transform-origin: top left;
+}
+
+.left-panel.hide-up { /* 위쪽으로 숨기기 */
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.left-panel.show-left { /* 좌측에서 보이도록 전환 */
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.left-panel.hide-left { /* 좌측으로 숨기기 */
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+/* 그룹 스타일 */
 .selection-group {
-    width: 100%;
-    margin-top: 20px;
+    width: 100%; /* 가로폭 100% 사용 */
+    margin-top: 20px; /* 상단 여백 */
     text-align: left;
 }
 
@@ -113,6 +135,10 @@ html, body {
     justify-content: space-between;
     overflow-y: auto; /* 스크롤 활성화 */
     height: 95%; /* 패널이 전체 높이에 맞추어 고정되도록 설정 */
+}
+
+.right-panel.full-width { /* 우측 패널 확장 */
+    width: 100%;
 }
 
 .typing-text-container {

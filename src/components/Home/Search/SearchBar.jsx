@@ -53,7 +53,8 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
     // Enter 키로 질문 전송 처리 추가
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            handleSubmit(); // Enter 키를 눌렀을 때 handleSubmit 함수 호출
+            e.preventDefault(); // Enter 키 중복 입력 방지
+            handleSubmit();
         }
     };
 

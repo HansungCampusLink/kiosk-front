@@ -1,10 +1,18 @@
 .chat-window {
     padding: 15px;
-    height: 400px;
+    height: auto;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    transition: height 0.5s ease, padding 0.5s ease; /* 확장 애니메이션 */
 }
+
+/* 첫 메시지 전송 시 확장된 상태 */
+.chat-window.expanded { /* 첫 메시지 시 확장되는 스타일 */
+    height: 600px; /* 확장 후 높이 조정 */
+    padding: 20px; /* 확장 후 패딩 조정 */
+}
+
 
 /* 공통 메시지 스타일 */
 .message {

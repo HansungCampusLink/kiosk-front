@@ -13,6 +13,8 @@ function HomePage() {
     const [selectedSuggestion, setSelectedSuggestion] = useState(''); // 추천 질문 상태를 관리
     const [showSuggestions, setShowSuggestions] = useState(true); // 추천 질문 표시 여부
     const [isExpanded, setIsExpanded] = useState(false); // 첫 채팅 후 body 확장 여부 상태
+    const [showLeftPanel, setShowLeftPanel] = useState(true); // left-panel 표시 여부 추가
+
 
     // 사용자가 선택한 'who' 값을 설정하는 함수
     const handleWhoChange = (value) => setWho(value);
@@ -25,81 +27,50 @@ function HomePage() {
     const handleFirstMessage = () => {
         setShowSuggestions(false); // 첫 메시지 전송 후 추천 질문 비표시
         setIsExpanded(true); // 첫 채팅 시 body가 확장되도록 설정
+        setShowLeftPanel(false); // 첫 메시지 이후 left-panel을 숨김
+    };
+
+    // 뒤로 가기 버튼 클릭 시 left-panel을 토글
+    const handleBackButtonClick = () => {
+        setShowLeftPanel((prev) => !prev); // left-panel 표시 토글
+        if (!showLeftPanel) {
+            setIsExpanded(false); // left-panel 표시 시 오른쪽 패널 축소
+        }
     };
 
 
     return (
         <div className={`App ${isExpanded ? 'expanded-app' : ''}`}> {/* 첫 채팅 여부에 따라 App 크기 확장 */}
             <header>
-                <NavBar/> {/* 네비게이션 바 헤더에 추가 */}
+                <NavBar showBackButton={!showLeftPanel} onBackButtonClick={handleBackButtonClick} /> {/* Back 버튼 조건부 표시 */}
             </header>
             <main className={`body ${isExpanded ? 'expanded' : ''}`}> {/* 동적으로 expanded 클래스 적용 */}
-                {/* 좌측 패널: who와 major 선택 버튼 */}
-                <div className="left-panel">
-                    {/* Who 버튼 그룹 */}
-                    <div className="selection-group">
-                        <p className="selection-group-title">너는 누구야?</p> {/* 타이틀 텍스트 */}
-                        <div className="selection-buttons">
-                            {/* 선택된 who 값에 따라 스타일링 */}
-                            <button
-                                onClick={() => handleWhoChange('student')}
-                                className={who === 'student' ? 'selected-button' : ''}
-                            >Student
-                            </button>
-                            <button
-                                onClick={() => handleWhoChange('professor')}
-                                className={who === 'professor' ? 'selected-button' : ''}
-                            >Professor
-                            </button>
-                            <button
-                                onClick={() => handleWhoChange('deliver')}
-                                className={who === 'deliver' ? 'selected-button' : ''}
-                            >Deliver
-                            </button>
-                            <button
-                                onClick={() => handleWhoChange('visitor')}
-                                className={who === 'visitor' ? 'selected-button' : ''}
-                            >Visitor
-                            </button>
-                            <button
-                                onClick={() => handleWhoChange('others')}
-                                className={who === 'others' ? 'selected-button' : ''}
-                            >Others
-                            </button>
+                {showLeftPanel && ( // $$$$$ left-panel 표시 여부에 따라 표시/숨김
+                    <div className="left-panel animate-left-panel">
+                        <div className="selection-group">
+                            <p className="selection-group-title">너는 누구야?</p>
+                            <div className="selection-buttons">
+                                <button onClick={() => handleWhoChange('student')} className={who === 'student' ? 'selected-button' : ''}>Student</button>
+                                <button onClick={() => handleWhoChange('professor')} className={who === 'professor' ? 'selected-button' : ''}>Professor</button>
+                                <button onClick={() => handleWhoChange('deliver')} className={who === 'deliver' ? 'selected-button' : ''}>Deliver</button>
+                                <button onClick={() => handleWhoChange('visitor')} className={who === 'visitor' ? 'selected-button' : ''}>Visitor</button>
+                                <button onClick={() => handleWhoChange('others')} className={who === 'others' ? 'selected-button' : ''}>Others</button>
+                            </div>
+                        </div>
+                        <div className="selection-group">
+                            <p className="selection-group-title">혹시 소속 단과대는?</p>
+                            <div className="selection-buttons">
+                                <button onClick={() => handleMajorChange('humanities')} className={major === 'humanities' ? 'selected-button' : ''}>Humanities</button>
+                                <button onClick={() => handleMajorChange('social sciences')} className={major === 'social sciences' ? 'selected-button' : ''}>Social Sciences</button>
+                                <button onClick={() => handleMajorChange('arts')} className={major === 'arts' ? 'selected-button' : ''}>Arts</button>
+                                <button onClick={() => handleMajorChange('engineering')} className={major === 'engineering' ? 'selected-button' : ''}>Engineering</button>
+                            </div>
                         </div>
                     </div>
-
-                    {/* Major 버튼 그룹 */}
-                    <div className="selection-group">
-                        <p className="selection-group-title">혹시 소속 단과대는?</p> {/* 타이틀 텍스트 */}
-                        <div className="selection-buttons">
-                            {/* 선택된 major 값에 따라 스타일링 */}
-                            <button
-                                onClick={() => handleMajorChange('humanities')}
-                                className={major === 'humanities' ? 'selected-button' : ''}
-                            >Humanities
-                            </button>
-                            <button
-                                onClick={() => handleMajorChange('social sciences')}
-                                className={major === 'social sciences' ? 'selected-button' : ''}
-                            >Social Sciences
-                            </button>
-                            <button
-                                onClick={() => handleMajorChange('arts')}
-                                className={major === 'arts' ? 'selected-button' : ''}
-                            >Arts
-                            </button>
-                            <button
-                                onClick={() => handleMajorChange('engineering')}
-                                className={major === 'engineering' ? 'selected-button' : ''}
-                            >Engineering
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                )}
 
                 {/* 우측 패널: 채팅 및 질문 입력 */}
-                <div className="right-panel">
+                <div className={`right-panel ${showLeftPanel ? '' : 'full-width'}`}> {/* left-panel 없을 때 화면 전체 채우기 */}
                     <div className="chat-container">
                         <TypingText/> {/* 타이핑 애니메이션을 위한 클래스 */}
                         <SearchBar
@@ -112,7 +83,7 @@ function HomePage() {
                         {showSuggestions && (
                             <SuggestedQuestions setSelectedSuggestion={setSelectedSuggestion}/>
                         )}
-                        <ChatWindow/> {/* 채팅 창 컴포넌트 */}
+                        <ChatWindow isExpanded={isExpanded} /> {/* 채팅 창 컴포넌트 */}
                     </div>
                 </div>
             </main>

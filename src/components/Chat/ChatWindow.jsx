@@ -6,7 +6,7 @@ import './ChatWindow.css';
 
 
 
-function ChatWindow() {
+function ChatWindow({ isExpanded }) {
     // Redux 스토어에서 메시지 목록을 가져옴
     const messages = useSelector((state) => state.chat.messages); // 메시지 목록을 state에서 추출
     // console.log("Messages:", messages);
@@ -17,7 +17,7 @@ function ChatWindow() {
     }
 
     return (
-        <div className="chat-window"> {/* 채팅 창 컨테이너 */}
+        <div className={`chat-window ${isExpanded ? 'expanded' : ''}`}> {/* 채팅 창 컨테이너 */}
             {/* messages 배열을 순회하여 각 메시지를 표시 */}
             {messages.map((msg, index) => (
                 <div
@@ -26,7 +26,7 @@ function ChatWindow() {
                 >
                     {/* AI 응답일 경우 facelogo 출력 */}
                     {msg.role === 'assistant' && (
-                        <img src="/images/facelogo.png" alt="Assistant Logo" className="assistant-logo" />
+                        <img src="/images/facelogo.png" alt="Assistant Logo" className="assistant-logo"/>
                     )}
                     <p><strong>{msg.role === 'user' ? '나 ' : '상상부기 '}:</strong> {msg.content || '메시지가 없습니다'}</p>
 
