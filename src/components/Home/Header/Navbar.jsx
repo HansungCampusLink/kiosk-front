@@ -25,8 +25,8 @@ export const NavBar = ({ showBackButton, onBackButtonClick }) => { // showBackBu
                 {showBackButton && ( // 조건부로 Back 버튼 표시
                     <img src="/images/Back-key.png" alt="Back" className="back-button" onClick={onBackButtonClick} /> // 뒤로 가기 버튼 클릭 시 onBackButtonClick 호출
                 )}
-                <NavbarBrand onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
-                    <img src="/images/miniLOGO_cropped.png" alt="Mini Logo" style={{ width: '40px', height: 'auto' }} />
+                <NavbarBrand onClick={handleLogoClick} style={{cursor: 'pointer'}}>
+                    <img src="/images/miniLOGO_cropped.png" alt="Mini Logo" className="navbar-logo"/>
                 </NavbarBrand>
             </Container>
         </Navbar>

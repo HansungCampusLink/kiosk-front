@@ -5,6 +5,7 @@ const initialState = {
     who: "student",
     major: null,
     messages: [],
+    loading: false
 };
 
 // 비동기 액션 정의
@@ -56,11 +57,13 @@ const chatSlice = createSlice({
         // 사용자 메시지를 Redux 스토어에 추가하는 리듀서
         sendMessage: (state, action) => {
             state.messages.push(action.payload); // 사용자 메시지 추가
+            state.loading = true; // 사용자가 메시지를 보낼 때 로딩 시작
         },
         // AI 응답을 Redux 스토어에 추가하는 리듀서
         receiveMessage: (state, action) => {
             const { role, content, ref } = action.payload;
             state.messages.push({ role, content, ref }); // 수신된 AI 응답 메시지 추가
+            state.loading = false; // 어시스턴트 응답 시 로딩 중지
         },
     },
 });

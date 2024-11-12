@@ -1,15 +1,15 @@
 // ChatWindow.jsx
-import React from 'react'; // React 라이브러리 임포트
-import { useSelector } from 'react-redux'; // Redux의 useSelector 훅 임포트
-import QRCodeGenerator from '../QR/QRCodeGenerator'; // QRCodeGenerator 컴포넌트 임포트
+
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import QRCodeGenerator from '../QR/QRCodeGenerator';
+import LoadingCard from './LoadingCard'; // 로딩 카드 컴포넌트 추가
 import './ChatWindow.css';
-
-
 
 function ChatWindow({ isExpanded }) {
     // Redux 스토어에서 메시지 목록을 가져옴
     const messages = useSelector((state) => state.chat.messages); // 메시지 목록을 state에서 추출
-    // console.log("Messages:", messages);
+    const loading = useSelector((state) => state.chat.loading); // Redux의 loading 상태를 바로 가져옴
 
     if (!messages) {
         console.error("Messages is undefined or null");
@@ -44,6 +44,7 @@ function ChatWindow({ isExpanded }) {
                     )}
                 </div>
             ))}
+            {loading && <LoadingCard />} {/* 로딩 중일 때 로딩 카드 표시 */}
         </div>
     );
 }
