@@ -56,7 +56,7 @@ function HomePage() {
         if (messages.length > 0) { // 메시지가 존재할 때만 타이머 시작
             const idleTimer = setTimeout(() => {
                 setInactivityWarning(true); // 비활성 알림 표시
-            }, 5000); // 1분 후 알림 표시 (테스트 시에는 5초)
+            }, 60000); // 1분 후 알림 표시 (테스트 시에는 5초)
 
             const countdown = inactivityWarning && setInterval(() => {
                 setInactivityTimer((prev) => prev - 1);
