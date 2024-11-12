@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'; // React 임포트
+import React, { useState, useEffect, useRef } from 'react'; // React 및 필요한 hooks 임포트
 import SearchBar from './Search/SearchBar'; // 질문 입력 컴포넌트 임포트
 import SuggestedQuestions from './Search/SuggestedQuestions'; // 추천 질문 컴포넌트 임포트
 import ChatWindow from '../Chat/ChatWindow'; // 채팅 창 컴포넌트 임포트
@@ -8,27 +8,32 @@ import Footer from "./Footer/Footer.jsx"; // 풋터 컴포넌트 임포트
 import './HomePage.css'; // CSS 스타일 시트 임포트
 
 function HomePage() {
-    const [who, setWho] = useState('student'); // 기본값 'student'
-    const [major, setMajor] = useState('null'); // 기본값 'null'
-    const [selectedSuggestion, setSelectedSuggestion] = useState(''); // 추천 질문 상태 추가
+    const [who, setWho] = useState('student'); // 사용자 유형의 기본값 'student'
+    const [major, setMajor] = useState('null'); // 전공 기본값 'null'
+    const [selectedSuggestion, setSelectedSuggestion] = useState(''); // 추천 질문 상태를 관리
     const [showSuggestions, setShowSuggestions] = useState(true); // 추천 질문 표시 여부
-    const [isExpanded, setIsExpanded] = useState(false); // 첫 채팅 후 확장 상태 애니메이션
+    const [isExpanded, setIsExpanded] = useState(false); // 첫 채팅 후 body 확장 여부 상태
 
-    const handleWhoChange = (value) => setWho(value); // 'who' 값 설정
-    const handleMajorChange = (value) => setMajor(value); // 'major' 값 설정
+    // 사용자가 선택한 'who' 값을 설정하는 함수
+    const handleWhoChange = (value) => setWho(value);
 
+    // 사용자가 선택한 'major' 값을 설정하는 함수
+    const handleMajorChange = (value) => setMajor(value);
+
+
+    // 첫 메시지 전송 시 호출되는 함수로, 추천 질문을 숨기고 body를 확장
     const handleFirstMessage = () => {
-        setShowSuggestions(false); // 첫 메시지 전송 후 추천 질문을 숨김
-        setIsExpanded(true); // 첫 채팅이 작성되면 확장 상태로 설정
+        setShowSuggestions(false); // 첫 메시지 전송 후 추천 질문 비표시
+        setIsExpanded(true); // 첫 채팅 시 body가 확장되도록 설정
     };
 
 
     return (
-        <div className="App">
+        <div className={`App ${isExpanded ? 'expanded-app' : ''}`}> {/* 첫 채팅 여부에 따라 App 크기 확장 */}
             <header>
                 <NavBar/> {/* 네비게이션 바 헤더에 추가 */}
             </header>
-            <main className="body">
+            <main className={`body ${isExpanded ? 'expanded' : ''}`}> {/* 동적으로 expanded 클래스 적용 */}
                 {/* 좌측 패널: who와 major 선택 버튼 */}
                 <div className="left-panel">
                     {/* Who 버튼 그룹 */}
@@ -111,7 +116,7 @@ function HomePage() {
                     </div>
                 </div>
             </main>
-            <Footer /> {/*  Footer 추가 */}
+            <Footer/> {/*  Footer 추가 */}
         </div>
     );
 }

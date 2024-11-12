@@ -9,15 +9,23 @@ html, body {
 }
 
 .App {
-    background-color: #f5f5f5; /* 배경색 */
     text-align: center;
-    height: 100vh;
+    background-color: #f5f5f5; /* 배경색 */
+    height: 100vh; /* 확대 전 높이 조정 */
+    width: 100%; /* 확대 전 폭 조정 */
     display: flex;
-    flex-direction: column; /* 전체를 세로로 정렬 */
+    flex-direction: column; /* 전체 세로 정렬 */
     align-items: center;
-    justify-content: space-between; /* 헤더, 바디, 풋터를 수직 배치 */
+    justify-content: space-between; /* 헤더, 바디, 풋터 수직 배치 */
+    transition: all 0.5s ease; /* 부드러운 확대 애니메이션 효과 */
 }
 
+
+/* 첫 채팅 후 확대될 경우 적용되는 App 스타일 */
+/*.App.expanded-app {*/
+/*    height: 100vh; !* 확대 후 높이 조정 *!*/
+/*    width: 100%; !* 확대 후 폭 조정 *!*/
+/*}*/
 
 
 .header, .body, .footer {
@@ -26,14 +34,19 @@ html, body {
 
 /* Body 영역 스타일 */
 .body {
-    display: flex; /* 플렉스 박스로 설정하여 내부 요소를 가로 또는 세로로 정렬할 수 있게 함 */
-    width: 80%; /* 전체 화면 너비의 80%를 차지하도록 설정 */
-    height: 90vh; /* 화면 높이의 90%를 차지하도록 설정하여 거의 꽉 차는 효과 */
-    background-color: #ffffff; /* 배경색을 흰색으로 지정 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 바디 섹션에 그림자 효과 추가 (x축, y축, 블러, 그림자 색) */
-    flex-direction: row; /* 플렉스 요소들이 가로로 배치되도록 설정 */
-    flex: 1; /* 남아 있는 공간을 모두 차지하여 윗부분에 고정된 헤더와 아래의 풋터 사이에서 최대 공간을 차지하게 만듦 */
+    display: flex; /* 플렉스 박스 설정 */
+    width: 80%; /* 초기 너비 80% */
+    height: 80vh; /* 초기 높이 90% */
+    background-color: #ffffff; /* 배경색 흰색 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    flex-direction: row; /* 플렉스 요소 가로 배치 */
+    transition: all 0.5s ease; /* 부드러운 애니메이션 */
+}
 
+/* 첫 채팅 후 Body가 확장될 경우 적용되는 스타일 */
+.body.expanded {
+    width: 100%; /* 확대 후 너비 95%로 설정 */
+    height: 100vh; /* 높이 유지 */
 }
 
 
@@ -134,12 +147,12 @@ html, body {
     overflow: hidden;
     padding: 20px;
     height: 100%;
-    transition: height 0.5s ease; /* 첫 메시지에 따른 확장 애니메이션 */
+    /*transition: height 0.5s ease; !* 첫 메시지에 따른 확장 애니메이션 *!*/
 }
 
-.chat-container.expanded {
-    height: calc(100% - 50px); /* 확장 후 높이 */
-}
+/*.chat-container.expanded {*/
+/*    height: calc(100% - 50px); !* 확장 후 높이 *!*/
+/*}*/
 
 .chat-window {
     padding: 15px;
