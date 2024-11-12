@@ -49,6 +49,14 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
         }
     };
 
+
+    // Enter 키로 질문 전송 처리 추가
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit(); // Enter 키를 눌렀을 때 handleSubmit 함수 호출
+        }
+    };
+
     return (
         <div className="input-container"> {/* 입력 컨테이너 */}
             {/* 질문 입력을 위한 텍스트 필드 */}
@@ -57,12 +65,15 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
                 placeholder="질문을 입력하세요" // 입력 필드의 플레이스홀더
                 value={question} // 상태로부터 입력값을 가져옴
                 onChange={(e) => setQuestion(e.target.value)} // 입력값이 변경될 때 상태 업데이트
+                onKeyDown={handleKeyDown} // Enter 키 입력 처리
                 className="input" // CSS 클래스 적용
             />
             {/* 음성인식 버튼 */}
-            <button onClick={startListening} className="voice-button"/> {/* 음성인식 시작 버튼 */}
+            <button onClick={startListening} className="voice-button"/>
+            {/* 음성인식 시작 버튼 */}
             {/* 질문 전송 버튼 */}
-            <button onClick={handleSubmit} className="send-button"/> {/* 클릭 시 handleSubmit 함수 호출 */}
+            <button onClick={handleSubmit} className="send-button"/>
+            {/* 클릭 시 handleSubmit 함수 호출 */}
         </div>
     );
 }
