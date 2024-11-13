@@ -12,7 +12,7 @@ html, body {
 .App {
     text-align: center;
     background-color: #f5f5f5; /* 배경색 */
-    height: 100vh; /* 확대 전 높이 조정 */
+    height: 120vh; /* 확대 전 높이 조정 */
     width: 100%; /* 확대 전 폭 조정 */
     display: flex;
     flex-direction: column; /* 전체 세로 정렬 */
@@ -24,7 +24,7 @@ html, body {
 
 /* 첫 채팅 후 확대될 경우 적용되는 App 스타일 */
 .App.expanded-app {
-    height: 150vh; /* 확대 후 높이 조정 */
+    height: 160vh; /* 확대 후 높이 조정 */
     width: 100%; /* 확대 후 폭 조정 */
 }
 
@@ -37,7 +37,7 @@ html, body {
 .body {
     display: flex; /* 플렉스 박스 설정 */
     width: 80%; /* 초기 너비 80% */
-    height: 80vh; /* 초기 높이 80% */
+    height: 100vh; /* 초기 높이 80% */
     background-color: #ffffff; /* 배경색 흰색 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     flex-direction: row; /* 플렉스 요소 가로 배치 */
@@ -129,12 +129,12 @@ html, body {
 /* 우측 패널 스타일 */
 .right-panel {
     width: 70%;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow-y: auto; /* 스크롤 활성화 */
-    height: 95%; /* 패널이 전체 높이에 맞추어 고정되도록 설정 */
+    height: 95.5%; /* 패널이 전체 높이에 맞추어 고정되도록 설정 */
 }
 
 .right-panel.full-width { /* 우측 패널 확장 */
