@@ -6,10 +6,12 @@ import HomePage from './components/Home/HomePage.jsx';
 import MobilePage from './components/Mobile/MobilePage.jsx'; // MobilePage 컴포넌트 임포트
 import LoadingPage from "./components/Home/Loading/LoadingPage.jsx";
 import TeamInfoPage from './components/Home/Footer/TeamInfoPage.jsx';
+import { ThemeProvider } from './context/ThemeContext'; // ThemeProvider 추가
 
 function App() {
     return (
         <Provider store={store}>
+            <ThemeProvider> {/* ThemeProvider로 전체 감싸기 */}
             <Router>
                 <Routes>
                     <Route path="/" element={<LoadingPage />} /> {/* 부팅 페이지 */}
@@ -19,6 +21,7 @@ function App() {
                     <Route path="/team-info" element={<TeamInfoPage />} />
                 </Routes>
             </Router>
+            </ThemeProvider>
         </Provider>
     );
 }

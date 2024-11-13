@@ -1,0 +1,10 @@
+/* src/styles/themes/light-theme.css */
+
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --footer-background: #f0f0f0;
+    --link-color: #0073e6;
+    --button-background: #0066ff;
+    /* 필요한 라이트 모드 변수 추가 */
+}

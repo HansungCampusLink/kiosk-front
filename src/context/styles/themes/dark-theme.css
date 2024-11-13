@@ -1,0 +1,10 @@
+/* src/styles/themes/dark-theme.css */
+
+:root {
+    --background-color: #333333;
+    --text-color: #ffffff;
+    --footer-background: #1a1a1a;
+    --link-color: #4da6ff;
+    --button-background: #1a73e8;
+    /* 필요한 다크 모드 변수 추가 */
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'; // React 및 필요한 hooks 임포트
+import React, {useState, useEffect, useRef, useContext} from 'react'; // React 및 필요한 hooks 임포트
 import {useSelector} from "react-redux";
 import SearchBar from './Search/SearchBar'; // 질문 입력 컴포넌트 임포트
 import SuggestedQuestions from './Search/SuggestedQuestions'; // 추천 질문 컴포넌트 임포트
@@ -6,6 +6,7 @@ import ChatWindow from '../Chat/ChatWindow'; // 채팅 창 컴포넌트 임포�
 import TypingText from "./Title";
 import { NavBar } from "./Header/Navbar.jsx"; // 네비게이션 바 컴포넌트 임포트
 import Footer from "./Footer/Footer.jsx"; // 풋터 컴포넌트 임포트
+import { ThemeContext } from '../../context/ThemeContext'; // ThemeContext 임포트
 import InactivityWarning from './Warnings/InactivityWarning'; // 추가: 알림 카드 컴포넌트
 import './HomePage.css'; // CSS 스타일 시트 임포트
 
@@ -21,9 +22,10 @@ function HomePage() {
     const [inactivityTimer, setInactivityTimer] = useState(30); // 남은 초 표시
     const [isChatStarted, setIsChatStarted] = useState(false); // 채팅 시작 여부 상태 추가
 
-
-
     const messages = useSelector((state) => state.chat.messages); // $$$$ Redux 메시지 확인
+
+    // ThemeContext에서 theme와 toggleTheme 가져오기
+    const { theme, toggleTheme } = useContext(ThemeContext);
 
     // 사용자가 선택한 'who' 값을 설정하는 함수
     const handleWhoChange = (value) => setWho(value);
@@ -158,7 +160,7 @@ function HomePage() {
                     </div>
                 </div>
             </main>
-            <Footer/> {/*  Footer 추가 */}
+            <Footer theme={theme} toggleTheme={toggleTheme} /> {/*  Footer 추가 */}
             {inactivityWarning && <InactivityWarning timeLeft={inactivityTimer} />} {/* 알림 카드 표시 */}
         </div>
     );
