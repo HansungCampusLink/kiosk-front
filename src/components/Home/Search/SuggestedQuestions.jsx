@@ -10,7 +10,6 @@ function SuggestedQuestions({ setSelectedSuggestion }) {
         '제일 가까운 화장실은?',
         '학식당 오늘의 메뉴!',
         '상상관이 어디야?',
-        '진리관이 어디야?',
         '공지사항 좀 보여줘',
         '000교수님 연구실이 어디야?'
     ];
