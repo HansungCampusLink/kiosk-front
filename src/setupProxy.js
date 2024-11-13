@@ -9,5 +9,21 @@ module.exports = function (app) {
 
         })
     );
+
+
+
+    // 기상청 API 프록시 설정
+    app.use(
+        '/weather-api', // 기상청 API 요청 경로
+        createProxyMiddleware({
+            target: 'https://apihub.kma.go.kr',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/weather-api': '', // '/weather-api'를 기상청 API의 기본 경로로 치환
+            },
+        })
+    );
+
+
 };
 
