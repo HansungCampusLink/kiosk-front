@@ -8,7 +8,7 @@ const WeatherCard = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // 현재 날짜 및 시간 설정
+        // 현재 날짜 및 시간 설정 예정
         // const today = new Date();
         // const year = today.getFullYear();
         // const month = String(today.getMonth() + 1).padStart(2, '0');
