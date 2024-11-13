@@ -39,8 +39,8 @@
 
 /* 토글 원의 초기 위치 */
 .toggle-circle {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color: #fff;
     border-radius: 50%;
     transition: transform 0.3s ease;
@@ -48,7 +48,7 @@
 
 /* 다크 모드일 때 토글 위치 및 배경색 */
 .toggle-dark {
-    transform: translateX(26px);
+    transform: translateX(35px);
     background-color: #333;
 }
 

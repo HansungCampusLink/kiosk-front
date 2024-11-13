@@ -17,7 +17,6 @@ function HomePage() {
     const [showSuggestions, setShowSuggestions] = useState(true); // 추천 질문 표시 여부
     const [isExpanded, setIsExpanded] = useState(false); // 첫 채팅 후 body 확장 여부 상태
     const [showLeftPanel, setShowLeftPanel] = useState(true); // left-panel 표시 여부 추가
-    //const [isBackKeyVisible, setIsBackKeyVisible] = useState(false);
     const [inactivityWarning, setInactivityWarning] = useState(false); // 비활성 알림 상태 추가
     const [inactivityTimer, setInactivityTimer] = useState(30); // 남은 초 표시
     const [isChatStarted, setIsChatStarted] = useState(false); // 채팅 시작 여부 상태 추가
