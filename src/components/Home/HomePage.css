@@ -173,61 +173,6 @@ html, body {
     overflow: hidden;
     padding: 20px;
     height: 100%;
-    /*transition: height 0.5s ease; !* 첫 메시지에 따른 확장 애니메이션 *!*/
 }
 
-/*.chat-container.expanded {*/
-/*    height: calc(100% - 50px); !* 확장 후 높이 *!*/
-/*}*/
 
-.chat-window {
-    padding: 15px;
-    height: 400px;
-    overflow-y: auto;
-}
-
-.input-container {
-    display: flex;
-    padding: 10px;
-    background-color: #ffffff;
-    border-top: 1px solid #ccc;
-}
-
-.input {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    margin-right: 10px;
-    font-size: 16px;
-}
-
-.send-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 20px;
-    background-color: #0066ff;
-    color: #ffffff;
-    cursor: pointer;
-}
-
-.suggested-questions-container {
-    margin-bottom: 20px;
-}
-
-.suggestion-button {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    border-radius: 20px;
-    background-color: #f0f0f0;
-    margin-bottom: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
-}
-
-.suggestion-button:hover {
-    background-color: #e0e0e0;
-}

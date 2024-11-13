@@ -20,6 +20,9 @@ function HomePage() {
     //const [isBackKeyVisible, setIsBackKeyVisible] = useState(false);
     const [inactivityWarning, setInactivityWarning] = useState(false); // 비활성 알림 상태 추가
     const [inactivityTimer, setInactivityTimer] = useState(30); // 남은 초 표시
+    const [isChatStarted, setIsChatStarted] = useState(false); // 채팅 시작 여부 상태 추가
+
+
 
     const messages = useSelector((state) => state.chat.messages); // $$$$ Redux 메시지 확인
 
@@ -30,11 +33,31 @@ function HomePage() {
     const handleMajorChange = (value) => setMajor(value);
 
 
+    // 페이지가 마운트될 때 상태 초기화
+    useEffect(() => {
+        // 페이지 초기화 함수
+        const resetToInitialState = () => {
+            setWho('student');
+            setMajor('null');
+            setSelectedSuggestion('');
+            setShowSuggestions(true);
+            setIsExpanded(false);
+            setShowLeftPanel(true);
+            setInactivityWarning(false);
+            setInactivityTimer(30);
+            setIsChatStarted(false); // 채팅 시작 상태 초기화
+        };
+
+        resetToInitialState(); // 컴포넌트가 마운트될 때 초기화
+    }, []);
+
+
     // 첫 메시지 전송 시 호출되는 함수로, 추천 질문을 숨기고 body를 확장
     const handleFirstMessage = () => {
         setShowSuggestions(false); // 첫 메시지 전송 후 추천 질문 비표시
         setIsExpanded(true); // 첫 채팅 시 body가 확장되도록 설정
         setShowLeftPanel(false); // 첫 메시지 이후 left-panel을 숨김
+        setIsChatStarted(true); // 첫 메시지 전송 시 채팅 시작 상태로 전환
     };
 
     // 뒤로 가기 버튼 클릭 시 left-panel을 토글
@@ -132,13 +155,11 @@ function HomePage() {
                         {showSuggestions && (
                             <SuggestedQuestions setSelectedSuggestion={setSelectedSuggestion}/>
                         )}
-                        <ChatWindow isExpanded={isExpanded} /> {/* 채팅 창 컴포넌트 */}
+                        {isChatStarted && <ChatWindow isExpanded={isExpanded} />} {/* 채팅 창 컴포넌트 */}
                     </div>
                 </div>
             </main>
             <Footer/> {/*  Footer 추가 */}
-
-
             {inactivityWarning && <InactivityWarning timeLeft={inactivityTimer} />} {/* 알림 카드 표시 */}
         </div>
     );

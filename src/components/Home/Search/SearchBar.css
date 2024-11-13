@@ -46,7 +46,12 @@
     background-size: 20px 20px; /* 아이콘 크기 */
     background-position: center; /* 아이콘 중앙 정렬 */
     margin: 5px;
-
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #0066ff;
+    color: #ffffff;
+    cursor: pointer;
 }
 
 .voice-button:hover{
