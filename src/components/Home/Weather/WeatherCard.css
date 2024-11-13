@@ -1,0 +1,17 @@
+/* WeatherCard.css */
+.weather-card {
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    margin-top: auto; /* 패널의 하단으로 밀림 */
+}
+
+.weather-card p {
+    margin: 4px 0;
+}
+
+.weather-icon {
+    font-size: 48px;
+    margin-bottom: 8px;
+}

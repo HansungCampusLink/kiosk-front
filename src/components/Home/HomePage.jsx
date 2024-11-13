@@ -8,6 +8,8 @@ import { NavBar } from "./Header/Navbar.jsx"; // 네비게이션 바 컴포넌�
 import Footer from "./Footer/Footer.jsx"; // 풋터 컴포넌트 임포트
 import { ThemeContext } from '../../context/ThemeContext'; // ThemeContext 임포트
 import InactivityWarning from './Warnings/InactivityWarning'; // 추가: 알림 카드 컴포넌트
+import WeatherCard from './Weather/WeatherCard';
+
 import './HomePage.css'; // CSS 스타일 시트 임포트
 
 
@@ -139,6 +141,9 @@ function HomePage() {
                                 <button onClick={() => handleMajorChange('engineering')} className={major === 'engineering' ? 'selected-button' : ''}>Engineering</button>
                             </div>
                         </div>
+
+                        {/* WeatherCard를 왼쪽 패널 하단에 추가 */}
+                        <WeatherCard />
                     </div>
                 )}
 
