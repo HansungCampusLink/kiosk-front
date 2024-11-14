@@ -8,23 +8,24 @@ const WeatherCard = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // 현재 날짜 및 시간 설정 예정
-        // const today = new Date();
-        // const year = today.getFullYear();
-        // const month = String(today.getMonth() + 1).padStart(2, '0');
-        // const day = String(today.getDate()).padStart(2, '0');
-        // const hours = String(today.getHours()).padStart(2, '0') + "00"; // 정시 기준으로 설정
-        // const base_date = `${year}${month}${day}`;
-        // const base_time = hours;
-        //
-        // // 서울 한성대 근처 좌표 (nx, ny)
-        // const nx = 60;  // X 좌표 예시
-        // const ny = 127; // Y 좌표 예시
+        //현재 날짜 및 시간 설정 예정
+        const today = new Date(); // 현재 날짜와 시간을 얻음
+        const year = today.getFullYear(); // 현재 연도를 4자리로 가져옴 (예: 2024)
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // 현재 월을 2자리 문자열로 변환 (1월 -> '01')
+        const day = String(today.getDate()).padStart(2, '0'); // 현재 일을 2자리 문자열로 변환 (3일 -> '03')
+        const hours = String(today.getHours()).padStart(2, '0') + "00"; // 현재 시간을 정시 기준으로 2자리 + "00" 형태로 변환 (14시 -> '1400')
+
+        const base_date = `${year}${month}${day}`; // API에서 요구하는 날짜 형식(YYYYMMDD)으로 포맷
+        const base_time = hours; // API에서 요구하는 시간 형식(HHmm)
+
+        // 서울 한성대 근처 좌표 (nx, ny)
+        const nx = 60;  // X 좌표 예시
+        const ny = 127; // Y 좌표 예시
 
         const fetchWeather = async () => {
             try {
                 const response = await fetch(
-                    `/weather-api/api/typ02/openApi/VilageFcstInfoService_2.0/getUltraSrtNcst?pageNo=1&numOfRows=1000&dataType=JSON&base_date=20241113&base_time=1200&nx=55&ny=127&authKey=E-S5JcLETQmkuSXCxJ0Jfg`
+                    `/weather-api/api/typ02/openApi/VilageFcstInfoService_2.0/getUltraSrtNcst?pageNo=1&numOfRows=1000&dataType=JSON&base_date=${base_date}&base_time=${base_time}&nx=${nx}&ny=${ny}&authKey=E-S5JcLETQmkuSXCxJ0Jfg`
                 );
                 const data = await response.json();
 
