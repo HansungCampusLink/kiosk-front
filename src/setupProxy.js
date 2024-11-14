@@ -14,16 +14,14 @@ module.exports = function (app) {
 
     // 기상청 API 프록시 설정
     app.use(
-        '/weather-api', // 기상청 API 요청 경로
+        '/weather-api', // OpenWeatherMap API 요청 경로
         createProxyMiddleware({
-            target: 'https://wttr.in', // wttr.in API 서버 주소
+            target: 'https://api.openweathermap.org',
             changeOrigin: true,
             pathRewrite: {
-                '^/weather-api': '', // '/weather-api' 부분을 제거하여 wttr.in 경로와 맞춤
+                '^/weather-api': '', // '/weather-api' 부분을 API 기본 경로로 치환
             },
         })
     );
-
-
 };
 
