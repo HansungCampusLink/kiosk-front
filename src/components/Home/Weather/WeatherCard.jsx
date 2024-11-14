@@ -1,7 +1,7 @@
 // WeatherCard.jsx
 import React, { useEffect, useState } from 'react';
 import './WeatherCard.css';
-// import { WiDaySunny, WiRain, WiSnow, WiThunderstorm } from 'react-icons/wi';
+import { WiDaySunny, WiRain, WiSnow, WiThunderstorm } from 'react-icons/wi';
 
 const WeatherCard = () => {
     const [weather, setWeather] = useState(null);
@@ -43,25 +43,25 @@ const WeatherCard = () => {
         fetchWeather();
     }, []);
 
-    // const renderWeatherIcon = (pty) => {
-    //     switch (pty) {
-    //         case "1": return <WiRain />;           // 비
-    //         case "2": return <WiRain />;           // 비/눈
-    //         case "3": return <WiSnow />;           // 눈
-    //         case "4": return <WiThunderstorm />;   // 천둥번개
-    //         default: return <WiDaySunny />;        // 맑음
-    //     }
-    // };
-
     const renderWeatherIcon = (pty) => {
         switch (pty) {
-            case "1": return <p>비</p>;            // 비
-            case "2": return <p>비/눈</p>;            // 비/눈
-            case "3": return <p>눈</p>;            // 눈
-            case "4": return <p>천둥번개</p>;            // 천둥번개
-            default: return <p>맑음</p>;            // 맑음
+            case "1": return <WiRain />;           // 비
+            case "2": return <WiRain />;           // 비/눈
+            case "3": return <WiSnow />;           // 눈
+            case "4": return <WiThunderstorm />;   // 천둥번개
+            default: return <WiDaySunny />;        // 맑음
         }
     };
+
+    // const renderWeatherIcon = (pty) => {
+    //     switch (pty) {
+    //         case "1": return <p>비</p>;            // 비
+    //         case "2": return <p>비/눈</p>;            // 비/눈
+    //         case "3": return <p>눈</p>;            // 눈
+    //         case "4": return <p>천둥번개</p>;            // 천둥번개
+    //         default: return <p>맑음</p>;            // 맑음
+    //     }
+    // };
 
 
 
