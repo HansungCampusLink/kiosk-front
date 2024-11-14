@@ -1,10 +1,24 @@
 /* src/styles/themes/dark-theme.css */
 
 :root {
+    /* 기본 색상 */
     --background-color: #333333;
     --text-color: #ffffff;
-    --footer-background: #1a1a1a;
+
+    /* 패널 및 경계 */
+    --panel-background: #444444;
+    --panel-border-color: #666;
+    --sidebar-background-color: #444444;
+
+    /* 버튼 색상 */
+    --button-background: rgba(51, 51, 51, 0.12);
+    --button-hover-background: #005bb5;
+    --button-text-color: #ffffff;
+
+    /* 링크 및 하이라이트 */
     --link-color: #4da6ff;
-    --button-background: #1a73e8;
-    /* 필요한 다크 모드 변수 추가 */
+    --highlight-color: #ddd;
+
+    /* 푸터 색상 */
+    --footer-background: #1a1a1a;
 }

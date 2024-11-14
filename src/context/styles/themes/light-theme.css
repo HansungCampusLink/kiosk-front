@@ -1,10 +1,24 @@
 /* src/styles/themes/light-theme.css */
 
 :root {
+    /* 기본 색상 */
     --background-color: #ffffff;
-    --text-color: #000000;
-    --footer-background: #f0f0f0;
-    --link-color: #0073e6;
+    --text-color: #ffffff;
+
+    /* 패널 및 경계 */
+    --panel-background: #f8f9fa;
+    --panel-border-color: #ddd;
+    --sidebar-background-color: #f8f9fa;
+
+    /* 버튼 색상 */
     --button-background: #0066ff;
-    /* 필요한 라이트 모드 변수 추가 */
+    --button-hover-background: #005bb5;
+    --button-text-color: #ffffff;
+
+    /* 링크 및 하이라이트 */
+    --link-color: #0073e6;
+    --highlight-color: #333;
+
+    /* 푸터 색상 */
+    --footer-background: #f0f0f0;
 }

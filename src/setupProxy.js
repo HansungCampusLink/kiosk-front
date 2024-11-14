@@ -16,10 +16,10 @@ module.exports = function (app) {
     app.use(
         '/weather-api', // 기상청 API 요청 경로
         createProxyMiddleware({
-            target: 'https://apihub.kma.go.kr',
+            target: 'https://wttr.in', // wttr.in API 서버 주소
             changeOrigin: true,
             pathRewrite: {
-                '^/weather-api': '', // '/weather-api'를 기상청 API의 기본 경로로 치환
+                '^/weather-api': '', // '/weather-api' 부분을 제거하여 wttr.in 경로와 맞춤
             },
         })
     );
