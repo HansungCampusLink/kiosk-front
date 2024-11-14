@@ -6,17 +6,24 @@ import { WiDaySunny, WiRain, WiSnow, WiThunderstorm } from 'react-icons/wi';
 const WeatherCard = () => {
     const [weather, setWeather] = useState(null);
     const [error, setError] = useState(null);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         //현재 날짜 및 시간 설정 예정
-        const today = new Date(); // 현재 날짜와 시간을 얻음
-        const year = today.getFullYear(); // 현재 연도를 4자리로 가져옴 (예: 2024)
-        const month = String(today.getMonth() + 1).padStart(2, '0'); // 현재 월을 2자리 문자열로 변환 (1월 -> '01')
-        const day = String(today.getDate()).padStart(2, '0'); // 현재 일을 2자리 문자열로 변환 (3일 -> '03')
-        const hours = String(today.getHours()).padStart(2, '0') + "00"; // 현재 시간을 정시 기준으로 2자리 + "00" 형태로 변환 (14시 -> '1400')
+        const today = new Date(); // 현재 날짜와 시간을 가져옵니다
+        const year = today.getFullYear(); // 현재 연도를 4자리 형식으로 가져옵니다 (예: 2024)
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // 현재 월을 2자리 문자열로 변환 (예: 1월은 '01'로 표시)
+        const day = String(today.getDate()).padStart(2, '0'); // 현재 일을 2자리 문자열로 변환 (예: 3일은 '03'로 표시)
 
-        const base_date = `${year}${month}${day}`; // API에서 요구하는 날짜 형식(YYYYMMDD)으로 포맷
-        const base_time = hours; // API에서 요구하는 시간 형식(HHmm)
+
+        // 기상청 API에서 1시간 전의 정시 기준 실황 데이터를 제공하기 때문에 현재 시간에서 1시간을 뺀 시간을 설정합니다
+        today.setHours(today.getHours() - 1); // 현재 시간에서 1시간을 빼서 API에서 조회 가능한 가장 최신 데이터 시간으로 설정
+        const hours = String(today.getHours()).padStart(2, '0') + "00"; // 시간을 2자리 문자열로 변환하고 '00'을 추가해 정시로 표시 (예: 14시는 '1400')
+
+        // 최종적으로 API 호출 시 사용할 날짜와 시간 형식으로 포맷합니다
+        const base_date = `${year}${month}${day}`; // 기상청 API에서 요구하는 날짜 형식 (YYYYMMDD)으로 생성
+        const base_time = hours; // 기상청 API에서 요구하는 시간 형식 (HHmm)으로 생성
+
 
         // 서울 한성대 근처 좌표 (nx, ny)
         const nx = 60;  // X 좌표 예시
@@ -64,6 +71,15 @@ const WeatherCard = () => {
     // };
 
 
+    // 5초마다 온도, 습도, 풍속이 회전하는 애니메이션 설정
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % 3);
+        }, 6000); // 5초마다 변경
+        return () => clearInterval(interval);
+    }, []);
+
+
 
     if (error) return <div className="weather-card">오류: {error}</div>;
     if (!weather) return <div className="weather-card">날씨 정보를 불러오는 중...</div>;
@@ -74,15 +90,21 @@ const WeatherCard = () => {
     const rainCondition = weather.find(item => item.category === 'PTY')?.obsrValue;
     const windSpeed = weather.find(item => item.category === 'WSD')?.obsrValue;
 
+    // 회전할 데이터 목록 (온도, 습도, 풍속)
+    const data = [
+        { label: "온도", value: `${temperature}°C` },
+        { label: "습도", value: `${humidity}%` },
+        { label: "풍속", value: `${windSpeed}m/s` }
+    ];
+
     return (
         <div className="weather-card">
-            <p>현재 날씨</p>
             <div className="weather-icon">
                 {renderWeatherIcon(rainCondition)}
             </div>
-            <p>온도: {temperature}°C</p>
-            <p>습도: {humidity}%</p>
-            <p>풍속: {windSpeed}m/s</p>
+            <div className="weather-data">
+                <p>{data[currentIndex].label} : {data[currentIndex].value}</p>
+            </div>
         </div>
     );
 };

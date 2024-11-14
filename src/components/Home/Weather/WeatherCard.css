@@ -1,17 +1,52 @@
-/* WeatherCard.css */
 .weather-card {
-    padding: 16px;
+    padding: 10px;
     text-align: center;
-    font-size: 14px;
+    font-size: 5px;
     color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 아이콘과 텍스트 간격 조정 */
     margin-top: auto; /* 패널의 하단으로 밀림 */
-}
-
-.weather-card p {
-    margin: 4px 0;
+    width: 60%; /* 패널 너비에 맞춤보다 좀 좁게 */
+    max-width: 200px; /* 카드 너비를 제한하여 중앙 정렬 효과 */
+    margin-left: auto; /* 좌우 중앙 정렬 */
+    margin-right: auto;
+    border-radius: 10px; /* 둥근 모서리 추가 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 가벼운 그림자 추가 */
 }
 
 .weather-icon {
-    font-size: 48px;
-    margin-bottom: 8px;
+    font-size: 30px;
+    height: 30px; /* 아이콘 높이 설정 */
+    align-items: center;
+    margin-right: 16px; /* 아이콘과 텍스트 간격 */
+    color: #333;
+    animation: icon-animation 0.5s ease-in-out;
+}
+
+/* 회전하는 텍스트 스타일 */
+.weather-data {
+    font-size: 12px;
+    font-weight: bold;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100px; /* 텍스트가 표시되는 영역의 너비를 설정 */
+    height: 30px; /* 텍스트 높이 설정 */
+}
+
+/* 텍스트가 오른쪽에서 왼쪽으로 이동하는 애니메이션 */
+@keyframes slide-left {
+    0% { transform: translateX(100%); opacity: 0; }
+    15%, 35% { transform: translateX(0); opacity: 1; }
+    65%, 85% { transform: translateX(-100%); opacity: 0; }
+    100% { transform: translateX(-100%); opacity: 0; }
+}
+
+/* 애니메이션 설정 */
+.weather-data p {
+    position: absolute;
+    white-space: nowrap;
+    animation: slide-left 6s ease-in-out infinite;
 }
