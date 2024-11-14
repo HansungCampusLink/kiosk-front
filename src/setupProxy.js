@@ -12,16 +12,16 @@ module.exports = function (app) {
 
 
 
-    // 기상청 API 프록시 설정
-    app.use(
-        '/weather-api', // OpenWeatherMap API 요청 경로
-        createProxyMiddleware({
-            target: 'https://api.openweathermap.org',
-            changeOrigin: true,
-            pathRewrite: {
-                '^/weather-api': '', // '/weather-api' 부분을 API 기본 경로로 치환
-            },
-        })
-    );
+    // // 날씨 데이터 API 프록시 설정
+    // app.use(
+    //     '/weather-api', // OpenWeatherMap API 요청 경로
+    //     createProxyMiddleware({
+    //         target: 'https://api.openweathermap.org',
+    //         changeOrigin: true,
+    //         pathRewrite: {
+    //             '^/weather-api': '', // '/weather-api' 부분을 API 기본 경로로 치환
+    //         },
+    //     })
+    // );
 };
 

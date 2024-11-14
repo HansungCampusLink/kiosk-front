@@ -10,7 +10,7 @@ function ChatWindow({ isExpanded }) {
     const messages = useSelector((state) => state.chat.messages); // 메시지 목록을 state에서 추출
     const loading = useSelector((state) => state.chat.loading); // Redux의 loading 상태를 바로 가져옴
 
-    const chatWindowRef = useRef(null); // 스크롤을 위한 ref 추가 $$$$$
+    const chatWindowRef = useRef(null); // 스크롤을 위한 ref 추가
 
     // 메시지가 업데이트될 때마다 스크롤을 맨 아래로 이동
     useEffect(() => {

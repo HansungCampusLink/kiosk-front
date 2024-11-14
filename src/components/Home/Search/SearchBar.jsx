@@ -1,12 +1,13 @@
 // SearchBar.jsx
 import React, { useState, useEffect } from 'react'; // React와 useState 훅 임포트
-import { useDispatch } from 'react-redux'; // Redux의 useDispatch 훅 임포트
+import { useDispatch, useSelector } from 'react-redux'; // Redux의 useDispatch 훅 임포트
 import { sendUserMessage } from '../../../redux/chatSlice'; // 메시지 전송 액션 임포트
 import './SearchBar.css';
 
 
 function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFirstMessage  }) {
     const [question, setQuestion] = useState(''); // 사용자가 입력한 질문을 저장하는 상태 변수
+    const messages = useSelector((state) => state.chat.messages); // 전체 메시지 내역 가져오기
     const dispatch = useDispatch(); // Redux의 dispatch 함수를 사용하여 액션을 보낼 준비
 
     // selectedSuggestion이 변경될 때 question 상태를 업데이트
@@ -38,6 +39,7 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
                 who: who,
                 major: major,
                 messages: [
+                    ...messages, // 기존 대화 내역 추가
                     { role: 'user', content: question },
                 ]
             }; // 질문이 비어있지 않은 경우에만 전송

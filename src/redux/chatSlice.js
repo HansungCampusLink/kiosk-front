@@ -11,9 +11,9 @@ const initialState = {
 // 비동기 액션 정의
 export const sendUserMessage = (requestData) => {
     return async (dispatch) => {
-        // 사용자 메시지를 전송하는 액션을 디스패치
-        dispatch(sendMessage({ role: 'user', content: requestData.messages[0].content })); // 사용자 메시지를 디스패치
-
+        // 배열의 마지막 메시지를 전송하는 액션을 디스패치
+        const latestMessage = requestData.messages[requestData.messages.length - 1]; // 최신 메시지
+        dispatch(sendMessage({ role: latestMessage.role, content: latestMessage.content })); // 최신 메시지를 디스패치
         try {
             // API 요청
             const response = await fetch(`/api/v1/chat`, {
@@ -22,7 +22,8 @@ export const sendUserMessage = (requestData) => {
                 body: JSON.stringify({
                     who: requestData.who || "student",  // who가 없으면 기본값 'student'
                     major: requestData.major || null, // major가 없으면 기본값 null
-                    messages : [{ role: 'user', content: requestData.messages[0].content }], // 메시지 배열에 사용자 메시지 추가
+                    // messages : [{ role: 'user', content: requestData.messages[0].content }], // 메시지 배열에 사용자 메시지 추가
+                    messages: requestData.messages // 모든 메시지를 요청에 포함 하는 버전의 messages
                     // stream: true, // 스트리밍 요청 여부
                 }),
             });
