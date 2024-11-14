@@ -20,6 +20,7 @@ const WeatherCard = () => {
         const fetchWeather = async () => {
             try {
                 // OpenWeatherMap API에 성북구 날씨 요청
+                // 분당 60회 호출 무료
                 const response = await fetch(`/weather-api/data/2.5/weather?q=${location}&units=metric&appid=${apiKey}`);
                 const data = await response.json();
 
