@@ -38,7 +38,7 @@ html, body {
 .body {
     display: flex; /* 플렉스 박스 설정 */
     width: 80%; /* 초기 너비 80% */
-    height: 90vh; /* 초기 높이 80% */
+    height: 100%; /* 초기 높이 100% */
     background-color: #ffffff; /* 배경색 흰색 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     flex-direction: row; /* 플렉스 요소 가로 배치 */
