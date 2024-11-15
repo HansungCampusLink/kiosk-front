@@ -21,6 +21,12 @@ function ChatWindow({ isExpanded }) {
         }
     }, [messages, loading]); // messages와 loading 상태가 변경될 때마다 실행
 
+    const toggleQRLinks = (index) => {
+        setShowQRLinks((prev) => ({
+            ...prev,
+            [index]: !prev[index], // 해당 메시지의 QR 링크 표시 여부 토글
+        }));
+    };
 
     if (!messages) {
         console.error("Messages is undefined or null");
@@ -46,12 +52,12 @@ function ChatWindow({ isExpanded }) {
                     {msg.ref && (
                         <div className="qr-section">
                             <button
-                                onClick={() => setShowQRLinks((prev) => !prev)}
+                                onClick={() => toggleQRLinks(index)} // 개별 메시지에 대한 QR 표시 여부 토글
                                 className="qr-toggle-button"
                             >
-                                {showQRLinks ? '▲' : '▼'}
+                                {showQRLinks[index] ? '▲' : '▼'}
                             </button>
-                            {showQRLinks && (
+                            {showQRLinks[index] && (
                                 <ul className="ref-list">
                                     {msg.ref.map((ref, refIndex) => (
                                         <li key={refIndex} className="ref-item">
