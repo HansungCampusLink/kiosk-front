@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'; // React와 useState 훅 임포트
 import { useDispatch, useSelector } from 'react-redux'; // Redux의 useDispatch 훅 임포트
 import { sendUserMessage } from '../../../redux/chatSlice'; // 메시지 전송 액션 임포트
+import { updateUrlWithMessages } from '../../../redux/utils/urlUtils'; // URL 유틸리티 함수
 import './SearchBar.css';
 
 
@@ -45,6 +46,13 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
             }; // 질문이 비어있지 않은 경우에만 전송
 
             dispatch(sendUserMessage(requestData)); // 입력한 질문을 Redux 스토어로 전송
+
+            // URL 파라미터 업데이트
+            updateUrlWithMessages([
+                ...messages,
+                { role: 'user', content: question },
+            ]);
+
             setQuestion(''); // 질문 입력 필드 초기화
 
             if (onFirstMessage) onFirstMessage(); // 첫 메시지 전송 시 콜백 호출

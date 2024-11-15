@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { updateUrlWithMessages } from './utils/urlUtils';
 
 // 초기 상태 설정
 const initialState = {
@@ -59,12 +60,25 @@ const chatSlice = createSlice({
         sendMessage: (state, action) => {
             state.messages.push(action.payload); // 사용자 메시지 추가
             state.loading = true; // 사용자가 메시지를 보낼 때 로딩 시작
+
+            // URL 업데이트
+            updateUrlWithMessages(state.messages);
+
         },
         // AI 응답을 Redux 스토어에 추가하는 리듀서
         receiveMessage: (state, action) => {
             const { role, content, ref } = action.payload;
             state.messages.push({ role, content, ref }); // 수신된 AI 응답 메시지 추가
             state.loading = false; // 어시스턴트 응답 시 로딩 중지
+
+
+            //  URL 업데이트
+            updateUrlWithMessages(state.messages);
+
+        },
+        // URL에서 메시지 복원하는 리듀서 추가
+        restoreMessagesFromUrl: (state, action) => {
+            state.messages = action.payload; // URL에서 복원된 메시지를 설정
         },
     },
 });
