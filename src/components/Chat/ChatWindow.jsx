@@ -9,6 +9,8 @@ function ChatWindow({ isExpanded }) {
     // Redux 스토어에서 메시지 목록을 가져옴
     const messages = useSelector((state) => state.chat.messages); // 메시지 목록을 state에서 추출
     const loading = useSelector((state) => state.chat.loading); // Redux의 loading 상태를 바로 가져옴
+    const [showQRLinks, setShowQRLinks] = useState(false); // QR 코드 영역 표시 여부 상태 추가
+
 
     const chatWindowRef = useRef(null); // 스크롤을 위한 ref 추가
 
@@ -27,8 +29,9 @@ function ChatWindow({ isExpanded }) {
 
     return (
         <div className={`chat-window ${isExpanded ? 'expanded' : ''}`} ref={chatWindowRef}> {/* 채팅 창 컨테이너 */}
+            {loading && <LoadingCard/>} {/* 로딩 중일 때 로딩 카드 표시 */}
             {/* messages 배열을 순회하여 각 메시지를 표시 */}
-            {messages.map((msg, index) => (
+            {[...messages].reverse().map((msg, index) => ( // messages 배열을 역순으로 출력하여 최신 메시지가 아래로 쌓임
                 <div
                     key={index}
                     className={`message ${msg.role === 'user' ? 'user-message' : 'assistant-message'}`}
@@ -41,19 +44,29 @@ function ChatWindow({ isExpanded }) {
 
                     {/* 추천 링크가 있는 경우 리스트로 표시 */}
                     {msg.ref && (
-                        <ul className="ref-list">
-                            {msg.ref.map((ref, refIndex) => (
-                                <li key={refIndex} className="ref-item">
-                                    <a href={ref} target="_blank" rel="noopener noreferrer">{ref}</a>
-                                    {/* QRCodeGenerator를 사용하여 QR 코드 출력 */}
-                                    <QRCodeGenerator refLink={ref}/>
-                                </li>
-                            ))}
-                        </ul>
+                        <div className="qr-section">
+                            <button
+                                onClick={() => setShowQRLinks((prev) => !prev)}
+                                className="qr-toggle-button"
+                            >
+                                {showQRLinks ? '▲' : '▼'}
+                            </button>
+                            {showQRLinks && (
+                                <ul className="ref-list">
+                                    {msg.ref.map((ref, refIndex) => (
+                                        <li key={refIndex} className="ref-item">
+                                            <a href={ref} target="_blank" rel="noopener noreferrer">
+                                                {ref}
+                                            </a>
+                                            <QRCodeGenerator refLink={ref} />
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
                     )}
                 </div>
             ))}
-            {loading && <LoadingCard/>} {/* 로딩 중일 때 로딩 카드 표시 */}
         </div>
     );
 }
