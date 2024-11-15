@@ -69,25 +69,25 @@ function ChatWindow({ isExpanded }) {
 
                     {/* 추천 링크가 있는 경우 리스트로 표시 */}
                     {msg.ref && (
-                        <div className="qr-section">
+                        <div className="qr-section-container">
                             <button
                                 onClick={() => toggleQRLinks(index)} // 개별 메시지에 대한 QR 표시 여부 토글
                                 className="qr-toggle-button"
                             >
                                 {showQRLinks[index] ? '▲' : '▼'}
                             </button>
-                            {showQRLinks[index] && (
+                            <div className={`qr-section ${showQRLinks[index] ? 'open' : ''}`}> {/* 열리고 닫히는 애니메이션 적용 */}
                                 <ul className="ref-list">
                                     {msg.ref.map((ref, refIndex) => (
                                         <li key={refIndex} className="ref-item">
                                             <a href={ref} target="_blank" rel="noopener noreferrer">
                                                 {ref}
                                             </a>
-                                            <QRCodeGenerator refLink={ref}/>
+                                            <QRCodeGenerator refLink={ref} />
                                         </li>
                                     ))}
                                 </ul>
-                            )}
+                            </div>
                         </div>
                     )}
                 </div>
