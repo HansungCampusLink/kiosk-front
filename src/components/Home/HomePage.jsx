@@ -24,7 +24,7 @@ function HomePage() {
     const [inactivityTimer, setInactivityTimer] = useState(30); // 남은 초 표시
     const [isChatStarted, setIsChatStarted] = useState(false); // 채팅 시작 여부 상태 추가
 
-    const messages = useSelector((state) => state.chat.messages); // $$$$ Redux 메시지 확인
+    const messages = useSelector((state) => state.chat.messages); // Redux 메시지 확인
 
     // ThemeContext에서 theme와 toggleTheme 가져오기
     const { theme, toggleTheme } = useContext(ThemeContext);
@@ -151,6 +151,11 @@ function HomePage() {
                 <div className={`right-panel ${showLeftPanel ? '' : 'full-width'}`}> {/* left-panel 없을 때 화면 전체 채우기 */}
                     <div className="chat-container">
                         <TypingText/> {/* 타이핑 애니메이션을 위한 클래스 */}
+
+                        {showSuggestions && (
+                            <SuggestedQuestions setSelectedSuggestion={setSelectedSuggestion}/>
+                        )}
+                        {isChatStarted && <ChatWindow isExpanded={isExpanded} />} {/* 채팅 창 컴포넌트 */}
                         <SearchBar
                             who={who}
                             major={major}
@@ -158,10 +163,8 @@ function HomePage() {
                             setSelectedSuggestion={setSelectedSuggestion}
                             onFirstMessage={handleFirstMessage}
                         /> {/* 질문 입력 컴포넌트 */}
-                        {showSuggestions && (
-                            <SuggestedQuestions setSelectedSuggestion={setSelectedSuggestion}/>
-                        )}
-                        {isChatStarted && <ChatWindow isExpanded={isExpanded} />} {/* 채팅 창 컴포넌트 */}
+
+
                     </div>
                 </div>
             </main>

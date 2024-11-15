@@ -1,179 +1,194 @@
 /* HomePage.css: HomePage 컴포넌트 스타일 */
 
-/* 기본 HTML, body 설정 */
+/* 기본 HTML 및 body 스타일 설정 */
 html, body {
-    background-color: #f5f5f5; /* 전체 배경색 설정 */
-    margin: 0;
-    padding: 0;
-    width: 100%; /* 전체 페이지 너비 */
-    height: 100%; /* 전체 페이지 높이 */
+    background-color: #f5f5f5; /* 페이지 전체 배경색 */
+    margin: 0; /* 기본 여백 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+    width: 100%; /* 전체 너비를 화면에 맞춤 */
+    height: 100%; /* 전체 높이를 화면에 맞춤 */
 }
 
+/* App 컴포넌트의 기본 스타일 */
 .App {
-    text-align: center;
-    background-color: #f5f5f5; /* 배경색 */
-    height: 115vh; /* 확대 전 높이 조정 */
-    width: 100%; /* 확대 전 폭 조정 */
-    display: flex;
-    flex-direction: column; /* 전체 세로 정렬 */
-    align-items: center;
-    justify-content: space-between; /* 헤더, 바디, 풋터 수직 배치 */
-    transition: all 0.5s ease; /* 부드러운 확대 애니메이션 효과 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    background-color: #f5f5f5; /* App 배경색 */
+    height: 115vh; /* 페이지 높이 설정 (뷰포트보다 약간 더 큼) */
+    width: 100%; /* 페이지 너비를 전체로 설정 */
+    display: flex; /* 플렉스 박스 사용 */
+    flex-direction: column; /* 수직 정렬 */
+    align-items: center; /* 자식 요소들을 가로축 중앙에 정렬 */
+    justify-content: space-between; /* 상단과 하단에 요소를 배치 */
+    transition: all 0.5s ease; /* 크기와 위치 변화에 부드러운 전환 효과 */
 }
 
-
-/* 첫 채팅 후 확대될 경우 적용되는 App 스타일 */
+/* App 컴포넌트가 확장된 경우의 스타일 */
 .App.expanded-app {
-    height: 135vh; /* 확대 후 높이 조정 */
-    width: 100%; /* 확대 후 폭 조정 */
+    height: 135vh; /* 확장된 높이 */
+    width: 100%; /* 여전히 전체 너비 */
 }
 
-
+/* 헤더, 본문(Body), 푸터 기본 설정 */
 .header, .body, .footer {
-    width: 100%;
-
+    width: 100%; /* 부모의 너비를 채움 */
 }
 
-/* Body 영역 스타일 */
+/* Body의 기본 스타일 */
 .body {
-    display: flex; /* 플렉스 박스 설정 */
-    width: 80%; /* 초기 너비 80% */
-    height: 100%; /* 초기 높이 100% */
-    background-color: #ffffff; /* 배경색 흰색 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-    flex-direction: row; /* 플렉스 요소 가로 배치 */
-    transition: all 0.5s ease; /* 부드러운 애니메이션 */
+    display: flex; /* 플렉스 컨테이너 설정 */
+    width: 80%; /* 기본적으로 너비를 80%로 설정 */
+    height: 100%; /* 전체 높이 사용 */
+    background-color: #ffffff; /* 흰색 배경 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    flex-direction: row; /* 좌우 정렬을 기본으로 설정 */
+    transition: all 0.5s ease; /* 크기 및 위치 변화 전환 효과 */
 }
 
-/* 첫 채팅 후 Body가 확장될 경우 적용되는 스타일 */
+/* Body가 확장되었을 때의 스타일 */
 .body.expanded {
-    width: 95%; /* 확대 후 너비 95%로 설정 */
-    height: 105vh;
+    width: 95%; /* 확장된 너비 */
+    height: 105vh; /* 확장된 높이 */
 }
-
 
 /* 좌측 패널 스타일 */
 .left-panel {
-    width: 30%;
-    background-color: #f8f9fa;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-right: 1px solid #ddd;
-    transition: transform 0.5s ease, opacity 0.5s ease; /* 좌측 패널 전환 효과 추가 */
+    width: 30%; /* 좌측 패널 너비 */
+    background-color: #f8f9fa; /* 연한 회색 배경 */
+    padding: 20px; /* 내부 여백 */
+    display: flex; /* 플렉스 박스 */
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    border-right: 1px solid #ddd; /* 오른쪽 경계선 */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* 전환 효과 */
 }
 
-.left-panel.animate-left-panel { /* 애니메이션 시 원점 설정 */
-    transform-origin: top left;
+/* 좌측 패널 애니메이션 원점 설정 */
+.left-panel.animate-left-panel {
+    transform-origin: top left; /* 좌측 상단을 기준으로 애니메이션 발생 */
 }
 
-.left-panel.hide-up { /* 위쪽으로 숨기기 */
-    transform: translateY(-100%);
-    opacity: 0;
+/* 좌측 패널 숨기기 (위로 이동) */
+.left-panel.hide-up {
+    transform: translateY(-100%); /* 위로 이동 */
+    opacity: 0; /* 투명화 */
 }
 
-.left-panel.show-left { /* 좌측에서 보이도록 전환 */
-    transform: translateX(0);
-    opacity: 1;
+/* 좌측 패널 보이기 */
+.left-panel.show-left {
+    transform: translateX(0); /* 제자리로 이동 */
+    opacity: 1; /* 불투명화 */
 }
 
-.left-panel.hide-left { /* 좌측으로 숨기기 */
-    transform: translateX(-100%);
-    opacity: 0;
+/* 좌측 패널 숨기기 (좌측으로 이동) */
+.left-panel.hide-left {
+    transform: translateX(-100%); /* 왼쪽으로 이동 */
+    opacity: 0; /* 투명화 */
 }
 
-/* 그룹 스타일 */
+/* 그룹 스타일 (좌측 패널 내부 그룹) */
 .selection-group {
-    width: 100%; /* 가로폭 100% 사용 */
+    width: 100%; /* 가로 폭 전체 사용 */
     margin-top: 20px; /* 상단 여백 */
-    text-align: left;
+    text-align: left; /* 텍스트 왼쪽 정렬 */
 }
 
+/* 그룹 제목 스타일 */
 .selection-group-title {
-    font-size: 15px;
-    /*font-weight: bold;*/
-    margin-bottom: 10px;
-    color: #333;
-    text-align: center;
+    font-size: 15px; /* 텍스트 크기 */
+    margin-bottom: 10px; /* 하단 여백 */
+    color: #333; /* 어두운 회색 텍스트 색상 */
+    text-align: center; /* 제목 중앙 정렬 */
 }
 
-.selection-buttons .selected-button { /* 선택된 버튼 스타일 */
-    background-color: white; /* 선택된 버튼의 파란 배경색 */
-    color: #0066ff; /* 선택된 버튼의 글자색 */
-    border: 2px solid #0066ff;
+/* 선택된 버튼 스타일 */
+.selection-buttons .selected-button {
+    background-color: white; /* 흰색 배경 */
+    color: #0066ff; /* 파란 텍스트 */
+    border: 2px solid #0066ff; /* 파란 테두리 */
 }
 
+/* 버튼 컨테이너 스타일 */
 .selection-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap; /* 버튼이 화면에 맞게 줄 바꿈되도록 설정 */
+    display: flex; /* 플렉스 박스 사용 */
+    gap: 10px; /* 버튼 간 간격 */
+    justify-content: center; /* 버튼 중앙 정렬 */
+    flex-wrap: wrap; /* 화면에 맞게 버튼 줄바꿈 */
 }
 
-
+/* 버튼 기본 스타일 */
 .selection-buttons button {
-    padding: 12px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 20px;
-    background-color: #0066ff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    padding: 12px 20px; /* 버튼 내부 여백 */
+    font-size: 16px; /* 버튼 텍스트 크기 */
+    border: none; /* 테두리 제거 */
+    border-radius: 20px; /* 둥근 모서리 */
+    background-color: #0066ff; /* 파란색 배경 */
+    color: white; /* 흰색 텍스트 */
+    cursor: pointer; /* 포인터 커서 */
+    transition: background-color 0.3s; /* 호버 시 배경 전환 효과 */
 }
 
+/* 버튼 호버 스타일 */
 .selection-buttons button:hover {
-    background-color: #ddd;
+    background-color: #ddd; /* 밝은 회색 배경 */
 }
 
-/* 우측 패널 스타일 */
+/* 우측 패널 기본 스타일 */
 .right-panel {
-    width: 70%;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 70%; /* 우측 패널 너비 */
+    padding: 15px; /* 내부 여백 */
+    display: flex; /* 플렉스 박스 */
+    flex-direction: column; /* 세로 정렬 */
+    justify-content: space-between; /* 요소 간 공간 분배 */
     overflow-y: auto; /* 스크롤 활성화 */
-    height: 95.5%; /* 패널이 전체 높이에 맞추어 고정되도록 설정 */
+    height: 95.5%; /* 패널 높이 */
 }
 
-.right-panel.full-width { /* 우측 패널 확장 */
-    width: 100%;
-    height: 96%; /* 패널이 전체 높이에 맞추어 고정되도록 설정 */
+/* 우측 패널 확장 스타일 */
+.right-panel.full-width {
+    width: 100%; /* 전체 화면 너비 */
+    height: 96%; /* 높이 비율 */
 }
 
-.typing-text-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.typing-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    animation: typing 3s steps(20, end) forwards; /* 애니메이션 설정 */
-    text-align: center;
-}
-
-/* 타이핑 애니메이션 */
-@keyframes typing {
-    from { width: 0; } /* 처음에 너비가 0에서 시작 */
-    to { width: 100%; } /* 텍스트 전체 너비로 확장 */
-}
-
-/* 채팅 창 스타일 */
+/* 채팅 컨테이너 스타일 */
 .chat-container {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    padding: 20px;
-    height: 95%;
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    justify-content: space-between; /* 상단과 하단에 요소를 배치 */
+    padding: 20px; /* 내부 여백 */
+    height: 100%; /* 높이 설정 */
+
 }
+
+/* 타이핑 텍스트 컨테이너 스타일 */
+.typing-text-container {
+    display: flex; /* 플렉스 박스 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    width: 100%; /* 전체 너비 */
+}
+
+/* 타이핑 텍스트 스타일 */
+.typing-text {
+    font-size: 24px; /* 텍스트 크기 */
+    font-weight: bold; /* 텍스트 굵기 */
+    color: #333; /* 어두운 회색 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+    overflow: hidden; /* 넘치는 텍스트 숨기기 */
+    animation: typing 3s steps(20, end) forwards; /* 타이핑 애니메이션 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+/* 타이핑 애니메이션 설정 */
+@keyframes typing {
+    from { width: 0; } /* 초기 너비 */
+    to { width: 100%; } /* 최종 너비 */
+}
+
+
+
 
 

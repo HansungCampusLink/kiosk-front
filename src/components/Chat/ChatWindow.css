@@ -1,5 +1,5 @@
 .chat-window {
-    padding: 15px;
+    padding: 5px;
     height: auto;
     max-height: 500px; /* 기본 홈 페이지에서의 최대 높이 */
     overflow-y: auto;
