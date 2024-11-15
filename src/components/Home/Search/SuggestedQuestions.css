@@ -1,9 +1,13 @@
 .suggested-questions-container {
     display: flex;
+    width: 100%;
+    background-position: center; /* 아이콘 중앙 정렬 */
     flex-wrap: wrap; /* 버튼이 화면 너비에 맞게 줄 바꿈되도록 설정 */
     gap: 10px; /* 버튼 사이 간격 */
     justify-content: center; /* 버튼들이 좌우 대칭으로 중앙에 위치하도록 설정 */
-    margin-bottom: 20px;
+    margin: 20px;
+    padding: 10px;
+    box-sizing: border-box; /* 박스 모델 설정 */
 }
 
 .suggestion-button {
@@ -28,8 +32,4 @@
 }
 
 
-.suggestion-button {
-
-
-}
 
