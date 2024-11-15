@@ -1,0 +1,59 @@
+/* src/styles/themes/light-theme.css */
+
+:root [data-theme="light"]{
+
+    /* 기본 색상 */
+    --background-color: #f5f5f5;
+
+    /* white */
+    --background-color-w: #ffffff;
+    --text-color-w: #ffffff;
+    --border-color-w: #ffffff;
+
+    /* blue */
+    --background-color-b: #0073e6;
+    --text-color-b: #0073e6;
+    --border-color-b: #0073e6;
+
+    /* blue2 */
+    --background-color-b2: #0066ff;
+    --text-color-b2: #0066ff;
+    --border-color-b2: #0066ff;
+
+    /* light grey */
+    --background-color-lg: #f8f9fa;
+    --text-color-lg: #f8f9fa;
+    --border-color-lg: #f8f9fa;
+
+    /* light grey2 */
+    --background-color-lg2: #ddd;
+    --text-color-lg2: #ddd;
+    --border-color-lg2: #ddd;
+
+    /* fofo grey */
+    --background-color-f0: #f0f0f0;
+    --text-color-f0: #f0f0f0;
+    --border-color-f0: #f0f0f0;
+
+    /* black */
+    --background-color-bk: rgba(0, 0, 0, 0.8);
+    --text-color-bk: rgba(0, 0, 0, 0.8);
+    --border-color-bk: rgba(0, 0, 0, 0.8);
+
+    /* light black */
+    --background-color-lbk: rgba(0, 0, 0, 0.3);
+    --text-color-lbk: rgba(0, 0, 0, 0.3);
+    --border-color-lbk: rgba(0, 0, 0, 0.3);
+
+    /* light black2 */
+    --background-color-lbk2: #333;
+    --text-color-lbk2: #333;
+    --border-color-lbk2: #333;
+
+    /* hovers */
+    --ref-item-hover: #005bb5;
+    --voice-button-hover: rgba(240, 240, 240, 0.78);
+    --send-button-hover: #005bb5;
+    --suggestion-button-hover:#e0e0e0;
+
+}

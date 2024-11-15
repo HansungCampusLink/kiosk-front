@@ -1,0 +1,59 @@
+/* src/styles/themes/dark-theme.css */
+
+:root [data-theme="dark"]{
+
+    /* 기본 색상 */
+    --background-color: #121212; /* 아주 어두운 회색으로 다크 모드 배경색 설정 */
+
+    /* white (텍스트나 아이콘 등에서 사용될 밝은 색) */
+    --background-color-w: #ffffff;
+    --text-color-w: #ffffff;
+    --border-color-w: #ffffff;
+
+    /* blue (버튼이나 강조 색) */
+    --background-color-b: #1e88e5; /* 기존의 파란색보다 어두운 톤 */
+    --text-color-b: #1e88e5;
+    --border-color-b: #1e88e5;
+
+    /* blue2 (대체 파란색) */
+    --background-color-b2: #1565c0;
+    --text-color-b2: #1565c0;
+    --border-color-b2: #1565c0;
+
+    /* light grey (텍스트 배경 등 어두운 회색으로 설정) */
+    --background-color-lg: #333333;
+    --text-color-lg: #333333;
+    --border-color-lg: #333333;
+
+    /* light grey2 (보조 배경 또는 섹션 구분용) */
+    --background-color-lg2: #555555;
+    --text-color-lg2: #555555;
+    --border-color-lg2: #555555;
+
+    /* fofo grey (상호작용 요소 배경 등) */
+    --background-color-f0: #424242;
+    --text-color-f0: #424242;
+    --border-color-f0: #424242;
+
+    /* black (텍스트 기본 색으로 설정) */
+    --background-color-bk: #ffffff; /* 완전히 흰색으로 설정 */
+    --text-color-bk: #ffffff;
+    --border-color-bk: #ffffff;
+
+    /* light black (보조 텍스트 등 회색으로 설정) */
+    --background-color-lbk: rgba(255, 255, 255, 0.7); /* 더 밝은 회색 */
+    --text-color-lbk: rgba(255, 255, 255, 0.7);
+    --border-color-lbk: rgba(255, 255, 255, 0.7);
+
+    /* light black2 (서브 텍스트 색) */
+    --background-color-lbk2: #b3b3b3;
+    --text-color-lbk2: #b3b3b3;
+    --border-color-lbk2: #b3b3b3;
+
+    /* hovers (hover 상태 색상들) */
+    --ref-item-hover: #1976d2;
+    --voice-button-hover: rgba(200, 200, 200, 0.3);
+    --send-button-hover: #005bb5;
+    --suggestion-button-hover: #4a4a4a; /* 어두운 배경에서 강조된 회색 */
+
+}
