@@ -71,7 +71,6 @@ const chatSlice = createSlice({
             state.messages.push({ role, content, ref }); // 수신된 AI 응답 메시지 추가
             state.loading = false; // 어시스턴트 응답 시 로딩 중지
 
-
             //  URL 업데이트
             updateUrlWithMessages(state.messages);
 
@@ -88,5 +87,5 @@ const chatSlice = createSlice({
 });
 
 // 액션과 리듀서 내보내기
-export const { sendMessage, receiveMessage, resetMessages } = chatSlice.actions; // 사용자 메시지 및 AI 응답 디스패치 액션 내보내기
+export const { sendMessage, receiveMessage, resetMessages, restoreMessagesFromUrl } = chatSlice.actions; // 사용자 메시지 및 AI 응답 디스패치 액션 내보내기
 export default chatSlice.reducer; // 슬라이스 리듀서 내보내기
