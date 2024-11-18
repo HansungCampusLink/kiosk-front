@@ -80,9 +80,13 @@ const chatSlice = createSlice({
         restoreMessagesFromUrl: (state, action) => {
             state.messages = action.payload; // URL에서 복원된 메시지를 설정
         },
+        resetMessages: (state) => {
+            state.messages = [];
+            state.loading = false;
+        },
     },
 });
 
 // 액션과 리듀서 내보내기
-export const { sendMessage, receiveMessage } = chatSlice.actions; // 사용자 메시지 및 AI 응답 디스패치 액션 내보내기
+export const { sendMessage, receiveMessage, resetMessages } = chatSlice.actions; // 사용자 메시지 및 AI 응답 디스패치 액션 내보내기
 export default chatSlice.reducer; // 슬라이스 리듀서 내보내기

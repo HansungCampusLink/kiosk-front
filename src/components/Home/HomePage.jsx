@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, useContext} from 'react'; // React 및 필요한 hooks 임포트
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import SearchBar from './Search/SearchBar'; // 질문 입력 컴포넌트 임포트
 import SuggestedQuestions from './Search/SuggestedQuestions'; // 추천 질문 컴포넌트 임포트
 import ChatWindow from '../Chat/ChatWindow'; // 채팅 창 컴포넌트 임포트
@@ -10,10 +10,13 @@ import { ThemeContext } from '../../context/ThemeContext'; // ThemeContext 임�
 import InactivityWarning from './Warnings/InactivityWarning'; // 추가: 알림 카드 컴포넌트
 import WeatherCard from './Weather/WeatherCard';
 
-import './HomePage.css'; // CSS 스타일 시트 임포트
+import './HomePage.css';
+import {resetMessages} from "../../redux/chatSlice"; // CSS 스타일 시트 임포트
 
 
 function HomePage() {
+    const dispatch = useDispatch();
+
     const [who, setWho] = useState('student'); // 사용자 유형의 기본값 'student'
     const [major, setMajor] = useState('null'); // 전공 기본값 'null'
     const [selectedSuggestion, setSelectedSuggestion] = useState(''); // 추천 질문 상태를 관리
@@ -51,8 +54,10 @@ function HomePage() {
             setIsChatStarted(false); // 채팅 시작 상태 초기화
         };
 
+        dispatch(resetMessages()); //: 초기화 액션 디스패치
+
         resetToInitialState(); // 컴포넌트가 마운트될 때 초기화
-    }, []);
+    }, [dispatch]);
 
 
     // 첫 메시지 전송 시 호출되는 함수로, 추천 질문을 숨기고 body를 확장
