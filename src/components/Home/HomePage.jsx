@@ -18,7 +18,7 @@ function HomePage() {
     const dispatch = useDispatch();
 
     const [who, setWho] = useState('student'); // 사용자 유형의 기본값 'student'
-    const [major, setMajor] = useState('null'); // 전공 기본값 'null'
+    const [major, setMajor] = useState('unknown'); // 전공 기본값 'null'
     const [selectedSuggestion, setSelectedSuggestion] = useState(''); // 추천 질문 상태를 관리
     const [showSuggestions, setShowSuggestions] = useState(true); // 추천 질문 표시 여부
     const [isExpanded, setIsExpanded] = useState(false); // 첫 채팅 후 body 확장 여부 상태
@@ -44,7 +44,7 @@ function HomePage() {
         // 페이지 초기화 함수
         const resetToInitialState = () => {
             setWho('student');
-            setMajor('null');
+            setMajor('unknown');
             setSelectedSuggestion('');
             setShowSuggestions(true);
             setIsExpanded(false);
