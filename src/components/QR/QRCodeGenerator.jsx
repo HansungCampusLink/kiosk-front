@@ -16,7 +16,7 @@ const QRCodeGenerator = ({ refLink }) => {
                     level="H"       // 오류 수정 레벨 설정
                 />
             </div>
-            {/*<p style={{marginTop: '10px', color: '#333'}}>{refLink}</p> /!* QR 코드 아래에 링크 표시 *!/*/}
+            <p style={{marginTop: '10px', color: '#333'}}>{refLink}</p> {/* QR 코드 아래에 링크 표시 */}
         </div>
     );
 };

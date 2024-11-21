@@ -3,8 +3,6 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 const QRBasedRoute = ({ children }) => {
     const location = useLocation();
-    const params = new URLSearchParams(location.search);
-    const isFromQR = params.get('fromQR') === 'true'; // QR 코드 접속 여부 확인
     const [isMobile, setIsMobile] = useState(false); // 모바일 환경 여부
     const [showAlert, setShowAlert] = useState(false); // 알림 상태
 
@@ -14,7 +12,7 @@ const QRBasedRoute = ({ children }) => {
         const isMobileDevice = /iPhone|Android/i.test(userAgent) && !/iPad/i.test(userAgent); // iPad 제외
         setIsMobile(isMobileDevice);
 
-        if (isFromQR && !isMobileDevice) {
+        if (!isMobileDevice) {
             setShowAlert(true); // 모바일 환경이 아닌 경우 알림 표시
             const timer = setTimeout(() => {
                 setShowAlert(false);
@@ -22,10 +20,10 @@ const QRBasedRoute = ({ children }) => {
 
             return () => clearTimeout(timer); // 타이머 정리
         }
-    }, [isFromQR]);
+    }, []);
 
-    // QR 코드가 아닌 경우 또는 모바일 환경이 아닌 경우
-    if (!isFromQR || !isMobile) {
+    // 모바일 환경이 아닌 경우
+    if (!isMobile) {
         if (showAlert) {
             return (
                 <div style={alertStyles}>
@@ -36,7 +34,7 @@ const QRBasedRoute = ({ children }) => {
         return <Navigate to="/" replace />;
     }
 
-    // QR 코드 및 모바일 환경에서만 렌더링
+    // 모바일 환경에서만 렌더링
     return children;
 };
 

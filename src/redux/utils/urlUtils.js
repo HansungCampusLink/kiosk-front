@@ -1,25 +1,18 @@
 
+export const updateUrlWithChatId = (chatId) => {
+    if (!chatId || typeof chatId !== 'string') {
+        console.error('Invalid chatId:', chatId); // 잘못된 chatId 처리
+        return;
+    }
 
-
-export const updateUrlWithMessages = (messages) => {
-    const queryParams = messages
-        .map((msg, index) => `msg${index}=${encodeURIComponent(msg.role + ':' + msg.content)}`)
-        .join('&');
-    const newUrl = `${window.location.origin}?${queryParams}`;
+    // chatId를 문자열로 처리
+    const newUrl = `${window.location.origin}?chatId=${encodeURIComponent(chatId)}`;
     window.history.replaceState(null, '', newUrl);
 };
 
 
-export const parseMessagesFromUrl = () => {
+export const parseChatIdFromUrl = () => {
     const params = new URLSearchParams(window.location.search);
-    const messages = [];
-    for (const [key, value] of params.entries()) {
-        if (key.startsWith('msg')) {
-            messages.push({
-                content: decodeURIComponent(value),
-                role: key.includes('assistant') ? 'assistant' : 'user', // 기본적으로 user로 설정
-            });
-        }
-    }
-    return messages;
+    return params.get('chatId'); // chatId가 URL에 존재하면 반환, 없으면 null 반환
 };
+
