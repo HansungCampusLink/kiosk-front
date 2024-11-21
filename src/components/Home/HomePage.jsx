@@ -10,8 +10,9 @@ import { ThemeContext } from '../../context/ThemeContext'; // ThemeContext 임�
 import InactivityWarning from './Warnings/InactivityWarning'; // 추가: 알림 카드 컴포넌트
 import WeatherCard from './Weather/WeatherCard';
 
-import './HomePage.css';
-import {resetMessages} from "../../redux/chatSlice"; // CSS 스타일 시트 임포트
+import './HomePage.css'; // CSS 스타일 시트 임포트
+import {resetMessages} from "../../redux/chatSlice";
+import KakaoMap from "../KakaoMap/KakaoMap";
 
 
 function HomePage() {
@@ -156,6 +157,9 @@ function HomePage() {
                 <div className={`right-panel ${showLeftPanel ? '' : 'full-width'}`}> {/* left-panel 없을 때 화면 전체 채우기 */}
                     <div className="chat-container">
                         <TypingText/> {/* 타이핑 애니메이션을 위한 클래스 */}
+
+                        {/* KakaoMap 컴포넌트 추가 */}
+                        {!isExpanded && <KakaoMap />}
 
                         {showSuggestions && (
                             <SuggestedQuestions setSelectedSuggestion={setSelectedSuggestion}/>
