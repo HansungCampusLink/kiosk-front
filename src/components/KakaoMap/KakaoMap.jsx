@@ -78,7 +78,7 @@ const KakaoMap = () => {
 
                         window.kakao.maps.event.addListener(marker, 'click', () => {
                             // 마커 클릭 시 토글로 destination 설정
-                            setDestination((prev) => (prev === name ? 'Unknown' : name));
+                            setDestination((prev) => (prev === name ? 'Unknown' : `${name}까지 가는 방법 알려줘`));
                         });
                     });
                 });

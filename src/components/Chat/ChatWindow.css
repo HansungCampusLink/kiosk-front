@@ -1,11 +1,12 @@
+/* 채팅창 컨테이너 */
 .chat-window {
-    padding: 5px;
+    padding: 10px;
     height: auto;
     max-height: 500px; /* 기본 홈 페이지에서의 최대 높이 */
     overflow-y: auto;
     display: flex;
     flex-direction: column-reverse; /* 최신 메시지가 아래로 쌓이도록 설정 */
-    transition: height 0.5s ease, padding 0.5s ease, max-height 0.3s ease /* 확장 애니메이션 */
+    transition: height 0.5s ease, padding 0.5s ease, max-height 0.3s ease; /* 확장 애니메이션 */
 }
 
 /* 첫 메시지 전송 시 확장된 상태 */
@@ -13,9 +14,9 @@
     max-height: 1000px; /* 확장된 상태에서의 최대 높이 */
     padding: 20px; /* 확장 후 패딩 조정 */
     height: 75%; /* 확장 애니메이션용 */
-    transition: height 0.5s ease; /* 스크롤 애니메이션 부드럽게 적용 */
 }
 
+/* 새 메시지 애니메이션 */
 @keyframes slideUp {
     from {
         transform: translateY(20px);
@@ -28,127 +29,108 @@
 }
 
 .new-message {
-    animation: slideUp 1s ease forwards; /* 새 메시지에만 적용 */
+    animation: slideUp 0.5s ease forwards; /* 새 메시지에 애니메이션 적용 */
 }
 
 /* 공통 메시지 스타일 */
 .message {
-    padding: 15px 30px;
-    border-radius: 35px; /* 둥근 모서리 */
-    margin: 10px 0;
-    max-width: 65%;
+    max-height: 2000px;
+
+    border-radius: 30px; /* 둥근 모서리 */
+    margin: 10px;
+    max-width: 70%; /* 메시지 최대 너비 */
     display: inline-block;
     word-wrap: break-word; /* 긴 텍스트 줄바꿈 */
-    border: 2px solid; /* 기본 테두리 설정 */
+    border: 1px solid; /* 기본 테두리 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
 /* 사용자 메시지 스타일 */
 .user-message {
+    padding: 10px 20px;
     background-color: #ffffff; /* 하얀 배경 */
     color: #0073e6; /* 파란 글씨 */
     align-self: flex-end; /* 오른쪽 정렬 */
     text-align: right;
-    border-color: #0073e6; /* 파란 얇은 테두리 */
+    border-color: #0073e6; /* 파란 테두리 */
 }
 
 /* AI 응답 메시지 스타일 */
 .assistant-message {
+    padding: 30px 20px;
     background-color: #0073e6; /* 파란 배경 */
     color: #ffffff; /* 하얀 글씨 */
     align-self: flex-start; /* 왼쪽 정렬 */
     text-align: left;
-    border-color: #ffffff; /* 하얀 얇은 테두리 */
+    border-color: #ffffff; /* 하얀 테두리 */
 }
 
 /* AI 프로필 이미지 스타일 */
 .assistant-logo {
-    width: 40px; /* 이미지 크기 조절 */
+    width: 40px; /* 이미지 크기 */
     height: 35px;
     margin-right: 10px; /* 텍스트와의 간격 */
     border-radius: 50%; /* 원형 이미지 */
-    /*border: 2px solid white;*/
 }
 
-/* 추천 링크 스타일 */
-.ref-list {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 5px;
+/* QR 코드 그리드 스타일 */
+.qr-grid {
+    max-height: 1000px;
+    display: grid; /* 그리드 레이아웃 */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 반응형 그리드 */
+    gap: 15px; /* QR 코드 사이 간격 */
+    justify-content: center;
+    margin-top: 10px; /* QR 코드 위쪽 여백 */
 }
 
-.ref-item {
-    margin-top: 10px;
-}
-
-.ref-item a {
-    text-decoration: none;
-    color: #0073e6; /* 파란 링크 텍스트 */
-    font-size: 14px;
-    word-break: break-word; /* 긴 URL 줄바꿈 */
-}
-
-.ref-item a:hover {
-    color: #005bb5;
-}
-
-/* QR 코드 및 링크 영역 */
-.qr-section {
-    max-height: 0; /* 초기 높이를 0으로 설정하여 숨김 */
-    opacity: 0; /* 숨겨진 상태에서 투명도 0으로 설정 */
-    overflow: hidden; /* 내용이 넘칠 때 숨김 */
-    transition: max-height 0.5s ease, opacity 0.5s ease; /* 높이와 투명도 트랜지션 추가 */
-    margin-top: 10px; /* 기본 여백 */
-}
-
-.qr-section.open {
-    max-height: 1000px; /* 열릴 때 최대 높이 설정, 필요에 따라 조정 */
-    opacity: 1; /* 보일 때 투명도 설정 */
-}
-
-/* QR 링크 토글 버튼 */
-.qr-toggle-button {
-    background: none;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 5px;
-    text-decoration: none;
-
-}
-
-
-.qr-share-button {
-    background-color: white;
-    width: 10%;
-    color: #007bff;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    margin: 10px 0;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-/*.qr-share-button:hover {*/
-/*    background-color: #0056b3;*/
-/*}*/
-
-.qr-container {
+/* QR 코드 항목 */
+.qr-grid-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
+    background-color: white; /* 배경색 */
     padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 30px; /* 둥근 모서리 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    text-align: center;
 }
 
-.qr-url {
+
+
+/* QR 코드 및 링크 영역 */
+.qr-section {
+    max-height: 0; /* 숨김 상태 */
+    opacity: 0; /* 투명 */
+    overflow: hidden; /* 넘치는 내용 숨김 */
+    transition: max-height 0.5s ease, opacity 0.5s ease; /* 부드러운 전환 효과 */
     margin-top: 10px;
-    color: #555;
-    font-size: 14px;
-    word-break: break-all;
 }
 
+.qr-section.open {
+    max-height: 1500px; /* 열릴 때 높이 설정 */
+    opacity: 1; /* 표시 */
+}
+
+.qr-toggle-button {
+    background: none; /* 배경 제거 */
+    border: none; /* 테두리 제거 */
+    padding: 0; /* 내부 여백 제거 */
+    cursor: pointer; /* 포인터 커서 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px; /* 버튼 크기 */
+    height: 30px; /* 버튼 크기 */
+    border-radius: 50%; /* 둥근 모양 */
+    transition: transform 0.2s ease; /* 클릭 시 부드러운 효과 */
+}
+
+.qr-toggle-button:hover {
+    transform: scale(1.1); /* 호버 시 살짝 확대 */
+}
+
+.qr-icon {
+    width: 24px; /* 아이콘 크기 */
+    height: 24px;
+    object-fit: contain; /* 아이콘 비율 유지 */
+}

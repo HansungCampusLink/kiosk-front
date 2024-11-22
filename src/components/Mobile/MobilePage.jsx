@@ -1,31 +1,74 @@
-// src/components/Mobile/MobilePage.jsx
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { restoreMessagesFromUrl, sendMessage } from '../../redux/chatSlice'; // Redux 액션
+import { parseChatIdFromUrl } from '../../redux/utils/urlUtils'; // URL에서 chatId를 추출하는 유틸리티 함수
+import './MobilePage.css'; // 모바일 화면 스타일
 
 const MobilePage = () => {
+    const dispatch = useDispatch();
+    const messages = useSelector((state) => state.chat.messages); // Redux에서 메시지 목록 가져오기
+    const [inputValue, setInputValue] = useState(''); // 사용자 입력 상태 관리
+    const chatWindowRef = useRef(null); // 채팅창 스크롤 위치 관리를 위한 Ref
+
+    // URL에 포함된 chatId를 기반으로 채팅 기록 복원
+    useEffect(() => {
+        const chatId = parseChatIdFromUrl(); // URL에서 chatId 추출
+        if (chatId) {
+            dispatch(restoreMessagesFromUrl(chatId)); // chatId로 메시지 복원
+        }
+    }, [dispatch]);
+
+    // 메시지가 추가될 때마다 채팅창 자동 스크롤
+    useEffect(() => {
+        if (chatWindowRef.current) {
+            chatWindowRef.current.scrollTo({
+                top: chatWindowRef.current.scrollHeight, // 스크롤을 맨 아래로 설정
+                behavior: 'smooth', // 부드럽게 이동
+            });
+        }
+    }, [messages]);
+
+    // 메시지 전송 핸들러
+    const handleSendMessage = () => {
+        if (inputValue.trim()) {
+            dispatch(sendMessage({ role: 'user', content: inputValue.trim() })); // Redux로 사용자 메시지 전송
+            setInputValue(''); // 입력 필드 초기화
+        }
+    };
+
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            padding: '20px',
-            fontFamily: 'Arial, sans-serif',
-            maxWidth: '600px',
-            margin: '0 auto',
-            textAlign: 'center',
-        }}>
-            <header style={{ marginBottom: '20px' }}>
-                <h1>한성대 키오스크 모바일 화면 테스트 </h1>
+        <div className="mobile-page">
+            {/* 헤더 섹션 */}
+            <header className="mobile-header">
+                <h1>한성대 키오스크</h1>
+                <p>모바일 환경에서 테스트 중입니다.</p>
             </header>
-            <section>
-                <p style={{ fontSize: '16px', color: '#333' }}>
-                    이 페이지는 한성대 관련 키오스크 테스트 페이지 입니다 . QR 코드 혹은 링크를 통해 모바일 환경에서 접근하신 것입니다.
-                </p>
-                <p style={{ fontSize: '14px', color: '#555', marginTop: '15px' }}>
-                    "학교 어떻게 갈까?"와 같은 질문에 대한 자세한 정보를 이 페이지에서 추후 개발이 완료되면 편하게 확인하실 수 있습니다.
-                </p>
-            </section>
-            <footer style={{ marginTop: '30px', fontSize: '12px', color: '#888' }}>
-                <p>한성대학교 © 2024. 모든 권리 보유하등가 말등가 잘 모름 .</p>
+
+            {/* 채팅창 */}
+            <main className="mobile-chat-window" ref={chatWindowRef}>
+                {messages.map((msg, index) => (
+                    <div
+                        key={index}
+                        className={`mobile-message ${
+                            msg.role === 'user' ? 'mobile-user-message' : 'mobile-assistant-message'
+                        }`} // 역할에 따라 클래스 다르게 적용
+                    >
+                        <p>{msg.content}</p>
+                    </div>
+                ))}
+            </main>
+
+            {/* 입력창 */}
+            <footer className="mobile-footer">
+                <div className="mobile-input-container">
+                    <input
+                        type="text"
+                        value={inputValue} // 입력값
+                        onChange={(e) => setInputValue(e.target.value)} // 입력값 변경
+                        placeholder="질문을 입력하세요..." // 플레이스홀더 텍스트
+                    />
+                    <button onClick={handleSendMessage}>전송</button>
+                </div>
             </footer>
         </div>
     );

@@ -17,7 +17,7 @@ function ChatWindow({ isExpanded }) {
     const [showQRLinks, setShowQRLinks] = useState(false); // QR 코드 영역 표시 여부 상태 추가
     const chatWindowRef = useRef(null); // 스크롤을 위한 ref 추가
     const [lastMessageKey, setLastMessageKey] = useState(null); // 이전에 존재하지 않는 고유 메시지 추적
-    const [qrVisible, setQRVisible] = useState(false); //: 공유 QR 코드 표시 여부 상태 추가
+
 
 
     // URL에서 chatId 파싱 및 히스토리 로드
@@ -53,10 +53,6 @@ function ChatWindow({ isExpanded }) {
         }
     }, [messages, loading]);
 
-
-    // URL에 chatId 포함
-    const currentUrl = `${window.location.origin}${window.location.pathname}?chatId=${chatId}`;
-
     const toggleQRLinks = (index) => {
         setShowQRLinks((prev) => ({
             ...prev,
@@ -64,9 +60,7 @@ function ChatWindow({ isExpanded }) {
         }));
     };
 
-    const toggleQRVisibility = () => {
-        setQRVisible((prev) => !prev); // QR 코드 표시 여부 토글
-    };
+
 
     if (!messages) {
         console.error("Messages is undefined or null");
@@ -76,21 +70,8 @@ function ChatWindow({ isExpanded }) {
     return (
         <div className={`chat-window ${isExpanded ? 'expanded' : ''}`} ref={chatWindowRef}> {/* 채팅 창 컨테이너 */}
 
-
-            {/* 전체 대화를 QR 코드로 공유할 수 있는 버튼 */}
-            <button onClick={toggleQRVisibility} className="qr-share-button">
-                {qrVisible ? '▼' : '▲'}
-            </button>
-
-            {qrVisible && (
-                <div className="qr-container">
-                    <QRCodeGenerator refLink={currentUrl}/> {/* QR 코드 생성 */}
-                    {/*<p className="qr-url">{currentUrl}</p> /!* 현재 URL 표시 *!/*/}
-                    <p className="qr-url-message">웹이나 패드로 qr 접속시 홈페이지로 돌아갑니다.</p>
-                    <p className="qr-url-message">모바일 권장 qr 코드 입니다.</p>
-                </div>
-            )}
             {loading && <LoadingCard/>} {/* 로딩 중일 때 로딩 카드 표시 */}
+
 
             {/* messages 배열을 순회하여 각 메시지를 표시 */}
             {[...messages].reverse().map((msg, index) => ( // messages 배열을 역순으로 출력하여 최신 메시지가 아래로 쌓임
@@ -113,19 +94,20 @@ function ChatWindow({ isExpanded }) {
                                 onClick={() => toggleQRLinks(index)} // 개별 메시지에 대한 QR 표시 여부 토글
                                 className="qr-toggle-button"
                             >
-                                {showQRLinks[index] ? '▲' : '▼'}
+                                <img
+                                    src="/images/QRicon.png"
+                                    alt="Toggle QR Icon"
+                                    className="qr-icon"
+                                />
                             </button>
-                            <div className={`qr-section ${showQRLinks[index] ? 'open' : ''}`}> {/* 열리고 닫히는 애니메이션 적용 */}
-                                <ul className="ref-list">
+                            <div className={`qr-section ${showQRLinks[index] ? 'open' : ''}`}>
+                                <div className="qr-grid"> {/* QR 코드들을 그리드 레이아웃으로 배치 */}
                                     {msg.ref.map((ref, refIndex) => (
-                                        <li key={refIndex} className="ref-item">
-                                            <a href={ref} target="_blank" rel="noopener noreferrer">
-                                                {ref}
-                                            </a>
-                                            <QRCodeGenerator refLink={ref} />
-                                        </li>
+                                        <div key={refIndex} className="qr-grid-item">
+                                            <QRCodeGenerator refLink={ref}/>
+                                        </div>
                                     ))}
-                                </ul>
+                                </div>
                             </div>
                         </div>
                     )}

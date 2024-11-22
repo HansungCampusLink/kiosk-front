@@ -1,0 +1,44 @@
+/* QR 코드 컨테이너 */
+.qr-code-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    background-color: white; /* QR 코드 주변 여백 */
+    padding: 20px; /* 내부 여백 */
+    border-radius: 30px; /* 둥근 모서리 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+/* QR 코드 항목 */
+.qr-code-item {
+    margin-bottom: 10px; /* QR 코드와 링크 사이 간격 */
+}
+
+/* QR 버튼 스타일 */
+.qr-link-btn {
+    all: unset; /* 모든 기본 버튼 스타일 제거 */
+    display: flex; /* 아이콘을 중앙 정렬 */
+    justify-content: center;
+    align-items: center;
+    width: 30px; /* 버튼 크기 */
+    height: 30px; /* 버튼 크기 */
+    border-radius: 50%; /* 둥근 버튼 */
+    background: none; /* 배경 제거 */
+    cursor: pointer; /* 포인터 커서 */
+    transition: transform 0.2s ease; /* 호버 애니메이션 */
+}
+
+/* 아이콘 이미지 스타일 */
+.link-icon {
+    width: 24px; /* 아이콘 너비 */
+    height: 24px; /* 아이콘 높이 */
+}
+
+/* 호버 효과 */
+.qr-link-btn:hover {
+    transform: scale(1.2); /* 호버 시 확대 */
+}
+
+
+

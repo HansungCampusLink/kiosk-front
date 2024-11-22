@@ -156,6 +156,30 @@ html, body {
     object-fit: contain;
 }
 
+/* 지도 보이기 애니메이션 */
+.show-map {
+    transform: scale(1); /* 원래 크기 */
+    opacity: 1; /* 완전히 보이도록 설정 */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* 크기와 투명도 애니메이션 */
+}
+
+/* 지도 숨기기 애니메이션 */
+.hide-map {
+    transform: scale(0); /* 지도 축소 */
+    opacity: 0; /* 투명하게 */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* 크기와 투명도 애니메이션 */
+}
+
+/* 지도 컨테이너 */
+.map-container {
+    overflow: hidden; /* 넘치는 요소 숨기기 */
+    transform-origin: left bottom; /* 애니메이션 기준점을 왼쪽 아래로 설정 */
+    transition: all 0.5s ease; /* 부드러운 전환 효과 */
+}
+
+
+
+
 /* 우측 패널 기본 스타일 */
 .right-panel {
     width: 70%; /* 우측 패널 너비 */

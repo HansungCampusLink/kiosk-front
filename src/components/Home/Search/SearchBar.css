@@ -82,16 +82,17 @@
     width: 36px; /* 버튼 크기 */
     height: 36px; /* 버튼 크기 */
     border-radius: 50%; /* 둥근 모양 */
+    margin-right: 3px;
     transition: transform 0.2s ease; /* 클릭 시 부드러운 효과 */
 }
 
 .qr-share-button:hover {
-    transform: scale(1.1); /* 호버 시 살짝 확대 */
+    transform: scale(1.2); /* 호버 시 살짝 확대 */
 }
 
 .qr-share-icon {
-    width: 20px; /* 아이콘 크기 */
-    height: 20px;
+    width: 25px; /* 아이콘 크기 */
+    height: 25px;
     object-fit: contain; /* 아이콘 비율 유지 */
 }
 
@@ -114,7 +115,7 @@
 .qr-modal-content {
     background: white;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 300px; /* 모달 너비 */

@@ -27,6 +27,7 @@ function HomePage() {
     const [inactivityWarning, setInactivityWarning] = useState(false); // 비활성 알림 상태 추가
     const [inactivityTimer, setInactivityTimer] = useState(30); // 남은 초 표시
     const [isChatStarted, setIsChatStarted] = useState(false); // 채팅 시작 여부 상태 추가
+    const [showMap, setShowMap] = useState(true); // 지도의 표시 여부 상태 관리
 
     const messages = useSelector((state) => state.chat.messages); // Redux 메시지 확인
 
@@ -77,9 +78,10 @@ function HomePage() {
         }
     };
 
-    // 지도 버튼 클릭 핸들러
-    const handleMapButtonClick = () => {
-        console.log('Map button clicked!');
+
+    const toggleMapVisibility = () => {
+        setShowMap((prev) => !prev); // 지도 표시 상태 반전
+
     };
 
     // 다크 모드 버튼 클릭 핸들러
@@ -160,7 +162,7 @@ function HomePage() {
 
                         {/* 추가된 버튼들 */}
                         <div className="icon-buttons">
-                            <button className="icon-button" onClick={handleMapButtonClick}>
+                            <button className="icon-button" onClick={toggleMapVisibility}>
                                 <img src="/images/map3.png" alt="Map Icon" />
                             </button>
                             <button className="icon-button" onClick={handleDarkModeButtonClick}>
@@ -178,26 +180,32 @@ function HomePage() {
                     <div className="chat-container">
                         <TypingText/> {/* 타이핑 애니메이션을 위한 클래스 */}
 
-                        {/* KakaoMap 컴포넌트 추가 */}
-                        {!isExpanded && <KakaoMap />}
+                        <div
+                            className={`map-container ${
+                                showMap && !isExpanded ? 'show-map' : 'hide-map'
+                            }`}
+                        >
+                            {showMap && !isExpanded && <KakaoMap/>}
+                        </div>
 
                         {showSuggestions && (
                             <SuggestedQuestions setSelectedSuggestion={setSelectedSuggestion}/>
                         )}
-                        {isChatStarted && <ChatWindow isExpanded={isExpanded} />} {/* 채팅 창 컴포넌트 */}
+                        {isChatStarted && <ChatWindow isExpanded={isExpanded}/>} {/* 채팅 창 컴포넌트 */}
                         <SearchBar
                             who={who}
                             major={major}
                             selectedSuggestion={selectedSuggestion}
                             setSelectedSuggestion={setSelectedSuggestion}
                             onFirstMessage={handleFirstMessage}
+                            isExpanded={isExpanded}
                         /> {/* 질문 입력 컴포넌트 */}
 
 
                     </div>
                 </div>
             </main>
-            <Footer theme={theme} toggleTheme={toggleTheme} /> {/*  Footer 추가 */}
+            <Footer theme={theme} toggleTheme={toggleTheme}/> {/*  Footer 추가 */}
             {inactivityWarning && <InactivityWarning timeLeft={inactivityTimer} />} {/* 알림 카드 표시 */}
         </div>
     );
