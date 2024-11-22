@@ -77,7 +77,8 @@ const KakaoMap = () => {
                         });
 
                         window.kakao.maps.event.addListener(marker, 'click', () => {
-                            setDestination(name); // 클릭한 마커의 이름 저장
+                            // 마커 클릭 시 토글로 destination 설정
+                            setDestination((prev) => (prev === name ? 'Unknown' : name));
                         });
                     });
                 });

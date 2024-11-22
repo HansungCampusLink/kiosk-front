@@ -19,7 +19,7 @@ function HomePage() {
     const dispatch = useDispatch();
 
     const [who, setWho] = useState('student'); // 사용자 유형의 기본값 'student'
-    const [major, setMajor] = useState('Unknown'); // 전공 기본값 'null'
+    const [major, setMajor] = useState('Unknown'); // 전공 기본값 'Unknown'
     const [selectedSuggestion, setSelectedSuggestion] = useState(''); // 추천 질문 상태를 관리
     const [showSuggestions, setShowSuggestions] = useState(true); // 추천 질문 표시 여부
     const [isExpanded, setIsExpanded] = useState(false); // 첫 채팅 후 body 확장 여부 상태
@@ -33,11 +33,11 @@ function HomePage() {
     // ThemeContext에서 theme와 toggleTheme 가져오기
     const { theme, toggleTheme } = useContext(ThemeContext);
 
-    // 사용자가 선택한 'who' 값을 설정하는 함수
-    const handleWhoChange = (value) => setWho(value);
+    // 사용자가 선택한 'who' 값을 설정하는 함수, 'who' 값 토글 방식으로 설정
+    const handleWhoChange = (value) => setWho((prev) => (prev === value ? 'Unknown' : value));
 
-    // 사용자가 선택한 'major' 값을 설정하는 함수
-    const handleMajorChange = (value) => setMajor(value);
+    // 사용자가 선택한 'major' 값을 설정하는 함수,  'major' 값 토글 방식으로 설정
+    const handleMajorChange = (value) => setMajor((prev) => (prev === value ? 'Unknown' : value));
 
 
     // 페이지가 마운트될 때 상태 초기화
