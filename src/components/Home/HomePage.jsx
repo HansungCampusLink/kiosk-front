@@ -6,13 +6,13 @@ import ChatWindow from '../Chat/ChatWindow'; // 채팅 창 컴포넌트 임포�
 import TypingText from "./Title";
 import { NavBar } from "./Header/Navbar.jsx"; // 네비게이션 바 컴포넌트 임포트
 import Footer from "./Footer/Footer.jsx"; // 풋터 컴포넌트 임포트
-import { ThemeContext } from '../../context/ThemeContext'; // ThemeContext 임포트
 import InactivityWarning from './Warnings/InactivityWarning'; // 추가: 알림 카드 컴포넌트
 import WeatherCard from './Weather/WeatherCard';
 
 import './HomePage.css'; // CSS 스타일 시트 임포트
 import {resetMessages} from "../../redux/chatSlice";
 import KakaoMap from "../KakaoMap/KakaoMap";
+import {toggleTheme} from "../../redux/themeSlice";
 
 
 function HomePage() {
@@ -31,8 +31,9 @@ function HomePage() {
 
     const messages = useSelector((state) => state.chat.messages); // Redux 메시지 확인
 
-    // ThemeContext에서 theme와 toggleTheme 가져오기
-    const { theme, toggleTheme } = useContext(ThemeContext);
+    // // ThemeContext에서 theme와 toggleTheme 가져오기
+    // const { theme, toggleTheme } = useContext(ThemeContext);
+    const theme = useSelector((state) => state.theme.mode); // 현재 테마 가져오기
 
     // 사용자가 선택한 'who' 값을 설정하는 함수, 'who' 값 토글 방식으로 설정
     const handleWhoChange = (value) => setWho((prev) => (prev === value ? 'Unknown' : value));
@@ -86,7 +87,7 @@ function HomePage() {
 
     // 다크 모드 버튼 클릭 핸들러
     const handleDarkModeButtonClick = () => {
-        toggleTheme(); // 다크 모드 토글
+        dispatch(toggleTheme()); // Redux 액션 디스패치
     };
 
     // 사용자 입력 감지: 이벤트가 발생할 때마다 타이머 리셋
@@ -205,7 +206,7 @@ function HomePage() {
                     </div>
                 </div>
             </main>
-            <Footer theme={theme} toggleTheme={toggleTheme}/> {/*  Footer 추가 */}
+            <Footer /> {/*  Footer 추가 */}
             {inactivityWarning && <InactivityWarning timeLeft={inactivityTimer} />} {/* 알림 카드 표시 */}
         </div>
     );
