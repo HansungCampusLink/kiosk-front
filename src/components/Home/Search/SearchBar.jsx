@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'; // Redux의 useDispatch 
 import { sendUserMessage } from '../../../redux/chatSlice'; // 메시지 전송 액션 임포트
 import { updateUrlWithChatId } from '../../../redux/utils/urlUtils'; // URL 유틸리티 함수
 import './SearchBar.css';
+import QRCodeGenerator from "../../QR/QRCodeGenerator";
 
 
-function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFirstMessage  }) {
+function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFirstMessage, isExpanded  }) {
     const [question, setQuestion] = useState(''); // 사용자가 입력한 질문을 저장하는 상태 변수
     const messages = useSelector((state) => state.chat.messages); // 전체 메시지 내역 가져오기
     const chatId = useSelector((state) => state.chat.chatId); // chatId 추가
     const dispatch = useDispatch(); // Redux의 dispatch 함수를 사용하여 액션을 보낼 준비
+    const [qrVisible, setQRVisible] = useState(false); //: 공유 QR 코드 표시 여부 상태 추가
 
     // selectedSuggestion이 변경될 때 question 상태를 업데이트
     useEffect(() => {
@@ -79,8 +81,39 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
         }
     };
 
+    const toggleQRVisibility = () => {
+        setQRVisible((prev) => !prev); // QR 코드 표시 여부 토글
+    };
+
+    // URL에 chatId 포함
+    const currentUrl = `${window.location.origin}${window.location.pathname}?chatId=${chatId}`;
+
     return (
         <div className="input-container"> {/* 입력 컨테이너 */}
+
+            {/* 전체 대화를 QR 코드로 공유할 수 있는 버튼 */}
+            {isExpanded && (
+                <button onClick={toggleQRVisibility} className="qr-share-button">
+                    <img
+                        src="/images/link-icon.png"
+                        alt="Share Link Icon"
+                        className="qr-share-icon"
+                    />
+                </button>
+            )}
+            {qrVisible && (
+                <div className="qr-modal">
+                    <div className="qr-modal-content">
+                        <button className="qr-modal-close" onClick={toggleQRVisibility}>
+                            &times;
+                        </button>
+                        <QRCodeGenerator refLink={currentUrl} />
+                        <p className="qr-url-message">웹이나 패드로 QR 접속 시 홈페이지로 돌아갑니다.</p>
+                        <p className="qr-url-message">모바일 권장 QR 코드입니다.</p>
+                    </div>
+                </div>
+            )}
+
             {/* 질문 입력을 위한 텍스트 필드 */}
             <input
                 type="text"
