@@ -182,6 +182,39 @@ html, body {
     transition: all 0.5s ease; /* 부드러운 전환 효과 */
 }
 
+.left-panel-bottom {
+    display: flex; /* 플렉스 박스 활성화 */
+    align-items: center; /* 세로축 중앙 정렬 */
+    justify-content: space-between; /* 가로축 요소 간격 분배 */
+
+    gap: 40px; /* 요소 간 간격 추가 */
+}
+
+.left-panel-bottom-icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    padding: 0; /* 버튼의 여백 제거 */
+    transition: all 0.5s ease; /* 크기와 위치 변화에 부드러운 전환 효과 */
+    flex-shrink: 0; /* 버튼 크기 고정 (카드에 밀리지 않도록) */
+}
+
+.left-panel-bottom-icon-button img {
+    width: 24px;
+    height: 24px;
+    padding: 2px; /* 버튼의 여백 제거 */
+}
+
+.left-panel-bottom-icon-button:hover {
+    transform: scale(1.2);
+}
+
+.weather-card {
+    flex-grow: 1; /* 카드가 가능한 공간을 차지 */
+}
+
 
 
 

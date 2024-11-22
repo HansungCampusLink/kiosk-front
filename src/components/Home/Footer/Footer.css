@@ -22,36 +22,38 @@
     color: #556; /* 호버 시 색상 변경 */
 }
 
-/*!* 토글 스위치 스타일 *!*/
-/*.toggle-switch {*/
-/*    width: 50px;*/
-/*    height: 24px;*/
-/*    background-color: #ccc;*/
-/*    border-radius: 15px;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: space-between;*/
-/*    margin: 0px auto; !* 가운데 정렬 *!*/
-/*    padding: 0 4px;*/
-/*    cursor: pointer;*/
-/*    transition: background-color 0.3s ease;*/
-/*}*/
+/* 토글 스위치 스타일 */
+.toggle-switch {
+    width: 50px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* 가운데 정렬 */
+    padding: 0 4px;
+    margin: 50px auto 0px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-/*!* 토글 원의 초기 위치 *!*/
-/*.toggle-circle {*/
-/*    width: 15px;*/
-/*    height: 15px;*/
-/*    background-color: #fff;*/
-/*    border-radius: 50%;*/
-/*    transition: transform 0.3s ease;*/
-/*}*/
+/* 토글 원의 초기 위치 */
+.toggle-circle {
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
 
-/*!* 다크 모드일 때 토글 위치 및 배경색 *!*/
-/*.toggle-dark {*/
-/*    transform: translateX(35px);*/
-/*    background-color: #333;*/
-/*}*/
+/* 다크 모드일 때 토글 위치 및 배경색 */
+.toggle-dark {
+    transform: translateX(35px);
+    background-color: #333;
+}
 
-/*.toggle-light {*/
-/*    transform: translateX(0);*/
-/*}*/
+.toggle-light {
+    transform: translateX(0);
+}
+

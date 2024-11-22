@@ -12,8 +12,6 @@ import WeatherCard from './Weather/WeatherCard';
 import './HomePage.css'; // CSS 스타일 시트 임포트
 import {resetMessages} from "../../redux/chatSlice";
 import KakaoMap from "../KakaoMap/KakaoMap";
-import {toggleTheme} from "../../redux/themeSlice";
-
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -85,10 +83,10 @@ function HomePage() {
 
     };
 
-    // 다크 모드 버튼 클릭 핸들러
-    const handleDarkModeButtonClick = () => {
-        dispatch(toggleTheme()); // Redux 액션 디스패치
-    };
+    // // 다크 모드 버튼 클릭 핸들러
+    // const handleDarkModeButtonClick = () => {
+    //     dispatch(toggleTheme()); // Redux 액션 디스패치
+    // };
 
     // 사용자 입력 감지: 이벤트가 발생할 때마다 타이머 리셋
     const resetInactivityTimer = () => {
@@ -163,23 +161,24 @@ function HomePage() {
 
                         {/* 추가된 버튼들 */}
                         <div className="icon-buttons">
-                            <button className="icon-button" onClick={toggleMapVisibility}>
-                                <img src="/images/map3.png" alt="Map Icon" />
-                            </button>
-                            <button className="icon-button" onClick={handleDarkModeButtonClick}>
-                                <img
-                                    src={theme === 'light' ? '/images/moon.png' : '/images/sun.png'} // 테마에 따라 이미지 변경
-                                    alt={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-                                    style={{
-                                        width: theme === 'light' ? '23px' : '28px', // 라이트 모드일 때 크기를 더 크게
-                                        height: theme === 'light' ? '23px' : '28px',
-                                    }}
-                                />
-                            </button>
+                            {/*<button className="icon-button" onClick={handleDarkModeButtonClick}>*/}
+                            {/*    <img*/}
+                            {/*        src={theme === 'light' ? '/images/moon.png' : '/images/sun.png'} // 테마에 따라 이미지 변경*/}
+                            {/*        alt={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}*/}
+                            {/*        style={{*/}
+                            {/*            width: theme === 'light' ? '23px' : '28px', // 라이트 모드일 때 크기를 더 크게*/}
+                            {/*            height: theme === 'light' ? '23px' : '28px',*/}
+                            {/*        }}*/}
+                            {/*    />*/}
+                            {/*</button>*/}
                         </div>
-
-                        {/* WeatherCard를 왼쪽 패널 하단에 추가 */}
-                        <WeatherCard />
+                        <div className="left-panel-bottom">
+                            <button className="left-panel-bottom-icon-button" onClick={toggleMapVisibility}>
+                                <img src="/images/map3.png" alt="Map Icon"/>
+                            </button>
+                            {/* WeatherCard를 왼쪽 패널 하단에 추가 */}
+                            <WeatherCard/>
+                        </div>
                     </div>
                 )}
 
