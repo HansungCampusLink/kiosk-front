@@ -1,0 +1,76 @@
+.mobile-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.mobile-header {
+    background-color: #1e90ff;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.mobile-chat-window {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.mobile-user-message {
+    background-color: #d1e7dd;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.mobile-assistant-message {
+    background-color: #f8d7da;
+    align-self: flex-start;
+    text-align: left;
+}
+
+.mobile-footer {
+    display: flex;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ddd;
+}
+
+.mobile-input-container {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+.mobile-input-container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.mobile-input-container button {
+    padding: 10px 15px;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.mobile-input-container button:hover {
+    background-color: #0073e6;
+}

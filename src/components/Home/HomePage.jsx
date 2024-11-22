@@ -77,6 +77,16 @@ function HomePage() {
         }
     };
 
+    // 지도 버튼 클릭 핸들러
+    const handleMapButtonClick = () => {
+        console.log('Map button clicked!');
+    };
+
+    // 다크 모드 버튼 클릭 핸들러
+    const handleDarkModeButtonClick = () => {
+        toggleTheme(); // 다크 모드 토글
+    };
+
     // 사용자 입력 감지: 이벤트가 발생할 때마다 타이머 리셋
     const resetInactivityTimer = () => {
         setInactivityTimer(30); // 타이머 리셋
@@ -119,7 +129,6 @@ function HomePage() {
     }, []);
 
 
-
     return (
         <div className={`App ${isExpanded ? 'expanded-app' : ''}`}> {/* 첫 채팅 여부에 따라 App 크기 확장 */}
             <header>
@@ -146,6 +155,17 @@ function HomePage() {
                                 <button onClick={() => handleMajorChange('arts')} className={major === 'arts' ? 'selected-button' : ''}>Arts</button>
                                 <button onClick={() => handleMajorChange('engineering')} className={major === 'engineering' ? 'selected-button' : ''}>Engineering</button>
                             </div>
+                        </div>
+
+
+                        {/* 추가된 버튼들 */}
+                        <div className="icon-buttons">
+                            <button className="icon-button" onClick={handleMapButtonClick}>
+                                <img src="/images/map3.png" alt="Map Icon" />
+                            </button>
+                            <button className="icon-button" onClick={handleDarkModeButtonClick}>
+                                <img src="/images/moon.png" alt="Dark Mode Icon" />
+                            </button>
                         </div>
 
                         {/* WeatherCard를 왼쪽 패널 하단에 추가 */}

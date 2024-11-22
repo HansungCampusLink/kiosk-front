@@ -96,7 +96,7 @@ const KakaoMap = () => {
 
     return (
         <div className="kakao-map-container">
-            <div id="kakao-map" style={{ width: '100%', height: '300px', marginBottom: '20px', borderRadius: '10px' }}></div>
+            <div id="kakao-map" style={{ width: '100%', height: '300px', marginBottom: '20px', borderRadius: '30px' }}></div>
             {destination && <p>선택한 건물: {destination}</p>} {/* 선택한 마커 이름 표시 */}
         </div>
     );
