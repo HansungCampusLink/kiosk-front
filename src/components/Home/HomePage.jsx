@@ -167,7 +167,14 @@ function HomePage() {
                                 <img src="/images/map3.png" alt="Map Icon" />
                             </button>
                             <button className="icon-button" onClick={handleDarkModeButtonClick}>
-                                <img src="/images/moon.png" alt="Dark Mode Icon" />
+                                <img
+                                    src={theme === 'light' ? '/images/moon.png' : '/images/sun.png'} // 테마에 따라 이미지 변경
+                                    alt={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+                                    style={{
+                                        width: theme === 'light' ? '23px' : '28px', // 라이트 모드일 때 크기를 더 크게
+                                        height: theme === 'light' ? '23px' : '28px',
+                                    }}
+                                />
                             </button>
                         </div>
 

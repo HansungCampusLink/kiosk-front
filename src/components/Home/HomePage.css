@@ -148,6 +148,11 @@ html, body {
     border: none;
     cursor: pointer;
     padding: 0; /* 버튼의 여백 제거 */
+    transition: all 0.5s ease; /* 크기와 위치 변화에 부드러운 전환 효과 */
+}
+
+.icon-button:hover {
+    transform: scale(1.2);
 }
 
 .icon-button img {
