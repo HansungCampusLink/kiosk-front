@@ -1,23 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import {Provider, useSelector} from 'react-redux'; // Provider는 최상위로 이동
 import store from './redux/store';
 import HomePage from './components/Home/HomePage.jsx';
-import MobilePage from './components/Mobile/MobilePage.jsx'; // MobilePage 컴포넌트 임포트
+import MobilePage from './components/Mobile/MobilePage.jsx';
 import LoadingPage from "./components/Home/Loading/LoadingPage.jsx";
 import TeamInfoPage from './components/Home/Footer/TeamInfoPage.jsx';
-import { ThemeProvider } from './context/ThemeContext';
-import QRBasedRoute from "./components/QR/QRBasedRoute"; // ThemeProvider 추가
+import QRBasedRoute from "./components/QR/QRBasedRoute";
 
-function App() {
+function AppContent() {
+    const theme = useSelector((state) => state.theme.mode); // 테마 상태 가져오기
+
     return (
-        <Provider store={store}>
-            <ThemeProvider> {/* ThemeProvider로 전체 감싸기 */}
+        <div className={`app ${theme}`}> {/* 테마에 따라 클래스 변경 */}
             <Router>
                 <Routes>
                     <Route path="/" element={<LoadingPage />} /> {/* 부팅 페이지 */}
                     <Route path="/home" element={<HomePage />} /> {/* 메인 페이지 */}
-                    {/* 특정 경로에서 MobilePage를 렌더링 */}
                     <Route
                         path="/mobile"
                         element={
@@ -29,7 +28,14 @@ function App() {
                     <Route path="/team-info" element={<TeamInfoPage />} />
                 </Routes>
             </Router>
-            </ThemeProvider>
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <Provider store={store}>
+            <AppContent /> {/* Provider 내부에서 상태를 가져오는 컴포넌트 */}
         </Provider>
     );
 }
