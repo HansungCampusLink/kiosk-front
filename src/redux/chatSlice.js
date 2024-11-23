@@ -5,8 +5,8 @@ import { updateUrlWithChatId, } from './utils/urlUtils';
 const initialState = {
     chatId: null, // 새로운 chatId 추가
     who: "student",
-    major: null,
-    destination : "정문",
+    major: "Unknown",
+    destination : "Unknown",
     messages: [],
     loading: false
 };
@@ -29,13 +29,13 @@ export const sendUserMessage = (requestData) => {
             const requestBody = chatId
                 ? { chatId,
                     who: requestData.who || "student", // 테스트
-                    major: requestData.major || null, // 테스트
-                    destination: requestData.destination || "정문",
+                    major: requestData.major || "Unknown", // 테스트
+                    destination: requestData.destination || "Unknown",
                     messages: requestData.messages } // chatId와 메시지 포함
                 : {
                     who: requestData.who || "student",
-                    major: requestData.major || null,
-                    destination: requestData.destination || "정문",
+                    major: requestData.major || "Unknown",
+                    destination: requestData.destination || "Unknown",
                     messages: requestData.messages,
                 }; // chatId가 없으면 기본 요청 구성
 

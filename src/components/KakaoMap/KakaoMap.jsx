@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 
-const KakaoMap = ({ setDestination }) => {
-
-
+const KakaoMap = ({ destination, setDestination }) => {
     useEffect(() => {
 
         // 카카오맵 API 스크립트 로드
@@ -76,7 +74,12 @@ const KakaoMap = ({ setDestination }) => {
 
                         window.kakao.maps.event.addListener(marker, 'click', () => {
                             // 마커 클릭 시 토글로 destination 설정
-                            setDestination((prev) => (prev === name ? '정문' : `${name}까지 가는 방법 알려줘`));
+                            setDestination((prev) => {
+                                const newDestination = prev === `${name}까지 가는 방법 알려줘` ? 'Unknown' : `${name}까지 가는 방법 알려줘`;
+                                // console.log('Previous destination:', prev);
+                                // console.log('New destination:', newDestination);
+                                return newDestination;
+                            });
                         });
                     });
                 });
@@ -95,6 +98,7 @@ const KakaoMap = ({ setDestination }) => {
     return (
         <div className="kakao-map-container">
             <div id="kakao-map" style={{ width: '100%', height: '300px', marginBottom: '20px', borderRadius: '30px' }}></div>
+            {destination && <p>선택한 건물: {destination}</p>} {/* 선택한 마커 이름 표시 */}
         </div>
     );
 };

@@ -1,5 +1,5 @@
 // SearchBar.jsx
-import React, { useState, useEffect } from 'react'; // React와 useState 훅 임포트
+import React, {useState, useEffect, useRef} from 'react'; // React와 useState 훅 임포트
 import { useDispatch, useSelector } from 'react-redux'; // Redux의 useDispatch 훅 임포트
 import { sendUserMessage } from '../../../redux/chatSlice'; // 메시지 전송 액션 임포트
 import { updateUrlWithChatId } from '../../../redux/utils/urlUtils'; // URL 유틸리티 함수
@@ -14,6 +14,15 @@ function SearchBar({ who, major, destination,  selectedSuggestion, setSelectedSu
     const dispatch = useDispatch(); // Redux의 dispatch 함수를 사용하여 액션을 보낼 준비
     const [qrVisible, setQRVisible] = useState(false); //: 공유 QR 코드 표시 여부 상태 추가
     const theme = useSelector((state) => state.theme.mode); // Redux 상태에서 theme 가져오기
+
+    const inputRef = useRef(null); // Ref 생성
+
+    // 컴포넌트가 렌더링될 때 input 필드에 포커스 설정
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus(); // input 필드에 포커스 설정
+        }
+    }, []); // 빈 배열이므로 컴포넌트 마운트 시 1회 실행
 
     // selectedSuggestion이 변경될 때 question 상태를 업데이트
     useEffect(() => {
@@ -45,7 +54,7 @@ function SearchBar({ who, major, destination,  selectedSuggestion, setSelectedSu
                     chatId: chatId.toString(), // 기존 chatId 포함
                     who: who,
                     major: major,
-                    destination, // 목적지 포함
+                    destination: destination, // 목적지 포함
                     messages: [
                         ...messages,
                         { role: 'user', content: question },
@@ -54,7 +63,7 @@ function SearchBar({ who, major, destination,  selectedSuggestion, setSelectedSu
                 : { // chatId가 없을 경우
                     who: who,
                     major: major,
-                    destination, // 목적지 포함
+                    destination: destination, // 목적지 포함
                     messages: [
                         ...messages,
                         { role: 'user', content: question },

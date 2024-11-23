@@ -18,7 +18,7 @@ function HomePage() {
 
     const [who, setWho] = useState('student'); // 사용자 유형의 기본값 'student'
     const [major, setMajor] = useState('Unknown'); // 전공 기본값 'Unknown'
-    const [destination, setDestination] = useState('정문'); // 목적지 상태 관리
+    const [destination, setDestination] = useState('Unknown'); // 기본값: Unknown
     const [selectedSuggestion, setSelectedSuggestion] = useState(''); // 추천 질문 상태를 관리
     const [showSuggestions, setShowSuggestions] = useState(true); // 추천 질문 표시 여부
     const [isExpanded, setIsExpanded] = useState(false); // 첫 채팅 후 body 확장 여부 상태
@@ -48,7 +48,7 @@ function HomePage() {
         const resetToInitialState = () => {
             setWho('student');
             setMajor('Unknown');
-            setDestination("정문")
+            setDestination("Unknown")
             setSelectedSuggestion('');
             setShowSuggestions(true);
             setIsExpanded(false);
@@ -128,6 +128,8 @@ function HomePage() {
     }, []);
 
 
+
+
     return (
         <div className={`App ${isExpanded ? 'expanded-app' : ''}`}> {/* 첫 채팅 여부에 따라 App 크기 확장 */}
             <header>
@@ -182,8 +184,8 @@ function HomePage() {
                                 showMap && !isExpanded ? 'show-map' : 'hide-map'
                             }`}
                         >
-                            {showMap && !isExpanded && <KakaoMap setDestination={setDestination} />}
-                            {destination && <p>선택한 건물: {destination}</p>} {/* 선택한 마커 이름 표시 */}
+                            {showMap && !isExpanded && <KakaoMap destination={destination} setDestination={setDestination} />}
+
                         </div>
 
                         {showSuggestions && (
