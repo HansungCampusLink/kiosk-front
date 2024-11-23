@@ -68,7 +68,7 @@ function ChatWindow({ isExpanded }) {
     }
 
     return (
-        <div className={`chat-window ${isExpanded ? 'expanded' : ''}`} ref={chatWindowRef}> {/* 채팅 창 컨테이너 */}
+        <div className={`chat-window ${isExpanded ? 'expanded' : ''} transparent-scrollbar`} ref={chatWindowRef} > {/* 채팅 창 컨테이너 */}
 
             {loading && <LoadingCard/>} {/* 로딩 중일 때 로딩 카드 표시 */}
 

@@ -175,3 +175,18 @@ body.dark .qr-grid-item {
     height: 24px;
     object-fit: contain; /* 아이콘 비율 유지 */
 }
+
+
+
+.transparent-scrollbar::-webkit-scrollbar {
+    width: 8px; /* 가로 스크롤바 너비 */
+}
+
+.transparent-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2); /* 반투명 색상 */
+    border-radius: 10px;
+}
+
+.transparent-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4); /* 호버 시 더 어둡게 */
+}
