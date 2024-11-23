@@ -4,10 +4,20 @@
     flex-direction: column;
     align-items: center;
     margin: 20px;
-    background-color: white; /* QR 코드 주변 여백 */
+
     padding: 20px; /* 내부 여백 */
     border-radius: 30px; /* 둥근 모서리 */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+body.light .qr-code-container {
+    background-color: white; /* QR 코드 주변 여백 */
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+body.dark .qr-code-container {
+    background-color: #999999;
 }
 
 /* QR 코드 항목 */

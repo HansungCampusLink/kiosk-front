@@ -9,6 +9,17 @@
     overflow: hidden;
 }
 
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+body.light .loading-page {
+    background-color: #ffffff;
+
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+body.dark .loading-page {
+    background-color: #333;
+}
+
 /* 마스코트 이미지 애니메이션 */
 .mascot-animation {
     width: 500px; /* 초기 크기 */

@@ -13,6 +13,7 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
     const chatId = useSelector((state) => state.chat.chatId); // chatId 추가
     const dispatch = useDispatch(); // Redux의 dispatch 함수를 사용하여 액션을 보낼 준비
     const [qrVisible, setQRVisible] = useState(false); //: 공유 QR 코드 표시 여부 상태 추가
+    const theme = useSelector((state) => state.theme.mode); // Redux 상태에서 theme 가져오기
 
     // selectedSuggestion이 변경될 때 question 상태를 업데이트
     useEffect(() => {
@@ -95,7 +96,7 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
             {isExpanded && (
                 <button onClick={toggleQRVisibility} className="qr-share-button">
                     <img
-                        src="/images/link-icon.png"
+                        src={theme === 'light' ? '/images/link-icon.png' : '/images/link-icon_white.png'}
                         alt="Share Link Icon"
                         className="qr-share-icon"
                     />

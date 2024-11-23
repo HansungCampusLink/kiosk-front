@@ -17,7 +17,7 @@ function ChatWindow({ isExpanded }) {
     const [showQRLinks, setShowQRLinks] = useState(false); // QR 코드 영역 표시 여부 상태 추가
     const chatWindowRef = useRef(null); // 스크롤을 위한 ref 추가
     const [lastMessageKey, setLastMessageKey] = useState(null); // 이전에 존재하지 않는 고유 메시지 추적
-
+    const theme = useSelector((state) => state.theme.mode); // Redux 상태에서 theme 가져오기
 
 
     // URL에서 chatId 파싱 및 히스토리 로드
@@ -95,10 +95,11 @@ function ChatWindow({ isExpanded }) {
                                 className="qr-toggle-button"
                             >
                                 <img
-                                    src="/images/QRicon.png"
+                                    src={theme === 'light' ? '/images/QRicon.png' : '/images/QRicon_white.png'}
                                     alt="Toggle QR Icon"
                                     className="qr-icon"
                                 />
+
                             </button>
                             <div className={`qr-section ${showQRLinks[index] ? 'open' : ''}`}>
                                 <div className="qr-grid"> {/* QR 코드들을 그리드 레이아웃으로 배치 */}

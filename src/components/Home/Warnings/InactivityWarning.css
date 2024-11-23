@@ -5,15 +5,26 @@
     top: -100px; /* 초기 위치는 화면 위쪽 */
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: top 0.5s ease; /* 내려오는 애니메이션 */
     animation: slideDown 0.5s forwards;
     text-align: center;
     z-index: 1000;
+}
+
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+body.light .inactivity-warning {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+body.dark .inactivity-warning {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes slideDown {

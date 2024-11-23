@@ -19,8 +19,7 @@ body.light .loading-card {
 body.dark .loading-card {
     background-color: #333;
     color: #f5f5f5;
-
-
+    border: 1px solid #f5f5f5;
 }
 
 .loading-dots {

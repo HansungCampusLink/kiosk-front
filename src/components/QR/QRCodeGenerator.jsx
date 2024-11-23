@@ -3,8 +3,11 @@
 import React, { useState } from 'react';
 import { QRCodeCanvas } from 'qrcode.react'; // QR 코드 생성 라이브러리
 import './QRCodeGenerator.css';
+import {useSelector} from "react-redux";
 
 const QRCodeGenerator = ({ refLink }) => {
+    const theme = useSelector((state) => state.theme.mode); // Redux 상태에서 theme 가져오기
+
     return (
         <div className="qr-code-container">
             <div className="qr-code-item"> {/* 여백 추가 */}
@@ -20,7 +23,7 @@ const QRCodeGenerator = ({ refLink }) => {
                 aria-label="Go to Link"
             >
                 <img
-                    src="/images/link-icon.png"
+                    src={theme === 'light' ? '/images/link-icon.png' : '/images/link-icon_white.png'}
                     alt="Go to Link Icon"
                     className="link-icon"
                 />
