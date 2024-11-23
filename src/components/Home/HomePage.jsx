@@ -165,7 +165,7 @@ function HomePage() {
                         <div className="left-panel-bottom">
                             <button className="left-panel-bottom-icon-button" onClick={toggleMapVisibility}>
                                 <img
-                                    src={theme === 'light' ? '/images/map3.png' : '/images/map3_white.png'}
+                                    src={theme === 'light' ? '/images/icons/map3.png' : '/images/icons/map3_white.png'}
                                     alt="Map Icon"/>
                             </button>
                             {/* WeatherCard를 왼쪽 패널 하단에 추가 */}
@@ -184,7 +184,7 @@ function HomePage() {
                                 showMap && !isExpanded ? 'show-map' : 'hide-map'
                             }`}
                         >
-                            {showMap && !isExpanded && <KakaoMap destination={destination} setDestination={setDestination} />}
+                            {showMap && !isExpanded && <KakaoMap setQuestion={setSelectedSuggestion} />}
 
                         </div>
 
@@ -195,7 +195,6 @@ function HomePage() {
                         <SearchBar
                             who={who}
                             major={major}
-                            destination={destination}
                             selectedSuggestion={selectedSuggestion}
                             setSelectedSuggestion={setSelectedSuggestion}
                             onFirstMessage={handleFirstMessage}

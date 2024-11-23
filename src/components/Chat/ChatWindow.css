@@ -98,6 +98,15 @@
     border-radius: 50%; /* 원형 이미지 */
 }
 
+.building-image {
+    max-width: 500px; /* 이미지 최대 너비 */
+    max-height: 400px; /* 이미지 최대 높이 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    margin: 15px 0; /* 상하 여백 */
+    object-fit: cover; /* 이미지 비율 유지 */
+}
+
+
 /* QR 코드 그리드 스타일 */
 .qr-grid {
     max-height: 1000px;

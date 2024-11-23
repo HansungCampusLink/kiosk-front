@@ -16,7 +16,7 @@ const LoadingPage = () => {
 
     return (
         <div className="loading-page">
-            <img src={`${process.env.PUBLIC_URL}/images/miniLOGO.png`} alt="Mascot" className="mascot-animation" />
+            <img src={`${process.env.PUBLIC_URL}/images/icons/miniLOGO.png`} alt="Mascot" className="mascot-animation" />
         </div>
     );
 };

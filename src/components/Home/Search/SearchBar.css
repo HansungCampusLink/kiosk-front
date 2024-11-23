@@ -68,7 +68,7 @@
 
 /* 음성 버튼 스타일 */
 .voice-button {
-    background-image: url('/images/mic-icon.png'); /* 마이크 아이콘 */
+    background-image: url('/images/icons/mic-icon.png'); /* 마이크 아이콘 */
     background-repeat: no-repeat; /* 반복 금지 */
     background-size: 20px 20px; /* 아이콘 크기 */
     background-position: center; /* 아이콘 중앙 정렬 */
@@ -91,7 +91,7 @@
 .app.light .send-button {
     background-color: #0066ff; /* 파란 배경 */
     color: #ffffff; /* 흰색 텍스트 */
-    background-image: url('/images/white_search_icon.png'); /* 검색 아이콘 */
+    background-image: url('/images/icons/white_search_icon.png'); /* 검색 아이콘 */
 
 }
 
@@ -99,7 +99,7 @@
 .app.dark .send-button {
     background-color: #f0f0f0; /* 파란 배경 */
     color: #ffffff; /* 흰색 텍스트 */
-    background-image: url('/images/s-icon-blk.png'); /* 검색 아이콘 */
+    background-image: url('/images/icons/s-icon-blk.png'); /* 검색 아이콘 */
 }
 
 /* 음성 버튼 호버 스타일 */
