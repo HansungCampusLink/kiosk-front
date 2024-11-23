@@ -68,6 +68,9 @@ function HomePage() {
         } else {
             // chatId가 있는 경우에는 히스토리 복원
             dispatch(fetchChatHistoryById(chatId)); // 히스토리 불러오기
+            setIsExpanded(true); // 채팅창 확장
+            setShowLeftPanel(false); // 좌측 패널 숨김
+            setIsChatStarted(true); // 채팅이 이미 시작된 상태로 설정
         }
     }, [dispatch]);
 
