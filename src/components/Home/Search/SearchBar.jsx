@@ -7,7 +7,7 @@ import './SearchBar.css';
 import QRCodeGenerator from "../../QR/QRCodeGenerator";
 
 
-function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFirstMessage, isExpanded  }) {
+function SearchBar({ who, major, destination,  selectedSuggestion, setSelectedSuggestion, onFirstMessage, isExpanded  }) {
     const [question, setQuestion] = useState(''); // 사용자가 입력한 질문을 저장하는 상태 변수
     const messages = useSelector((state) => state.chat.messages); // 전체 메시지 내역 가져오기
     const chatId = useSelector((state) => state.chat.chatId); // chatId 추가
@@ -45,6 +45,7 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
                     chatId: chatId.toString(), // 기존 chatId 포함
                     who: who,
                     major: major,
+                    destination, // 목적지 포함
                     messages: [
                         ...messages,
                         { role: 'user', content: question },
@@ -53,6 +54,7 @@ function SearchBar({ who, major, selectedSuggestion, setSelectedSuggestion, onFi
                 : { // chatId가 없을 경우
                     who: who,
                     major: major,
+                    destination, // 목적지 포함
                     messages: [
                         ...messages,
                         { role: 'user', content: question },

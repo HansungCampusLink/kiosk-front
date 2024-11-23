@@ -18,6 +18,7 @@ function HomePage() {
 
     const [who, setWho] = useState('student'); // 사용자 유형의 기본값 'student'
     const [major, setMajor] = useState('Unknown'); // 전공 기본값 'Unknown'
+    const [destination, setDestination] = useState('정문'); // 목적지 상태 관리
     const [selectedSuggestion, setSelectedSuggestion] = useState(''); // 추천 질문 상태를 관리
     const [showSuggestions, setShowSuggestions] = useState(true); // 추천 질문 표시 여부
     const [isExpanded, setIsExpanded] = useState(false); // 첫 채팅 후 body 확장 여부 상태
@@ -26,6 +27,7 @@ function HomePage() {
     const [inactivityTimer, setInactivityTimer] = useState(30); // 남은 초 표시
     const [isChatStarted, setIsChatStarted] = useState(false); // 채팅 시작 여부 상태 추가
     const [showMap, setShowMap] = useState(true); // 지도의 표시 여부 상태 관리
+
 
     const messages = useSelector((state) => state.chat.messages); // Redux 메시지 확인
 
@@ -46,6 +48,7 @@ function HomePage() {
         const resetToInitialState = () => {
             setWho('student');
             setMajor('Unknown');
+            setDestination("정문")
             setSelectedSuggestion('');
             setShowSuggestions(true);
             setIsExpanded(false);
@@ -179,7 +182,8 @@ function HomePage() {
                                 showMap && !isExpanded ? 'show-map' : 'hide-map'
                             }`}
                         >
-                            {showMap && !isExpanded && <KakaoMap/>}
+                            {showMap && !isExpanded && <KakaoMap setDestination={setDestination} />}
+                            {destination && <p>선택한 건물: {destination}</p>} {/* 선택한 마커 이름 표시 */}
                         </div>
 
                         {showSuggestions && (
@@ -189,6 +193,7 @@ function HomePage() {
                         <SearchBar
                             who={who}
                             major={major}
+                            destination={destination}
                             selectedSuggestion={selectedSuggestion}
                             setSelectedSuggestion={setSelectedSuggestion}
                             onFirstMessage={handleFirstMessage}
