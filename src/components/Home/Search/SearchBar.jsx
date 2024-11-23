@@ -128,6 +128,7 @@ function SearchBar({ who, major, destination,  selectedSuggestion, setSelectedSu
 
             {/* 질문 입력을 위한 텍스트 필드 */}
             <input
+                ref={inputRef} // Ref 연결
                 type="text"
                 placeholder="질문을 입력하세요" // 입력 필드의 플레이스홀더
                 value={question} // 상태로부터 입력값을 가져옴
