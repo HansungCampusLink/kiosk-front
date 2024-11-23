@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {Provider, useSelector} from 'react-redux'; // Provider는 최상위로 이동
 import store from './redux/store';
@@ -11,8 +11,13 @@ import QRBasedRoute from "./components/QR/QRBasedRoute";
 function AppContent() {
     const theme = useSelector((state) => state.theme.mode); // 테마 상태 가져오기
 
+    // body 태그에 테마 클래스 추가
+    useEffect(() => {
+        document.body.className = theme; // body 클래스 동적으로 설정
+    }, [theme]);
+
     return (
-        <div className={`app ${theme}`}> {/* 테마에 따라 클래스 변경 */}
+
             <Router>
                 <Routes>
                     <Route path="/" element={<LoadingPage />} /> {/* 부팅 페이지 */}
@@ -28,7 +33,7 @@ function AppContent() {
                     <Route path="/team-info" element={<TeamInfoPage />} />
                 </Routes>
             </Router>
-        </div>
+
     );
 }
 

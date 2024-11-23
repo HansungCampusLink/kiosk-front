@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // 초기 상태 설정
 const initialState = {
-    mode: 'light', // 기본값: 'light'
+    mode: 'dark', // 기본값: 'dark'
 };
 
 // Slice 생성

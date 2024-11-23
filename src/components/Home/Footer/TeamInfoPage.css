@@ -8,10 +8,20 @@
     font-family: Arial, sans-serif;
 }
 
-h1 {
+.team-info-title {
     font-size: 32px;
-    color: #333;
     margin-bottom: 20px;
+}
+
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+body.light .team-info-title {
+    color: #333;
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+body.dark .team-info-title {
+    color: white;
+
 }
 
 .team-members {
@@ -21,26 +31,72 @@ h1 {
 }
 
 .team-member-card {
-    background-color: #f8f9fa;
+
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
 }
 
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+body.light .team-member-card {
+    background-color: #f8f9fa;
+
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+body.dark .team-member-card {
+    background-color: #333;
+}
+
+
 .team-member-card h2 {
     font-size: 20px;
-    color: #0073e6;
+
 }
+
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+body.light .team-member-card h2 {
+    color: #0073e6;
+
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+body.dark .team-member-card h2 {
+    color: #fff;
+}
+
 
 .team-member-card .role {
     font-size: 16px;
     font-weight: bold;
+
+}
+
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+body.light .role {
     color: #333;
+
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+body.dark .role {
+    color: #fff;
 }
 
 .team-member-card .bio {
     font-size: 14px;
     color: #666;
     margin-top: 10px;
+}
+
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+body.light .bio {
+    color: #666;
+
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+body.dark .bio {
+    color: #f9f9f9;
 }

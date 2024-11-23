@@ -13,7 +13,7 @@ const TeamInfoPage = () => {
 
     return (
         <div className="team-info-page">
-            <h1>Team HansungCampusLink</h1>
+            <h1 className="team-info-title">Team HansungCampusLink</h1>
             <div className="team-members">
                 {teamMembers.map((member, index) => (
                     <div key={index} className="team-member-card">
