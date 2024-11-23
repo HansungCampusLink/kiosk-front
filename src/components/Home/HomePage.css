@@ -8,48 +8,16 @@ html, body {
     height: 100%; /* 전체 높이를 화면에 맞춤 */
 }
 
-/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light html, body {
-    background-color: #f5f5f5; /* 페이지 전체 배경색 */
+/* 라이트 모드 */
+body.light {
+    background-color: #f0f0f0; /* 흰색 배경 */
+
 }
 
-/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark html, body {
-    background-color: #1f2023;
-}
-
-/* App 컴포넌트의 기본 스타일 */
-.App {
-    text-align: center; /* 텍스트 중앙 정렬 */
-    height: 115vh; /* 페이지 높이 설정 (뷰포트보다 약간 더 큼) */
-    width: 100%; /* 페이지 너비를 전체로 설정 */
-    display: flex; /* 플렉스 박스 사용 */
-    flex-direction: column; /* 수직 정렬 */
-    align-items: center; /* 자식 요소들을 가로축 중앙에 정렬 */
-    justify-content: space-between; /* 상단과 하단에 요소를 배치 */
-    transition: all 0.5s ease; /* 크기와 위치 변화에 부드러운 전환 효과 */
-}
-
-/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light App {
-    background-color: #f5f5f5; /* App 배경색 */
-}
-
-/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark App {
+/* 다크 모드 */
+body.dark {
     background-color: #333;
 
-}
-
-/* App 컴포넌트가 확장된 경우의 스타일 */
-.App.expanded-app {
-    height: 135vh; /* 확장된 높이 */
-    width: 100%; /* 여전히 전체 너비 */
-}
-
-/* 헤더, 본문(Body), 푸터 기본 설정 */
-.header, .body, .footer {
-    width: 100%; /* 부모의 너비를 채움 */
 }
 
 /* Body의 기본 스타일 */
@@ -57,21 +25,21 @@ body.dark App {
     display: flex; /* 플렉스 컨테이너 설정 */
     width: 80%; /* 기본적으로 너비를 80%로 설정 */
     height: 100%; /* 전체 높이 사용 */
-    background-color: #ffffff; /* 흰색 배경 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    border-radius: 10px;
     flex-direction: row; /* 좌우 정렬을 기본으로 설정 */
     transition: all 0.5s ease; /* 크기 및 위치 변화 전환 효과 */
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light body {
-    background-color: #ffffff; /* 흰색 배경 */
+.app.light .body{
+    background-color: #f5f5f5; /* 흰색 배경 */
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark body {
-    background-color: rgba(245, 245, 245, 0.3);
-
+.app.dark .body{
+    background-color: #666666;
+    border: 1px solid #888 ;
 }
 
 /* Body가 확장되었을 때의 스타일 */
@@ -80,27 +48,34 @@ body.dark body {
     height: 105vh; /* 확장된 높이 */
 }
 
+
+/* 헤더, 본문(Body), 푸터 기본 설정 */
+.header, .footer {
+    width: 100%; /* 부모의 너비를 채움 */
+}
+
 /* 좌측 패널 스타일 */
 .left-panel {
     width: 30%; /* 좌측 패널 너비 */
-    background-color: #f8f9fa; /* 연한 회색 배경 */
     padding: 20px; /* 내부 여백 */
     display: flex; /* 플렉스 박스 */
     flex-direction: column; /* 세로 정렬 */
     align-items: center; /* 중앙 정렬 */
-    border-right: 1px solid #ddd; /* 오른쪽 경계선 */
     transition: transform 0.5s ease, opacity 0.5s ease; /* 전환 효과 */
 
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light left-panel {
+.app.light left-panel {
     border-right: 1px solid #ddd; /* 오른쪽 경계선 */
+    background-color: #f8f9fa; /* 연한 회색 배경 */
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark left-panel {
+.app.dark left-panel {
     border-right: 1px solid rgba(170, 191, 197, 0.29); /* 오른쪽 경계선 */
+    background-color: #7777;
+    color: #f0f0f0;
 
 }
 
@@ -138,8 +113,19 @@ body.dark left-panel {
 .selection-group-title {
     font-size: 15px; /* 텍스트 크기 */
     margin-bottom: 10px; /* 하단 여백 */
-    color: #333; /* 어두운 회색 텍스트 색상 */
     text-align: center; /* 제목 중앙 정렬 */
+}
+
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+.app.light .selection-group-title  {
+    color: #333; /* 어두운 회색 텍스트 색상 */
+
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+.app.dark .selection-group-title {
+    color: #f0f0f0;
+
 }
 
 /* 선택된 버튼 스타일 */
@@ -147,17 +133,17 @@ body.dark left-panel {
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .selection-buttons .selected-button {
+.app.light .selection-buttons .selected-button {
     background-color: white; /* 흰색 배경 */
     color: #0066ff; /* 파란 텍스트 */
     border: 2px solid #0066ff; /* 파란 테두리 */
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .selection-buttons .selected-button {
+.app.dark .selection-buttons .selected-button {
     background-color: #555;
     color: #f0f0f0;
-    border: 3px solid black;
+    border: 2px solid #f0f0f0;
 
 }
 
@@ -181,13 +167,13 @@ body.dark .selection-buttons .selected-button {
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .selection-buttons button {
+.app.light .selection-buttons button {
     background-color: #0066ff; /* 파란색 배경 */
     color: white; /* 흰색 텍스트 */
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .selection-buttons button {
+.app.dark .selection-buttons button {
     background-color: #555;
     color: #f0f0f0;
 
@@ -198,6 +184,19 @@ body.dark .selection-buttons button {
 .selection-buttons button:hover {
     background-color: #ddd; /* 밝은 회색 배경 */
     /*background-color: #005bb5; !* 밝은 회색 배경 *!*/
+}
+
+
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+.app.light .selection-buttons button:hover {
+    background-color: #ddd; /* 밝은 회색 배경 */
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+.app.dark .selection-buttons button:hover {
+    background-color: #777; /* 밝은 회색 배경 */
+
+
 }
 
 .icon-buttons {
@@ -315,16 +314,19 @@ body.dark .selection-buttons button {
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .chat-container {
+.app.light .chat-container {
     background-color: #ffffff;
 
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .chat-container {
+.app.dark .chat-container {
     background-color: #424242;
+    border: 1px solid #8888;
 
 }
+
+
 
 /* 타이핑 텍스트 컨테이너 스타일 */
 .typing-text-container {
@@ -338,7 +340,6 @@ body.dark .chat-container {
 .typing-text {
     font-size: 24px; /* 텍스트 크기 */
     font-weight: bold; /* 텍스트 굵기 */
-    color: #333; /* 어두운 회색 */
     white-space: nowrap; /* 줄바꿈 방지 */
     overflow: hidden; /* 넘치는 텍스트 숨기기 */
     animation: typing 3s steps(20, end) forwards; /* 타이핑 애니메이션 */
@@ -346,13 +347,13 @@ body.dark .chat-container {
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .typing-text {
+.app.light .typing-text {
     color: #333; /* 어두운 회색 */
 
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .typing-text {
+.app.dark .typing-text {
     color: #ffffff;
 }
 

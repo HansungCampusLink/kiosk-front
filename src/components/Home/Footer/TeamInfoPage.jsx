@@ -12,6 +12,7 @@ const TeamInfoPage = () => {
     ];
 
     return (
+
         <div className="team-info-page">
             <h1 className="team-info-title">Team HansungCampusLink</h1>
             <div className="team-members">

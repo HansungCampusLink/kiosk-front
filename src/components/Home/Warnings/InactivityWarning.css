@@ -14,14 +14,14 @@
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .inactivity-warning {
+.app.light .inactivity-warning {
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .inactivity-warning {
+.app.dark .inactivity-warning {
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);

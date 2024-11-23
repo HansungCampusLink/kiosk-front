@@ -6,7 +6,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between; /* 아이콘과 텍스트 간격 조정 */
-    /*margin-top: auto; !* 패널의 하단으로 밀림 *!*/
     width: 60%; /* 패널 너비에 맞춤보다 좀 좁게 */
     max-width: 200px; /* 카드 너비를 제한하여 중앙 정렬 효과 */
     margin-left: auto; /* 좌우 중앙 정렬 */
@@ -16,13 +15,15 @@
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .weather-card {
+.app.light .weather-card {
+    background-color: #f8f9fa;
     color: #333;
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .weather-card {
-    color: #999999;
+.app.dark .weather-card {
+    background-color: #777777;
+    color: #f0f0f0;
 }
 
 .weather-icon {
@@ -30,18 +31,17 @@ body.dark .weather-card {
     height: 30px; /* 아이콘 높이 설정 */
     align-items: center;
     margin-right: 16px; /* 아이콘과 텍스트 간격 */
-    color: #333;
     animation: icon-animation 0.5s ease-in-out;
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .weather-icon {
+.app.light .weather-icon {
     color: #333;
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .weather-icon {
-    color: #999999;
+.app.dark .weather-icon {
+    color: #f0f0f0;
 }
 
 /* 회전하는 텍스트 스타일 */

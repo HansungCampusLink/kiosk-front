@@ -1,12 +1,46 @@
 /* App.css: 기본적인 전역 스타일 유지 */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* App 컴포넌트의 기본 스타일 */
+.App {
+  text-align: center; /* 텍스트 중앙 정렬 */
+  height: 115vh; /* 페이지 높이 설정 (뷰포트보다 약간 더 큼) */
+  width: 100%; /* 페이지 너비를 전체로 설정 */
+  display: flex; /* 플렉스 박스 사용 */
+  flex-direction: column; /* 수직 정렬 */
+  align-items: center; /* 자식 요소들을 가로축 중앙에 정렬 */
+  justify-content: space-between; /* 상단과 하단에 요소를 배치 */
+  transition: all 0.5s ease; /* 크기와 위치 변화에 부드러운 전환 효과 */
 }
 
-body {
+/* App 컴포넌트가 확장된 경우의 스타일 */
+.App.expanded-app {
+  height: 135vh; /* 확장된 높이 */
+  width: 100%; /* 여전히 전체 너비 */
+}
+
+
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+.app.light .App{
+  background-color: #f0f0f0; /* App 배경색 */
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+.app.dark .App{
+  background-color: #333;
+
+}
+
+.app body {
   font-family: Arial, sans-serif; /* 폰트 적용 */
-  background-color: #f0f0f0; /* 배경색 설정 */
+}
+
+/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+.app.light body{
+  background-color: #f0f0f0; /* App 배경색 */
+}
+
+/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+.app.dark body{
+  background-color: #333;
+
 }

@@ -11,13 +11,13 @@
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .qr-code-container {
+.app.light .qr-code-container {
     background-color: white; /* QR 코드 주변 여백 */
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .qr-code-container {
-    background-color: #999999;
+.app.dark .qr-code-container {
+    background-color: #777777;
 }
 
 /* QR 코드 항목 */

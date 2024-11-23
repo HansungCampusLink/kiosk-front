@@ -7,17 +7,20 @@ import MobilePage from './components/Mobile/MobilePage.jsx';
 import LoadingPage from "./components/Home/Loading/LoadingPage.jsx";
 import TeamInfoPage from './components/Home/Footer/TeamInfoPage.jsx';
 import QRBasedRoute from "./components/QR/QRBasedRoute";
+import './App.css';
 
 function AppContent() {
-    const theme = useSelector((state) => state.theme.mode); // 테마 상태 가져오기
+    const theme = useSelector((state) => state.theme.mode); // 현재 테마 가져오기
 
-    // body 태그에 테마 클래스 추가
+
+    // body에 테마 클래스 동적 적용
     useEffect(() => {
-        document.body.className = theme; // body 클래스 동적으로 설정
-    }, [theme]);
+        document.body.className = theme; // theme 값에 따라 body 클래스 변경
+    }, [theme]); // theme 값이 변경될 때마다 실행
+
 
     return (
-
+        <div className={`app ${theme}`}> {/* app 컴포넌트에 테마 클래스 추가 */}
             <Router>
                 <Routes>
                     <Route path="/" element={<LoadingPage />} /> {/* 부팅 페이지 */}
@@ -33,7 +36,7 @@ function AppContent() {
                     <Route path="/team-info" element={<TeamInfoPage />} />
                 </Routes>
             </Router>
-
+        </div>
     );
 }
 

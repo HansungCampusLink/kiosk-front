@@ -1,5 +1,8 @@
 /* TeamInfoPage.css */
 
+
+
+
 .team-info-page {
     max-width: 800px;
     margin: 0 auto;
@@ -14,12 +17,12 @@
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .team-info-title {
+.app.light .team-info-title {
     color: #333;
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .team-info-title {
+.app.dark .team-info-title {
     color: white;
 
 }
@@ -39,14 +42,14 @@ body.dark .team-info-title {
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .team-member-card {
+.app.light .team-member-card {
     background-color: #f8f9fa;
 
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .team-member-card {
-    background-color: #333;
+.app.dark .team-member-card {
+    background-color: #9999;
 }
 
 
@@ -56,13 +59,13 @@ body.dark .team-member-card {
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .team-member-card h2 {
+.app.light .team-member-card h2 {
     color: #0073e6;
 
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .team-member-card h2 {
+.app.dark .team-member-card h2 {
     color: #fff;
 }
 
@@ -74,13 +77,13 @@ body.dark .team-member-card h2 {
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .role {
+.app.light .role {
     color: #333;
 
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .role {
+.app.dark .role {
     color: #fff;
 }
 
@@ -91,12 +94,12 @@ body.dark .role {
 }
 
 /* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
-body.light .bio {
+.app.light .bio {
     color: #666;
 
 }
 
 /* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
-body.dark .bio {
+.app.dark .bio {
     color: #f9f9f9;
 }
