@@ -6,7 +6,7 @@ const initialState = {
     chatId: null, // 새로운 chatId 추가
     who: "student",
     major: "Unknown",
-    destination : "Unknown",
+    // destination : "Unknown",
     messages: [],
     loading: false
 };
@@ -30,12 +30,10 @@ export const sendUserMessage = (requestData) => {
                 ? { chatId,
                     who: requestData.who || "student", // 테스트
                     major: requestData.major || "Unknown", // 테스트
-                    destination: requestData.destination || "Unknown",
                     messages: requestData.messages } // chatId와 메시지 포함
                 : {
                     who: requestData.who || "student",
                     major: requestData.major || "Unknown",
-                    destination: requestData.destination || "Unknown",
                     messages: requestData.messages,
                 }; // chatId가 없으면 기본 요청 구성
 
@@ -68,6 +66,7 @@ export const sendUserMessage = (requestData) => {
             dispatch(receiveMessage({
                 role: data.messages.role,
                 content: data.messages.content,
+                destination: data.destination, // destination 명시적으로 전달
                 ref: data.ref,
             }));
         } catch (error) {
@@ -97,14 +96,38 @@ export const fetchChatHistoryById = (chatId) => {
             }
 
             const data = await response.json(); // JSON 파싱
-            dispatch(setMessages(data.messages)); // 메시지 설정
+
+
+            // 복원된 메시지를 순서대로 Redux 스토어에 저장
+            const sortedMessages = data.messages.sort((a, b) => a.timestamp - b.timestamp); // 타임스탬프로 정렬
+            dispatch(setMessages(sortedMessages)); // Redux 상태 업데이트
         } catch (error) {
             console.error('Error fetching chat history:', error); // 오류 로그 출력
         }
     };
 };
 
+const buildingImageMap = {
+    '정문': '/images/maps/정문.png',
+    '창의관': '/images/maps/창의관.png',
+    '인성관': '/images/maps/인성관.png',
+    '낙산관': '/images/maps/낙산관.png',
+    '상상관': '/images/maps/상상관.png',
+    '미래관': '/images/maps/미래관.png',
 
+    '우촌관': '/images/maps/우촌관.png',
+    '진리관': '/images/maps/진리관.png',
+    '학송관': '/images/maps/학송관.png',
+    '탐구관': '/images/maps/탐구관.png',
+    '한성 학군단': '/images/maps/한성 학군단.png',
+
+    '연구관': '/images/maps/연구관.png',
+    '지선관': '/images/maps/지선관.png',
+    '공학관 에이동': '/images/maps/공학관 에이동.png',
+    '공학관 비동': '/images/maps/공학관 비동.png',
+
+    // ... 건물 추가
+};
 
 
 // 슬라이스 생성
@@ -123,8 +146,27 @@ const chatSlice = createSlice({
         },
         // AI 응답을 Redux 스토어에 추가하는 리듀서
         receiveMessage: (state, action) => {
-            const { role, content, ref } = action.payload;
-            state.messages.push({ role, content, ref }); // 수신된 AI 응답 메시지 추가
+            const { role, content, ref, destination } = action.payload;
+
+            console.log('Payload received in receiveMessage:', action.payload);
+
+            // 메시지에 destination이 없더라도 별도로 처리
+            const destinationImage = destination ? buildingImageMap[destination] : null;
+
+            // 디버깅 로그 추가
+            console.log("Destination:", destination);
+            console.log("Image Path:", destination ? buildingImageMap[destination] : null);
+
+            // 메시지로 처리
+                state.messages.push({
+                    role,
+                    content,
+                    ref,
+                    image: destinationImage, // 목적지 이미지 추가
+                    destination, // 목적지 이름 추가
+                });
+
+
             state.loading = false; // 어시스턴트 응답 시 로딩 중지
 
         },
@@ -138,7 +180,17 @@ const chatSlice = createSlice({
             state.loading = false; // 로딩 상태 초기화
         },
         setMessages: (state, action) => {
-            state.messages = action.payload; // 히스토리 불러오기
+            const newMessages = action.payload;
+            state.messages = [
+                ...state.messages,
+                ...newMessages.filter(
+                    (newMsg) => !state.messages.some(
+                        (existingMsg) =>
+                            existingMsg.content === newMsg.content &&
+                            existingMsg.role === newMsg.role
+                    )
+                ),
+            ];
         },
     },
 });

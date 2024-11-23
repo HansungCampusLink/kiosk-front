@@ -23,7 +23,7 @@ const QRCodeGenerator = ({ refLink }) => {
                 aria-label="Go to Link"
             >
                 <img
-                    src={theme === 'light' ? '/images/link-icon.png' : '/images/link-icon_white.png'}
+                    src={theme === 'light' ? '/images/icons/link-icon.png' : '/images/icons/link-icon_white.png'}
                     alt="Go to Link Icon"
                     className="link-icon"
                 />

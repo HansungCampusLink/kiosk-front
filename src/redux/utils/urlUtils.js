@@ -16,3 +16,4 @@ export const parseChatIdFromUrl = () => {
     return params.get('chatId'); // chatId가 URL에 존재하면 반환, 없으면 null 반환
 };
 
+

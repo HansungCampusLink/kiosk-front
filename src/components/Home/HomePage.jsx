@@ -10,8 +10,9 @@ import InactivityWarning from './Warnings/InactivityWarning'; // 추가: 알림 
 import WeatherCard from './Weather/WeatherCard';
 
 import './HomePage.css'; // CSS 스타일 시트 임포트
-import {resetMessages} from "../../redux/chatSlice";
+import {fetchChatHistoryById, resetMessages} from "../../redux/chatSlice";
 import KakaoMap from "../KakaoMap/KakaoMap";
+import {parseChatIdFromUrl} from "../../redux/utils/urlUtils";
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -41,7 +42,6 @@ function HomePage() {
     // 사용자가 선택한 'major' 값을 설정하는 함수,  'major' 값 토글 방식으로 설정
     const handleMajorChange = (value) => setMajor((prev) => (prev === value ? 'Unknown' : value));
 
-
     // 페이지가 마운트될 때 상태 초기화
     useEffect(() => {
         // 페이지 초기화 함수
@@ -58,9 +58,17 @@ function HomePage() {
             setIsChatStarted(false); // 채팅 시작 상태 초기화
         };
 
-        dispatch(resetMessages()); //: 초기화 액션 디스패치
+        // URL에서 chatId 추출
+        const chatId = parseChatIdFromUrl();
 
-        resetToInitialState(); // 컴포넌트가 마운트될 때 초기화
+        if (!chatId) {
+            // chatId가 없는 경우에만 초기화
+            dispatch(resetMessages()); // Redux 상태 초기화
+            resetToInitialState(); // 로컬 상태 초기화
+        } else {
+            // chatId가 있는 경우에는 히스토리 복원
+            dispatch(fetchChatHistoryById(chatId)); // 히스토리 불러오기
+        }
     }, [dispatch]);
 
 
@@ -165,7 +173,7 @@ function HomePage() {
                         <div className="left-panel-bottom">
                             <button className="left-panel-bottom-icon-button" onClick={toggleMapVisibility}>
                                 <img
-                                    src={theme === 'light' ? '/images/map3.png' : '/images/map3_white.png'}
+                                    src={theme === 'light' ? '/images/icons/map3.png' : '/images/icons/map3_white.png'}
                                     alt="Map Icon"/>
                             </button>
                             {/* WeatherCard를 왼쪽 패널 하단에 추가 */}
@@ -184,7 +192,7 @@ function HomePage() {
                                 showMap && !isExpanded ? 'show-map' : 'hide-map'
                             }`}
                         >
-                            {showMap && !isExpanded && <KakaoMap destination={destination} setDestination={setDestination} />}
+                            {showMap && !isExpanded && <KakaoMap setQuestion={setSelectedSuggestion} />}
 
                         </div>
 
@@ -195,7 +203,6 @@ function HomePage() {
                         <SearchBar
                             who={who}
                             major={major}
-                            destination={destination}
                             selectedSuggestion={selectedSuggestion}
                             setSelectedSuggestion={setSelectedSuggestion}
                             onFirstMessage={handleFirstMessage}

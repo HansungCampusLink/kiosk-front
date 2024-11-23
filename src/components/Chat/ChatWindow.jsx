@@ -83,19 +83,28 @@ function ChatWindow({ isExpanded }) {
                 >
                     {/* AI 응답일 경우 facelogo 출력 */}
                     {msg.role === 'assistant' && (
-                        <img src="/images/facelogo.png" alt="Assistant Logo" className="assistant-logo"/>
+                        <img src="/images/icons/facelogo.png" alt="Assistant Logo" className="assistant-logo"/>
                     )}
                     <p>{msg.content || '메시지가 없습니다'}</p>
 
+                    {msg.image && (
+                        <img
+                            src={msg.image}
+                            alt={`${msg.destination} 이미지`}
+                            className="building-image"
+                            style={{ width: '100%', borderRadius: '8px', marginTop: '10px' }}
+                        />
+                    )}
+
                     {/* 추천 링크가 있는 경우 리스트로 표시 */}
-                    {msg.ref && (
+                    {msg.ref && msg.ref.length > 0 && (
                         <div className="qr-section-container">
                             <button
                                 onClick={() => toggleQRLinks(index)} // 개별 메시지에 대한 QR 표시 여부 토글
                                 className="qr-toggle-button"
                             >
                                 <img
-                                    src={theme === 'light' ? '/images/QRicon.png' : '/images/QRicon_white.png'}
+                                    src={theme === 'light' ? '/images/icons/QRicon.png' : '/images/icons/QRicon_white.png'}
                                     alt="Toggle QR Icon"
                                     className="qr-icon"
                                 />

@@ -26,13 +26,13 @@ export const NavBar = ({ showBackButton, onBackButtonClick }) => { // showBackBu
             <Container>
                 {showBackButton && ( // 조건부로 Back 버튼 표시
                     <img
-                        src= {theme === 'light' ? '/images/Back-key.png' : '/images/Back-key_white_inverted.png'}
+                        src= {theme === 'light' ? '/images/icons/Back-key.png' : '/images/icons/Back-key_white_inverted.png'}
                         alt="Back"
                         className="back-button"
                         onClick={onBackButtonClick} /> // 뒤로 가기 버튼 클릭 시 onBackButtonClick 호출
                 )}
                 <NavbarBrand onClick={handleLogoClick} style={{cursor: 'pointer'}}>
-                    <img src="/images/miniLOGO_cropped.png" alt="Mini Logo" className="navbar-logo"/>
+                    <img src="/images/icons/miniLOGO_cropped.png" alt="Mini Logo" className="navbar-logo"/>
                 </NavbarBrand>
             </Container>
         </Navbar>
