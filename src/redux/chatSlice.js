@@ -6,7 +6,6 @@ const initialState = {
     chatId: null, // 새로운 chatId 추가
     who: "student",
     major: "Unknown",
-    // destination : "Unknown",
     messages: [],
     loading: false
 };
@@ -15,16 +14,13 @@ const initialState = {
 export const sendUserMessage = (requestData) => {
     return async (dispatch, getState) => {
         const state = getState();
-        const chatId = state.chat.chatId; // Redux 상태에서 chatId 가져오기
+        const chatId = state.chat.chatId; // 기존 chatId 확인
 
         // 배열의 마지막 메시지를 전송하는 액션을 디스패치
         const latestMessage = requestData.messages[requestData.messages.length - 1]; // 최신 메시지
         dispatch(sendMessage({ role: latestMessage.role, content: latestMessage.content })); // 최신 메시지를 디스패치
 
         try {
-            const state = getState();
-            const chatId = state.chat.chatId; // 기존 chatId 확인
-
             // chatId 유무에 따라 요청 본문 구성
             const requestBody = chatId
                 ? { chatId,
@@ -66,7 +62,7 @@ export const sendUserMessage = (requestData) => {
             dispatch(receiveMessage({
                 role: data.messages.role,
                 content: data.messages.content,
-                destination: data.destination, // destination 명시적으로 전달
+                // destination: data.destination, // destination 명시적으로 전달
                 ref: data.ref,
             }));
         } catch (error) {
@@ -96,7 +92,6 @@ export const fetchChatHistoryById = (chatId) => {
             }
 
             const data = await response.json(); // JSON 파싱
-
 
             // 복원된 메시지를 순서대로 Redux 스토어에 저장
             const sortedMessages = data.messages.sort((a, b) => a.timestamp - b.timestamp); // 타임스탬프로 정렬
@@ -146,12 +141,12 @@ const chatSlice = createSlice({
         },
         // AI 응답을 Redux 스토어에 추가하는 리듀서
         receiveMessage: (state, action) => {
-            const { role, content, ref, destination } = action.payload;
-
-            console.log('Payload received in receiveMessage:', action.payload);
+            const { role, content, ref } = action.payload;
+            ///// 윗부분 수정
+            const destination = content.destination;
 
             // 메시지에 destination이 없더라도 별도로 처리
-            const destinationImage = destination ? buildingImageMap[destination] : null;
+            const destinationImage = destination ? buildingImageMap[destination] : "Unknown";
 
             // 디버깅 로그 추가
             console.log("Destination:", destination);
@@ -163,7 +158,7 @@ const chatSlice = createSlice({
                     content,
                     ref,
                     image: destinationImage, // 목적지 이미지 추가
-                    destination, // 목적지 이름 추가
+
                 });
 
 
