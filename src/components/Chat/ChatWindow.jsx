@@ -87,7 +87,7 @@ function ChatWindow({ isExpanded }) {
                     )}
                     <p>{msg.content || '메시지가 없습니다'}</p>
 
-                    {msg.image && (
+                    {msg.image && msg.destination && (
                         <img
                             src={msg.image}
                             alt={`${msg.destination} 이미지`}

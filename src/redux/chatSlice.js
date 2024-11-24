@@ -60,10 +60,10 @@ export const sendUserMessage = (requestData) => {
 
             // AI의 응답 메시지를 Redux 스토어에 저장
             dispatch(receiveMessage({
-                role: data.messages.role,
                 content: data.messages.content,
-                // destination: data.destination, // destination 명시적으로 전달
-                ref: data.ref,
+                destination: data.messages.destination, // destination 명시적으로 전달
+                ref: data.messages.ref,
+                role: data.messages.role,
             }));
         } catch (error) {
             console.error('Error sending message:', error); // 오류 로그 출력
@@ -141,10 +141,8 @@ const chatSlice = createSlice({
         },
         // AI 응답을 Redux 스토어에 추가하는 리듀서
         receiveMessage: (state, action) => {
-            const { role, content, ref } = action.payload;
+            const { content, destination, ref, role, } = action.payload;
 
-            // content 내부의 destination 접근
-            const destination = content.destination;
 
             // 메시지에 destination이 없더라도 별도로 처리
             const destinationImage = destination ? buildingImageMap[destination] : "Unknown";
@@ -156,7 +154,7 @@ const chatSlice = createSlice({
             // 메시지로 처리
                 state.messages.push({
                     role,
-                    content: content.content, // 실제 텍스트
+                    content, // 실제 텍스트
                     ref,
                     destination, // 목적지
                     image: destinationImage, // 목적지 이미지
@@ -178,10 +176,26 @@ const chatSlice = createSlice({
             state.loading = false; // 로딩 상태 초기화
         },
         setMessages: (state, action) => {
+
             const newMessages = action.payload;
+
+            // 새로운 메시지에 destination에 따른 이미지 매핑 추가
+            const updatedMessages = newMessages.map((msg) => {
+                if (msg.destination) {
+                    const destinationImage = buildingImageMap[msg.destination] || "Unknown";
+                    return {
+                        ...msg,
+                        image: destinationImage, // 목적지 이미지 추가
+                    };
+                }
+                return msg;
+            });
+
+
+
             state.messages = [
                 ...state.messages,
-                ...newMessages.filter(
+                ...updatedMessages.filter(
                     (newMsg) => !state.messages.some(
                         (existingMsg) =>
                             existingMsg.content === newMsg.content &&
