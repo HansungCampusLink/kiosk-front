@@ -142,7 +142,8 @@ const chatSlice = createSlice({
         // AI 응답을 Redux 스토어에 추가하는 리듀서
         receiveMessage: (state, action) => {
             const { role, content, ref } = action.payload;
-            ///// 윗부분 수정
+
+            // content 내부의 destination 접근
             const destination = content.destination;
 
             // 메시지에 destination이 없더라도 별도로 처리
@@ -155,11 +156,13 @@ const chatSlice = createSlice({
             // 메시지로 처리
                 state.messages.push({
                     role,
-                    content,
+                    content: content.content, // 실제 텍스트
                     ref,
-                    image: destinationImage, // 목적지 이미지 추가
+                    destination, // 목적지
+                    image: destinationImage, // 목적지 이미지
 
                 });
+
 
 
             state.loading = false; // 어시스턴트 응답 시 로딩 중지
