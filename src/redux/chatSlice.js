@@ -103,23 +103,23 @@ export const fetchChatHistoryById = (chatId) => {
 };
 
 const buildingImageMap = {
-    '정문': '/images/maps/정문.png',
-    '창의관': '/images/maps/창의관.png',
-    '인성관': '/images/maps/인성관.png',
-    '낙산관': '/images/maps/낙산관.png',
-    '상상관': '/images/maps/상상관.png',
-    '미래관': '/images/maps/미래관.png',
+    '정문': '/images/maps/main_gate.png',
+    '창의관': '/images/maps/creative_building.png',
+    '인성관': '/images/maps/integrity_building.png',
+    '낙산관': '/images/maps/naksan_building.png',
+    '상상관': '/images/maps/imagination_building.png',
+    '미래관': '/images/maps/future_building.png',
 
-    '우촌관': '/images/maps/우촌관.png',
-    '진리관': '/images/maps/진리관.png',
-    '학송관': '/images/maps/학송관.png',
-    '탐구관': '/images/maps/탐구관.png',
-    '한성 학군단': '/images/maps/한성 학군단.png',
+    '우촌관': '/images/maps/uchon_building.png',
+    '진리관': '/images/maps/truth_building.png',
+    '학송관': '/images/maps/haksong_building.png',
+    '탐구관': '/images/maps/exploration_building.png',
+    '한성 학군단': '/images/maps/hansung_rotc.png',
 
-    '연구관': '/images/maps/연구관.png',
-    '지선관': '/images/maps/지선관.png',
-    '공학관 에이동': '/images/maps/공학관 에이동.png',
-    '공학관 비동': '/images/maps/공학관 비동.png',
+    '연구관': '/images/maps/research_building.png',
+    '지선관': '/images/maps/jiseon_building.png',
+    '공학관 에이동': '/images/maps/engineering_a.png',
+    '공학관 비동': '/images/maps/engineering_b.png',
 
     // ... 건물 추가시 ...
 };
