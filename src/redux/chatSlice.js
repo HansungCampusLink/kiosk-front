@@ -121,7 +121,7 @@ const buildingImageMap = {
     '공학관 에이동': '/images/maps/공학관 에이동.png',
     '공학관 비동': '/images/maps/공학관 비동.png',
 
-    // ... 건물 추가
+    // ... 건물 추가시 ...
 };
 
 
