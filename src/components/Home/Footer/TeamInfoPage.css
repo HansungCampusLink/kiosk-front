@@ -91,15 +91,30 @@
     font-size: 14px;
     color: #666;
     margin-top: 10px;
+    text-decoration: none; /* 밑줄 제거 */
+    cursor: pointer; /* 클릭 가능하도록 커서 설정 */
+
+
 }
 
-/* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 *//* 라이트 모드 */
+/* 라이트 모드 */
 .app.light .bio {
-    color: #666;
-
+    color: #666; /* 라이트 모드 텍스트 색상 */
 }
 
-/* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 *//* 다크 모드 */
+/* 다크 모드 */
 .app.dark .bio {
-    color: #f9f9f9;
+    color: #f9f9f9; /* 다크 모드 텍스트 색상 */
+}
+
+/* 클릭 후 보라색 제거 */
+.bio:visited {
+    color: inherit; /* 클릭 후에도 기존 색상을 유지 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+/* 클릭 시 hover 효과 추가 (선택사항) */
+.bio:hover {
+    color: #888; /* 호버 시 살짝 다른 색상 */
+    text-decoration: none; /* 밑줄 제거 */
 }
