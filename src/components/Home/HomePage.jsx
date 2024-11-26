@@ -64,13 +64,6 @@ function HomePage() {
         const isMobileDevice = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
         const chatId = parseChatIdFromUrl(); // URL에서 chatId 추출
 
-        // if (isMobileDevice) {
-        //     // 모바일 환경이면 /mobile로 리다이렉트
-        //     if (currentPath !== '/mobile') {
-        //         navigate('/mobile', { replace: true });
-        //     }
-        // }
-
         // 모바일 디바이스인 경우 처리
         if (isMobileDevice && currentPath !== '/mobile') {
             navigate(`/mobile${chatId ? `?chatId=${chatId}` : ''}`, { replace: true });

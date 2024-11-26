@@ -88,43 +88,45 @@ function ChatWindow({ isExpanded }) {
                     <p>{msg.content || '메시지가 없습니다'}</p>
 
                     {msg.image && msg.destination && (
-                        <img
-                            src={msg.image}
-                            alt={`${msg.destination} 이미지`}
-                            className="building-image"
-                            style={{ width: '100%', borderRadius: '8px', marginTop: '10px' }}
-                        />
+                        <a href={msg.ref} target="_blank" rel="noopener noreferrer">
+                            <img
+                                src={msg.image}
+                                alt={`${msg.destination} 이미지`}
+                                className="building-image"
+                                style={{width: '100%', borderRadius: '8px', marginTop: '10px'}}
+                            />
+                        </a>
                     )}
 
-                    {/* 추천 링크가 있는 경우 리스트로 표시 */}
-                    {msg.ref && msg.ref.length > 0 && (
-                        <div className="qr-section-container">
-                            <button
-                                onClick={() => toggleQRLinks(index)} // 개별 메시지에 대한 QR 표시 여부 토글
-                                className="qr-toggle-button"
-                            >
-                                <img
-                                    src={theme === 'light' ? '/images/icons/QRicon.png' : '/images/icons/QRicon_white.png'}
-                                    alt="Toggle QR Icon"
-                                    className="qr-icon"
-                                />
+                            {/* 추천 링크가 있는 경우 리스트로 표시 */}
+                            {msg.ref && msg.ref.length > 0 && (
+                                <div className="qr-section-container">
+                                    <button
+                                        onClick={() => toggleQRLinks(index)} // 개별 메시지에 대한 QR 표시 여부 토글
+                                        className="qr-toggle-button"
+                                    >
+                                        <img
+                                            src={theme === 'light' ? '/images/icons/QRicon.png' : '/images/icons/QRicon_white.png'}
+                                            alt="Toggle QR Icon"
+                                            className="qr-icon"
+                                        />
 
-                            </button>
-                            <div className={`qr-section ${showQRLinks[index] ? 'open' : ''}`}>
-                                <div className="qr-grid"> {/* QR 코드들을 그리드 레이아웃으로 배치 */}
-                                    {msg.ref.map((ref, refIndex) => (
-                                        <div key={refIndex} className="qr-grid-item">
-                                            <QRCodeGenerator refLink={ref}/>
+                                    </button>
+                                    <div className={`qr-section ${showQRLinks[index] ? 'open' : ''}`}>
+                                        <div className="qr-grid"> {/* QR 코드들을 그리드 레이아웃으로 배치 */}
+                                            {msg.ref.map((ref, refIndex) => (
+                                                <div key={refIndex} className="qr-grid-item">
+                                                    <QRCodeGenerator refLink={ref}/>
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
-                    )}
+                    ))}
                 </div>
-            ))}
-        </div>
-    );
-}
+            );
+            }
 
-export default ChatWindow; // ChatWindow 컴포넌트를 외부로 내보냄
+            export default ChatWindow; // ChatWindow 컴포넌트를 외부로 내보냄
