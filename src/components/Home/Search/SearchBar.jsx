@@ -49,8 +49,8 @@ function SearchBar({ who, major,  selectedSuggestion, setSelectedSuggestion, onF
     // 질문을 전송하는 함수
     const handleSubmit = () => {
         if (question.trim()) {
-            const requestData = chatId
-                ? { // chatId가 있을 경우
+            const requestData =
+                chatId ? { // chatId가 있을 경우
                     chatId: chatId.toString(), // 기존 chatId 포함
                     who: who,
                     major: major,

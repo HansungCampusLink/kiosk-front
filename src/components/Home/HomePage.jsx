@@ -13,9 +13,11 @@ import './HomePage.css'; // CSS 스타일 시트 임포트
 import {fetchChatHistoryById, resetMessages} from "../../redux/chatSlice";
 import KakaoMap from "../KakaoMap/KakaoMap";
 import {parseChatIdFromUrl} from "../../redux/utils/urlUtils";
+import {useNavigate} from "react-router-dom";
 
 function HomePage() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [who, setWho] = useState('student'); // 사용자 유형의 기본값 'student'
     const [major, setMajor] = useState('Unknown'); // 전공 기본값 'Unknown'
@@ -58,6 +60,13 @@ function HomePage() {
             setIsChatStarted(false); // 채팅 시작 상태 초기화
         };
 
+        const currentPath = window.location.pathname;
+
+        // 만약 경로가 "/"이면 "/home"으로 리다이렉트
+        if (currentPath === "/") {
+            navigate('/home', { replace: true }); // replace: true로 기록을 초기화
+        }
+
         // URL에서 chatId 추출
         const chatId = parseChatIdFromUrl();
 
@@ -72,7 +81,7 @@ function HomePage() {
             setShowLeftPanel(false); // 좌측 패널 숨김
             setIsChatStarted(true); // 채팅이 이미 시작된 상태로 설정
         }
-    }, [dispatch]);
+    }, [dispatch, navigate]);
 
 
     // 첫 메시지 전송 시 호출되는 함수로, 추천 질문을 숨기고 body를 확장
@@ -90,6 +99,7 @@ function HomePage() {
         if (!showLeftPanel) {
             setIsExpanded(false); // left-panel 표시 시 오른쪽 패널 축소
             setShowMap(false); // 지도 숨김
+            setShowSuggestions(false);
         }
     };
 

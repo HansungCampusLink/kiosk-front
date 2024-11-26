@@ -19,27 +19,79 @@
     background-color: #f9f9f9;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .mobile-message {
-    margin: 10px 0;
+    max-width: 70%;
     padding: 10px;
-    border-radius: 10px;
-    max-width: 80%;
+    border-radius: 15px;
     word-wrap: break-word;
+    position: relative;
 }
 
 .mobile-user-message {
-    background-color: #d1e7dd;
+    background-color: #ffffff;
+    border: 2px solid #0073e6;
     align-self: flex-end;
     text-align: right;
+    margin-right: 10px;
 }
 
 .mobile-assistant-message {
-    background-color: #f8d7da;
+    background-color: #ffffff;
+    border: 2px solid #0073e6;
     align-self: flex-start;
     text-align: left;
+    margin-left: 10px;
 }
+
+.mobile-building-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* QR 토글 아이콘 스타일 */
+.qr-toggle-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* 로딩 애니메이션 */
+.loading-animation {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+    animation: loading 1.5s infinite;
+    margin-top: 20px;
+}
+
+@keyframes loading {
+    0% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
+
+
+.mobile-qr-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
 
 .mobile-footer {
     display: flex;

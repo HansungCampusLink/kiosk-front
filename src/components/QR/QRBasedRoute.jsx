@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const QRBasedRoute = ({ children }) => {
     const location = useLocation();
+    const navigate = useNavigate();
     const [isMobile, setIsMobile] = useState(false); // 모바일 환경 여부
     const [showAlert, setShowAlert] = useState(false); // 알림 상태
 
@@ -12,26 +13,30 @@ const QRBasedRoute = ({ children }) => {
         const isMobileDevice = /iPhone|Android/i.test(userAgent) && !/iPad/i.test(userAgent); // iPad 제외
         setIsMobile(isMobileDevice);
 
-        if (!isMobileDevice) {
+        if (isMobileDevice) {
+            // 모바일 환경이면 /mobile로 리다이렉트
+            if (location.pathname !== '/mobile') {
+                navigate('/mobile', { replace: true });
+            }
+
+        } else {
             setShowAlert(true); // 모바일 환경이 아닌 경우 알림 표시
             const timer = setTimeout(() => {
                 setShowAlert(false);
             }, 3000); // 3초 후 알림 숨기기
 
             return () => clearTimeout(timer); // 타이머 정리
-        }
-    }, []);
 
-    // 모바일 환경이 아닌 경우
-    if (!isMobile) {
-        if (showAlert) {
-            return (
-                <div style={alertStyles}>
-                    QR 코드 접속은 모바일 환경에서만 권장됩니다.
-                </div>
-            );
+            // 모바일 환경이 아니면 /로 리다이렉트
+            if (location.pathname !== '/') {
+                navigate('/', { replace: true });
+            }
         }
-        return <Navigate to="/" replace />;
+    }, [location, navigate]);
+
+    // 모바일 환경이 아닌 경우에는 렌더링 안 함
+    if (!isMobile) {
+        return null;
     }
 
     // 모바일 환경에서만 렌더링
