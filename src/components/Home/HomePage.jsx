@@ -86,8 +86,10 @@ function HomePage() {
     // 뒤로 가기 버튼 클릭 시 left-panel을 토글
     const handleBackButtonClick = () => {
         setShowLeftPanel((prev) => !prev); // left-panel 표시 토글
+
         if (!showLeftPanel) {
             setIsExpanded(false); // left-panel 표시 시 오른쪽 패널 축소
+            setShowMap(false); // 지도 숨김
         }
     };
 

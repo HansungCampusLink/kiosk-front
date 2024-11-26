@@ -120,6 +120,7 @@ const buildingImageMap = {
     '지선관': '/images/maps/jiseon_building.png',
     '공학관 에이동': '/images/maps/engineering_a.png',
     '공학관 비동': '/images/maps/engineering_b.png',
+    '상상빌리지': '/images/maps/Imagination_Village.png',
 
     // ... 건물 추가시 ...
 };
