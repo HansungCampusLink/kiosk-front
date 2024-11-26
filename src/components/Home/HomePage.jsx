@@ -10,7 +10,7 @@ import InactivityWarning from './Warnings/InactivityWarning'; // 추가: 알림 
 import WeatherCard from './Weather/WeatherCard';
 
 import './HomePage.css'; // CSS 스타일 시트 임포트
-import {fetchChatHistoryById, resetMessages} from "../../redux/chatSlice";
+import {fetchChatHistoryById, resetMessages, setIsOpenAI} from "../../redux/chatSlice";
 import KakaoMap from "../KakaoMap/KakaoMap";
 import {parseChatIdFromUrl} from "../../redux/utils/urlUtils";
 import {useNavigate} from "react-router-dom";
@@ -31,6 +31,10 @@ function HomePage() {
     const [isChatStarted, setIsChatStarted] = useState(false); // 채팅 시작 여부 상태 추가
     const [showMap, setShowMap] = useState(true); // 지도의 표시 여부 상태 관리
 
+    const [showAnimationMessage, setShowAnimationMessage] = useState(false);
+    const [animationMessage, setAnimationMessage] = useState(''); // 애니메이션 메시지
+
+    const isOpenAI = useSelector((state) => state.chat.IsOpenAI); // Redux에서 OpenAI 상태 가져오기
 
     const messages = useSelector((state) => state.chat.messages); // Redux 메시지 확인
 
@@ -107,6 +111,20 @@ function HomePage() {
     const toggleMapVisibility = () => {
         setShowMap((prev) => !prev); // 지도 표시 상태 반전
 
+    };
+
+    const toggleOpenAI = () => {
+        const newIsOpenAI = !isOpenAI; // 현재 값을 반전
+        dispatch(setIsOpenAI(newIsOpenAI)); // Redux 상태 업데이트
+        // console.log(newIsOpenAI);
+
+        setAnimationMessage(newIsOpenAI ? 'OpenAI On!' : 'OpenAI Off!'); // 메시지 설정
+        setShowAnimationMessage(true); // 애니메이션 활성화
+
+        // 애니메이션 메시지를 일정 시간 후 숨기기
+        setTimeout(() => {
+            setShowAnimationMessage(false);
+        }, 2000); // 2초 후 숨기기
     };
 
     // 사용자 입력 감지: 이벤트가 발생할 때마다 타이머 리셋
@@ -202,13 +220,23 @@ function HomePage() {
                         <div className="icon-buttons">
                         </div>
                         <div className="left-panel-bottom">
+                            {showAnimationMessage && (
+                                <div className="openai-message animate-message">{animationMessage}</div>
+                            )}
                             <button className="left-panel-bottom-icon-button" onClick={toggleMapVisibility}>
                                 <img
-                                    src={theme === 'light' ? '/images/icons/map3.png' : '/images/icons/map3_white.png'}
+                                    src={theme === 'light' ? '/images/icons/map-icon2.png' : '/images/icons/map-icon2_white.png'}
                                     alt="Map Icon"/>
                             </button>
+                            <button className="left-panel-bottom-icon-button" onClick={toggleOpenAI}>
+                                <img
+                                    src={theme === 'light' ? '/images/icons/Open_Logo.png' : '/images/icons/Open_Logo_White.png'}
+                                    alt="openai Icon"/>
+                            </button>
+
                             {/* WeatherCard를 왼쪽 패널 하단에 추가 */}
                             <WeatherCard/>
+
                         </div>
                     </div>
                 )}

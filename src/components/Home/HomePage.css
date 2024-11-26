@@ -251,8 +251,7 @@ body.dark {
     display: flex; /* 플렉스 박스 활성화 */
     align-items: center; /* 세로축 중앙 정렬 */
     justify-content: space-between; /* 가로축 요소 간격 분배 */
-
-    gap: 40px; /* 요소 간 간격 추가 */
+    gap: 30px; /* 요소 간 간격 추가 */
 }
 
 .left-panel-bottom-icon-button {
@@ -261,20 +260,64 @@ body.dark {
     cursor: pointer;
     width: 24px;
     height: 24px;
-    padding: 0; /* 버튼의 여백 제거 */
+    /*padding: 0; !* 버튼의 여백 제거 *!*/
     transition: all 0.5s ease; /* 크기와 위치 변화에 부드러운 전환 효과 */
-    flex-shrink: 0; /* 버튼 크기 고정 (카드에 밀리지 않도록) */
+    /*flex-shrink: 0; !* 버튼 크기 고정 (카드에 밀리지 않도록) *!*/
 }
 
 .left-panel-bottom-icon-button img {
     width: 24px;
     height: 24px;
-    padding: 2px; /* 버튼의 여백 제거 */
+    /*padding: 2px; !* 버튼의 여백 제거 *!*/
 }
 
 .left-panel-bottom-icon-button:hover {
     transform: scale(1.2);
 }
+
+/* 애니메이션 메시지 기본 스타일 */
+.openai-message {
+    position: absolute;
+    top: -(-20)px; /* 버튼 위로 배치 (위치 조정) */
+    left: 50%; /* 버튼 중심 기준 */
+    transform: translateX(-50%); /* 중앙 정렬 */
+    background-color: rgba(0, 0, 0, 0.8); /* 어두운 배경 */
+    color: #fff; /* 흰색 글자 */
+    font-size: 16px; /* 텍스트 크기 조정 */
+    padding: 8px 12px; /* 내부 여백 추가 */
+    border-radius: 8px; /* 둥근 모서리 */
+    opacity: 0; /* 기본적으로 숨김 */
+    pointer-events: none; /* 클릭 방지 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+    z-index: 10; /* 다른 요소 위에 표시 */
+}
+
+/* 애니메이션 효과 */
+.animate-message {
+    animation: slide-up-fade-in-out 2s ease-in-out; /* 슬라이드 애니메이션 적용 */
+}
+
+/* 애니메이션 키프레임 */
+@keyframes slide-up-fade-in-out {
+    0% {
+        transform: translateX(-50%) translateY(20px); /* 아래에서 시작 */
+        opacity: 0; /* 투명 */
+    }
+    20% {
+        transform: translateX(-50%) translateY(0); /* 버튼 위로 이동 */
+        opacity: 1; /* 완전 보임 */
+    }
+    80% {
+        transform: translateX(-50%) translateY(0); /* 같은 위치 유지 */
+        opacity: 1; /* 유지 */
+    }
+    100% {
+        transform: translateX(-50%) translateY(20px); /* 다시 아래로 */
+        opacity: 0; /* 사라짐 */
+    }
+}
+
 
 .weather-card {
     flex-grow: 1; /* 카드가 가능한 공간을 차지 */

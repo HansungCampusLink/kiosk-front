@@ -6,6 +6,7 @@ const initialState = {
     chatId: null, // 새로운 chatId 추가
     who: "student",
     major: "Unknown",
+    IsOpenAI: true, // 추가: OpenAI 버튼 상태
     messages: [],
     loading: false
 };
@@ -15,6 +16,8 @@ export const sendUserMessage = (requestData) => {
     return async (dispatch, getState) => {
         const state = getState();
         const chatId = state.chat.chatId; // 기존 chatId 확인
+        const isOpenAI = state.chat.IsOpenAI; // Redux에서 OpenAI 상태 가져오기
+
 
         // 배열의 마지막 메시지를 전송하는 액션을 디스패치
         const latestMessage = requestData.messages[requestData.messages.length - 1]; // 최신 메시지
@@ -26,10 +29,12 @@ export const sendUserMessage = (requestData) => {
                 ? { chatId,
                     who: requestData.who || "student", // 테스트
                     major: requestData.major || "Unknown", // 테스트
+                    IsOpenAI: isOpenAI || true, // 추가: OpenAI 상태 포함
                     messages: requestData.messages } // chatId와 메시지 포함
                 : {
                     who: requestData.who || "student",
                     major: requestData.major || "Unknown",
+                    IsOpenAI: isOpenAI || true, // 추가: OpenAI 상태 포함
                     messages: requestData.messages,
                 }; // chatId가 없으면 기본 요청 구성
 
@@ -134,6 +139,9 @@ const chatSlice = createSlice({
         setChatId: (state, action) => {
             state.chatId = action.payload; // chatId 설정
         },
+        setIsOpenAI: (state, action) => {
+            state.IsOpenAI = action.payload; // OpenAI 상태 설정
+        },
         // 사용자 메시지를 Redux 스토어에 추가하는 리듀서
         sendMessage: (state, action) => {
             state.messages.push(action.payload); // 사용자 메시지 추가
@@ -174,6 +182,7 @@ const chatSlice = createSlice({
         resetMessages: (state) => {
             state.chatId = null; // chatId 초기화
             state.messages = []; // 메시지 초기화
+            state.IsOpenAI = true; // 상태 초기화
             state.loading = false; // 로딩 상태 초기화
         },
         setMessages: (state, action) => {
@@ -209,5 +218,5 @@ const chatSlice = createSlice({
 });
 
 // 액션과 리듀서 내보내기
-export const { setChatId, sendMessage, receiveMessage, setMessages,restoreMessagesFromUrl, resetMessages } = chatSlice.actions; // 사용자 메시지 및 AI 응답 디스패치 액션 내보내기
+export const { setChatId, setIsOpenAI,sendMessage, receiveMessage, setMessages,restoreMessagesFromUrl, resetMessages } = chatSlice.actions; // 사용자 메시지 및 AI 응답 디스패치 액션 내보내기
 export default chatSlice.reducer; // 슬라이스 리듀서 내보내기
