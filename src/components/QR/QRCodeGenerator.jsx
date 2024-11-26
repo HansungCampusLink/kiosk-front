@@ -1,6 +1,6 @@
 // src/components/QR/QRCodeGenerator.jsx
 
-import React, { useState } from 'react';
+import React from 'react';
 import { QRCodeCanvas } from 'qrcode.react'; // QR 코드 생성 라이브러리
 import './QRCodeGenerator.css';
 import {useSelector} from "react-redux";
@@ -33,41 +33,3 @@ const QRCodeGenerator = ({ refLink }) => {
 };
 
 export default QRCodeGenerator;
-
-// const QRCodeGenerator = ({ qrCodes }) => {
-//     return (
-//         <div className="qr-code-container">
-//             {qrCodes.map((refLink, index) => (
-//                 <div className="qr-code-item" key={index}>
-//                     <h3>QR Code</h3>
-//                     <QRCodeCanvas
-//                         value={refLink} // QR 코드에 표시할 링크 값
-//                         size={150}      // QR 코드 크기
-//                         level="H"       // 오류 수정 레벨 설정
-//                     />
-//                     <p>{refLink}</p> {/* QR 코드 아래에 링크 표시 */}
-//                 </div>
-//             ))}
-//         </div>
-//     );
-// };
-//
-// export default QRCodeGenerator;
-
-
-// // how to use em
-//
-// import React from 'react';
-// import QRCodeGenerator from './QRCodeGenerator';
-//
-// const App = () => {
-//     const exampleRef = 'https://www.example.com';
-//
-//     return (
-//         <div>
-//             <QRCodeGenerator refLink={exampleRef} />
-//         </div>
-//     );
-// };
-//
-// export default App;

@@ -61,11 +61,15 @@ function HomePage() {
         };
 
         const currentPath = window.location.pathname;
+        const isMobileDevice = /iPhone|Android|iPad/i.test(navigator.userAgent || navigator.vendor || window.opera);
 
-        // 만약 경로가 "/"이면 "/home"으로 리다이렉트
-        if (currentPath === "/") {
-            navigate('/home', { replace: true }); // replace: true로 기록을 초기화
+        if (isMobileDevice) {
+            // 모바일 환경이면 /mobile로 리다이렉트
+            if (currentPath !== '/mobile') {
+                navigate('/mobile', { replace: true });
+            }
         }
+
 
         // URL에서 chatId 추출
         const chatId = parseChatIdFromUrl();

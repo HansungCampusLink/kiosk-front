@@ -6,7 +6,6 @@ import HomePage from './components/Home/HomePage.jsx';
 import MobilePage from './components/Mobile/MobilePage.jsx';
 import LoadingPage from "./components/Home/Loading/LoadingPage.jsx";
 import TeamInfoPage from './components/Home/Footer/TeamInfoPage.jsx';
-import QRBasedRoute from "./components/QR/QRBasedRoute";
 import './App.css';
 
 function AppContent() {
@@ -25,14 +24,7 @@ function AppContent() {
                 <Routes>
                     <Route path="/" element={<LoadingPage />} /> {/* 부팅 페이지 */}
                     <Route path="/home" element={<HomePage />} /> {/* 메인 페이지 */}
-                    <Route
-                        path="/mobile"
-                        element={
-                            <QRBasedRoute>
-                                <MobilePage />
-                            </QRBasedRoute>
-                        }
-                    />
+                    <Route path="/mobile" element={<MobilePage />} />
                     <Route path="/team-info" element={<TeamInfoPage />} />
                 </Routes>
             </Router>
