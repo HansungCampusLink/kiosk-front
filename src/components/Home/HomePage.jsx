@@ -10,7 +10,7 @@ import InactivityWarning from './Warnings/InactivityWarning'; // 추가: 알림 
 import WeatherCard from './Weather/WeatherCard';
 
 import './HomePage.css'; // CSS 스타일 시트 임포트
-import {fetchChatHistoryById, resetMessages, setIsOpenAI} from "../../redux/chatSlice";
+import {fetchChatHistoryById, resetMessages, setOpenAi} from "../../redux/chatSlice";
 import KakaoMap from "../KakaoMap/KakaoMap";
 import {parseChatIdFromUrl} from "../../redux/utils/urlUtils";
 import {useNavigate} from "react-router-dom";
@@ -34,7 +34,7 @@ function HomePage() {
     const [showAnimationMessage, setShowAnimationMessage] = useState(false);
     const [animationMessage, setAnimationMessage] = useState(''); // 애니메이션 메시지
 
-    const isOpenAI = useSelector((state) => state.chat.IsOpenAI); // Redux에서 OpenAI 상태 가져오기
+    const isOpenAI = useSelector((state) => state.chat.openAi); // Redux에서 OpenAI 상태 가져오기
 
     const messages = useSelector((state) => state.chat.messages); // Redux 메시지 확인
 
@@ -115,8 +115,8 @@ function HomePage() {
 
     const toggleOpenAI = () => {
         const newIsOpenAI = !isOpenAI; // 현재 값을 반전
-        dispatch(setIsOpenAI(newIsOpenAI)); // Redux 상태 업데이트
-        // console.log(newIsOpenAI);
+        dispatch(setOpenAi(newIsOpenAI)); // Redux 상태 업데이트
+        console.log(newIsOpenAI);
 
         setAnimationMessage(newIsOpenAI ? 'OpenAI On!' : 'OpenAI Off!'); // 메시지 설정
         setShowAnimationMessage(true); // 애니메이션 활성화

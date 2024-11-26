@@ -1,16 +1,17 @@
 // SearchBar.jsx
 import React, {useState, useEffect, useRef} from 'react'; // React와 useState 훅 임포트
-import { useDispatch, useSelector } from 'react-redux'; // Redux의 useDispatch 훅 임포트
-import { sendUserMessage } from '../../../redux/chatSlice'; // 메시지 전송 액션 임포트
-import { updateUrlWithChatId } from '../../../redux/utils/urlUtils'; // URL 유틸리티 함수
+import {useDispatch, useSelector} from 'react-redux'; // Redux의 useDispatch 훅 임포트
+import {sendUserMessage} from '../../../redux/chatSlice'; // 메시지 전송 액션 임포트
+import {updateUrlWithChatId} from '../../../redux/utils/urlUtils'; // URL 유틸리티 함수
 import './SearchBar.css';
 import QRCodeGenerator from "../../QR/QRCodeGenerator";
 
 
-function SearchBar({ who, major,  selectedSuggestion, setSelectedSuggestion, onFirstMessage, isExpanded  }) {
+function SearchBar({who, major, selectedSuggestion, setSelectedSuggestion, onFirstMessage, isExpanded}) {
     const [question, setQuestion] = useState(''); // 사용자가 입력한 질문을 저장하는 상태 변수
     const messages = useSelector((state) => state.chat.messages); // 전체 메시지 내역 가져오기
     const chatId = useSelector((state) => state.chat.chatId); // chatId 추가
+    const isOpenAI = useSelector((state) => state.chat.openAi); // IsOpenAI Redux 상태 가져오기
     const dispatch = useDispatch(); // Redux의 dispatch 함수를 사용하여 액션을 보낼 준비
     const [qrVisible, setQRVisible] = useState(false); //: 공유 QR 코드 표시 여부 상태 추가
     const theme = useSelector((state) => state.theme.mode); // Redux 상태에서 theme 가져오기
@@ -51,24 +52,24 @@ function SearchBar({ who, major,  selectedSuggestion, setSelectedSuggestion, onF
         if (question.trim()) {
             const requestData =
                 chatId ? { // chatId가 있을 경우
-                    chatId: chatId.toString(), // 기존 chatId 포함
-                    who: who,
-                    major: major,
-                    // destination: destination, // 목적지 포함
-                    messages: [
-                        ...messages,
-                        { role: 'user', content: question },
-                    ],
-                }
-                : { // chatId가 없을 경우
-                    who: who,
-                    major: major,
-                    // destination: destination, // 목적지 포함
-                    messages: [
-                        ...messages,
-                        { role: 'user', content: question },
-                    ],
-                };
+                        chatId: chatId.toString(), // 기존 chatId 포함
+                        who: who,
+                        major: major,
+                        openAi: isOpenAI, // IsOpenAI 값을 포함
+                        messages: [
+                            ...messages,
+                            {role: 'user', content: question},
+                        ],
+                    }
+                    : { // chatId가 없을 경우
+                        who: who,
+                        major: major,
+                        openAi: isOpenAI, // IsOpenAI 값을 포함
+                        messages: [
+                            ...messages,
+                            {role: 'user', content: question},
+                        ],
+                    };
 
             console.log('Sending requestData:', requestData); // 디버깅용 로그
             dispatch(sendUserMessage(requestData)); // 입력한 질문을 Redux 스토어로 전송
@@ -119,7 +120,7 @@ function SearchBar({ who, major,  selectedSuggestion, setSelectedSuggestion, onF
                         <button className="qr-modal-close" onClick={toggleQRVisibility}>
                             &times;
                         </button>
-                        <QRCodeGenerator refLink={currentUrl} />
+                        <QRCodeGenerator refLink={currentUrl}/>
                         <p className="qr-url-message">웹이나 패드로 QR 접속 시 홈페이지로 돌아갑니다.</p>
                         <p className="qr-url-message">모바일 권장 QR 코드입니다.</p>
                     </div>
