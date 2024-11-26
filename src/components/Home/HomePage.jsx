@@ -61,18 +61,21 @@ function HomePage() {
         };
 
         const currentPath = window.location.pathname;
-        const isMobileDevice = /iPhone|Android|iPad/i.test(navigator.userAgent || navigator.vendor || window.opera);
+        const isMobileDevice = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+        const chatId = parseChatIdFromUrl(); // URL에서 chatId 추출
 
-        if (isMobileDevice) {
-            // 모바일 환경이면 /mobile로 리다이렉트
-            if (currentPath !== '/mobile') {
-                navigate('/mobile', { replace: true });
-            }
+        // if (isMobileDevice) {
+        //     // 모바일 환경이면 /mobile로 리다이렉트
+        //     if (currentPath !== '/mobile') {
+        //         navigate('/mobile', { replace: true });
+        //     }
+        // }
+
+        // 모바일 디바이스인 경우 처리
+        if (isMobileDevice && currentPath !== '/mobile') {
+            navigate(`/mobile${chatId ? `?chatId=${chatId}` : ''}`, { replace: true });
         }
 
-
-        // URL에서 chatId 추출
-        const chatId = parseChatIdFromUrl();
 
         if (!chatId) {
             // chatId가 없는 경우에만 초기화
