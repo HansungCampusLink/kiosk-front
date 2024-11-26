@@ -48,7 +48,7 @@ function HomePage() {
     useEffect(() => {
         // 페이지 초기화 함수
         const resetToInitialState = () => {
-            setWho('student');
+            setWho('학생');
             setMajor('Unknown');
             setDestination("Unknown")
             setSelectedSuggestion('');
@@ -164,20 +164,36 @@ function HomePage() {
                         <div className="selection-group">
                             <p className="selection-group-title">너는 누구야?</p>
                             <div className="selection-buttons">
-                                <button onClick={() => handleWhoChange('student')} className={who === 'student' ? 'selected-button' : ''}>Student</button>
-                                <button onClick={() => handleWhoChange('professor')} className={who === 'professor' ? 'selected-button' : ''}>Professor</button>
-                                <button onClick={() => handleWhoChange('deliver')} className={who === 'deliver' ? 'selected-button' : ''}>Deliver</button>
-                                <button onClick={() => handleWhoChange('visitor')} className={who === 'visitor' ? 'selected-button' : ''}>Visitor</button>
-                                <button onClick={() => handleWhoChange('others')} className={who === 'others' ? 'selected-button' : ''}>Others</button>
+                                <button onClick={() => handleWhoChange('학생')} className={who === '학생' ? 'selected-button' : ''}>학생</button>
+                                <button onClick={() => handleWhoChange('교수님')} className={who === '교수님' ? 'selected-button' : ''}>교수님</button>
+                                <button onClick={() => handleWhoChange('방문자')} className={who === '방문자' ? 'selected-button' : ''}>방문자</button>
                             </div>
                         </div>
                         <div className="selection-group">
                             <p className="selection-group-title">혹시 소속 단과대는?</p>
                             <div className="selection-buttons">
-                                <button onClick={() => handleMajorChange('humanities')} className={major === 'humanities' ? 'selected-button' : ''}>Humanities</button>
-                                <button onClick={() => handleMajorChange('social sciences')} className={major === 'social sciences' ? 'selected-button' : ''}>Social Sciences</button>
-                                <button onClick={() => handleMajorChange('arts')} className={major === 'arts' ? 'selected-button' : ''}>Arts</button>
-                                <button onClick={() => handleMajorChange('engineering')} className={major === 'engineering' ? 'selected-button' : ''}>Engineering</button>
+                                <button onClick={() => handleMajorChange('크리에이티브인문예술')}
+                                        className={major === '크리에이티브인문예술' ? 'selected-button' : ''}>크리에이티브인문예술
+                                </button>
+                                <button onClick={() => handleMajorChange('미래융합사회과학')}
+                                        className={major === '미래융합사회과학' ? 'selected-button' : ''}>미래융합사회과학
+                                </button>
+                                <button onClick={() => handleMajorChange('디자인대학')}
+                                        className={major === '디자인대학' ? 'selected-button' : ''}>디자인대학
+                                </button>
+                                <button onClick={() => handleMajorChange('IT공과')}
+                                        className={major === 'IT공과' ? 'selected-button' : ''}>IT공과
+                                </button>
+
+                                <button onClick={() => handleMajorChange('창의융합')}
+                                        className={major === '창의융합' ? 'selected-button' : ''}>창의융합
+                                </button>
+                                <button onClick={() => handleMajorChange('상상력교양')}
+                                        className={major === '상상력교양' ? 'selected-button' : ''}>상상력교양
+                                </button>
+                                <button onClick={() => handleMajorChange('미래플러스')}
+                                        className={major === '미래플러스' ? 'selected-button' : ''}>미래플러스
+                                </button>
                             </div>
                         </div>
 

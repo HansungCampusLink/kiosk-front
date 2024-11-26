@@ -96,7 +96,7 @@ const KakaoMap = ({ setQuestion }) => {
 
     return (
         <div className="kakao-map-container">
-            <div id="kakao-map" style={{ width: '100%', height: '300px', marginBottom: '20px', borderRadius: '30px' }}></div>
+            <div id="kakao-map" style={{ width: '100%', height: '300px', marginBottom: '20px',  borderRadius: '15px' }}></div>
 
         </div>
     );
