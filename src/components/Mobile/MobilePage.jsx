@@ -75,6 +75,13 @@ const MobilePage = () => {
         }));
     };
 
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleSendMessage();
+        }
+    };
+
+
     return (
         <div className="mobile-page">
             {/* 헤더 섹션 */}
@@ -139,6 +146,7 @@ const MobilePage = () => {
                         type="text"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
+                        onKeyDown={handleKeyDown}
                         placeholder="질문을 입력하세요..."
                     />
                     <button onClick={handleSendMessage}>전송</button>
