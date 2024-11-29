@@ -118,7 +118,7 @@ function HomePage() {
         dispatch(setOpenAi(newIsOpenAI)); // Redux 상태 업데이트
         console.log(newIsOpenAI);
 
-        setAnimationMessage(newIsOpenAI ? 'OpenAI On!' : 'OpenAI Off!'); // 메시지 설정
+        setAnimationMessage(newIsOpenAI ? 'OpenAI Mode!' : 'MaumAI Mode!'); // 메시지 설정
         setShowAnimationMessage(true); // 애니메이션 활성화
 
         // 애니메이션 메시지를 일정 시간 후 숨기기
